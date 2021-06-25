@@ -13,13 +13,13 @@ code or the PCB, well that's also great.
 ## Board and Schematics will be made available here once finalized.
 
 ## BOM for the PCB (Everything available from Mouser.com)
-Temperature/Humidity Sensor: Adafruit AM2320 Part#:3721 (1)
-Resistors: Generic 0805 10k (6)
-Diodes: Generic SOT23 basic diodes (3)
-RasPi Header: Adafruit 2x20P Part#:2243 (1)
-Contact headers: 12P 2.5mm 90DEG Part#:1725453 (1)
-Relay headers: 3P 2.5mm 90 DEG Part#:1725669 (2)
-Relays: PCB Power Relay Part#:G2RL-1-E-HA DC5 (2)
+  - Temperature/Humidity Sensor: Adafruit AM2320 Part#:3721 (1)
+  - Resistors: Generic 0805 10k (6)
+  - Diodes: Generic SOT23 basic diodes (3)
+  - Contact headers: 12P 2.5mm 90DEG Part#:1725453 (1)
+  - RasPi Header: Adafruit 2x20P Part#:2243 (1)
+  - Relay headers: 3P 2.5mm 90 DEG Part#:1725669 (2)
+  - Relays: PCB Power Relay Part#:G2RL-1-E-HA DC5 (2)
 
 # Installation
  1. Install raspbian lite on an SD card
