@@ -16,8 +16,11 @@ else
     read -n 1 -s -r -p "Press any key to change password for pi user..."
     passwd pi
     sudo apt update
-    sudo apt upgrade
-    sudo apt-get install python3-pip
+    sudo apt upgrade -y
+    sudo apt-get install apache2 snmpd python3-pip php sqlite3 php7.3-sqlite3 php7.3-mysql php-db -y
+    sudo pecl install pdo_sqlite
+    sudo ln -s /home/pi/AlarmPiHat /var/www/html
+    sudo systemctl enable --now apache2
     sudo pip3 install --upgrade setuptools
     sudo pip3 install --upgrade adafruit-python-shell
     sudo pip3 install adafruit-blinka

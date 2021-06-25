@@ -30,10 +30,10 @@ foreach($rows as $row){
         <div class="body">
           <?php
           // Get the sensor data from the python scripts
-          $temp =`python getTemp.py`;
-          $humid = `python getHumid.py`;
-          $contacts = `python getContacts.py`;
-          $relays = `python getRelay.py`;
+          $temp =`python3 getTemp.py`;
+          $humid = `python3 getHumid.py`;
+          $contacts = `python3 getContacts.py`;
+          $relays = `python3 getRelay.py`;
 
           // TEMPERATURE AND HUMIDITY
           print "<span class='heading'>Temperature</span><br /><br />";
