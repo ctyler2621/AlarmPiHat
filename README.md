@@ -3,7 +3,9 @@
 ## Board characteristics:
   * Two relays with NO and NC connections
   * 6 dry contact connections
-  * I2C temperature and humidity sensor
+  * I2C temperature and humidity sensor (Adafruit AM2320)
+
+### Board and Schematics will be made available here once finalized
 
 # Installation
  1. Install raspbian lite on an SD card
