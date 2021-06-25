@@ -22,20 +22,29 @@ code or the PCB, well that's also great.
   - Relays: PCB Power Relay Part#:G2RL-1-E-HA DC5 (2)
 
 # Installation
- 1. Install raspbian lite on an SD card
- 2. Change the pi user Password
- 3. sudo apt update
- 4. sudo apt upgrade
- 5. sudo apt-get install python3-pip
- 6. sudo pip3 install --upgrade setuptools
- 7. sudo pip3 install --upgrade adafruit-python-shell
- 8. sudo pip3 install adafruit-blinka
- 9. sudo pip3 install adafruit-circuitpython-am2320
- 10. sudo raspi-config then'Interfacing Options' and 'I2C' to tell the RasPi to enable the I2C interface. Then select 'Finish'
- 11. sudo reboot
- 12. ls /dev/i2c* to make sure that the i2c is visible
- 13. sudo apt install git
- 14. git clone https://github.com/ctyler2621/AlarmPiHat.git
- 15. apt install snmpd
- 16. sudo cp snmpd.conf /etc/snmp/.
- 17. sudo chown root.root /etc/snmp/snmpd.conf
+Installation is simple, install raspbian lite on an SD card, pop it into a
+Raspberry PI (preferably version 3 or better), clone the git repo and then just
+run the install.sh script.
+
+```
+apt install git
+git clone https://github.com/ctyler2621/AlarmPiHat.git
+cd /home/pi/AlarmPiHat
+./install.sh
+```
+
+### Here is a rundown of what the install.sh script does:
+ 1. Change the pi user Password
+ 2. sudo apt update
+ 3. sudo apt upgrade
+ 4. sudo apt-get install python3-pip
+ 5. sudo pip3 install --upgrade setuptools
+ 6. sudo pip3 install --upgrade adafruit-python-shell
+ 7. sudo pip3 install adafruit-blinka
+ 8. sudo pip3 install adafruit-circuitpython-am2320
+ 9. sudo raspi-config then'Interfacing Options' and 'I2C' to tell the RasPi to enable the I2C interface. Then select 'Finish'
+ 10. ls /dev/i2c* to make sure that the i2c is visible
+ 11. apt install snmpd
+ 12. sudo cp snmpd.conf /etc/snmp/.
+ 13. sudo chown root.root /etc/snmp/snmpd.conf
+ 14. Reboot the Raspberry Pi
