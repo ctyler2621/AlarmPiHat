@@ -16,10 +16,6 @@ So you would call the script to run in order to populate the SNMP value at the g
 read in the temperature, you would call a python script to get the temperature that returns nothing but the integer
 value.
 
-We have an enterprise id from IANA that we can use, it is 47554 (full context is 1.3.6.1.4.1.47554.[value]).
-Prefix: iso.org.dod.internet.private.enterprise (1.3.6.1.4.1)
-
-
 Configuring Apache2 to run Python Scripts: https://www.linux.com/training-tutorials/configuring-apache2-run-python-scripts/
 
 # Installation
