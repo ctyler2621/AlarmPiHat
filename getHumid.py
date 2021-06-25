@@ -11,14 +11,14 @@
 # Documentation:
 # =============================================================================
 # Imports:
-import time
+#import time
 import board
 import adafruit_am2320
 # =============================================================================
 # Codebase:
 i2c = board.I2C()
 sensor = adafruit_am2320.AM2320(i2c)
-time.sleep(1) # Just to make sure that we aren't reading from the sensor too quickly
+#time.sleep(1) # Just to make sure that we aren't reading from the sensor too quickly
 print('{0}'.format(sensor.relative_humidity))
 
 
