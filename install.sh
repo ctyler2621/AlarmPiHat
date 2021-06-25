@@ -17,8 +17,7 @@ else
     passwd pi
     sudo apt update
     sudo apt upgrade -y
-    sudo apt-get install apache2 snmpd python3-pip php sqlite3 php7.3-sqlite3 php7.3-mysql php-db -y
-    sudo pecl install pdo_sqlite
+    sudo apt-get install apache2 snmpd python3-pip php sqlite3 php7.3-sqlite3 php7.3-mysql php-db ufw -y
     sudo ln -s /home/pi/AlarmPiHat /var/www/html
     sudo systemctl enable --now apache2
     sudo pip3 install --upgrade setuptools
@@ -30,6 +29,12 @@ else
     read -n 1 -s -r -p "Press any key to launch raspi-config..."
     sudo raspi-config
     ls /dev/i2c* to make sure that the i2c is visible
+    sudo chmod 666 /dev/i2c*
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
+    sudo ufw allow ssh
+    sudo ufw allow http
+    sudo systemctl enable --now ufw
     read -n 1 -s -r -p "Press any key to REBOOT..."
     sudo reboot
 echo "Install script completed."

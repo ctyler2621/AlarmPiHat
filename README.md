@@ -22,7 +22,8 @@ code or the PCB, well that's also great.
   - Relays: PCB Power Relay Part#:G2RL-1-E-HA DC5 (2)
 
 # Installation
-Installation is simple, install raspbian lite on an SD card, pop it into a
+Installation is simple, install raspbian lite on an SD card. The  install is sub
+2GB so pretty much any size of SD card shoudl work just fine. Pop the SD into a
 Raspberry PI (preferably version 3 or better), clone the git repo and then just
 run the install.sh script.
 
@@ -35,16 +36,16 @@ cd /home/pi/AlarmPiHat
 
 ### Here is a rundown of what the install.sh script does:
  1. Change the pi user Password
- 2. sudo apt update
- 3. sudo apt upgrade
- 4. sudo apt-get install python3-pip
- 5. sudo pip3 install --upgrade setuptools
- 6. sudo pip3 install --upgrade adafruit-python-shell
- 7. sudo pip3 install adafruit-blinka
- 8. sudo pip3 install adafruit-circuitpython-am2320
- 9. sudo raspi-config then'Interfacing Options' and 'I2C' to tell the RasPi to enable the I2C interface. Then select 'Finish'
- 10. ls /dev/i2c* to make sure that the i2c is visible
- 11. apt install snmpd
- 12. sudo cp snmpd.conf /etc/snmp/.
- 13. sudo chown root.root /etc/snmp/snmpd.conf
- 14. Reboot the Raspberry Pi
+ 2. Update the underlying OS
+ 3. Install required packages
+ 4. Setup Apache2 with SQLite and PDO
+ 5. Create a symbolic link to /var/www/html for AlarmPiHat
+ 6. Install some Adafruit packages
+ 7. Enable I2C and change permissions to the I2C bus to 666
+ 8. Reboot the Raspberry Pi
+
+# Accessing the Alram PiHat through the web
+Just go to the IP address of your Raspberry Pi and then /AlarmPiHat/ for
+example:
+
+http://192.168.0.24/AlarmPiHat/
