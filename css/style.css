@@ -1,0 +1,170 @@
+/*-----------------------*/
+/*    GENERIC STYLING    */
+/*-----------------------*/
+
+.clear:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clear {
+    /* generic container (i.e. div) for floating buttons */
+    overflow: hidden;
+    width: 100%;
+}
+
+* html .clear {
+    height: 1%;
+}
+
+#container {
+    box-shadow: 7px 1px 7px #777;
+    position: relative;
+    margin: 0px auto 0 auto;
+    width: auto;
+    background-color: #ffffff;
+    padding: 0px;
+    height: auto;
+}
+
+body.standard {
+    overflow: auto;
+    margin: 0px auto;
+    font-family: 'Rubik', arial, sans, serif;
+    color: #000000;
+    background-color: #ababab;
+    padding: 5px;
+}
+
+hr.standard {
+    border: 1px solid #ccc;
+    border-color: #800;
+}
+
+/*-----------------------*/
+/*          SLIDER       */
+/*-----------------------*/
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*-----------------------*/
+/*          BODY         */
+/*-----------------------*/
+
+div.body {
+  /* Encloses the body so you can do proper margins and spacing */
+  margin: 10px;
+  position: relative;
+}
+
+.heading {
+  color:#009;
+  font-weight:bold;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.readings {
+  color:#09f;
+  font-weight:bold;
+  font-size: 3em;
+  text-align: center;
+}
+
+/*-----------------------*/
+/*          FOOTER       */
+/*-----------------------*/
+
+div.footer {
+    box-shadow: 7px 7px 7px #777;
+    font-family: sans, arial;
+    font-size: 10px;
+    text-align: right;
+    padding: 5px;
+}
+
+#settings {
+  position: absolute;
+  right:0;
+  top:0;
+  margin-top:10px;
+  margin-right: 10px;
+}
+
+.settings{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/*-----------------------*/
+/*          FORMS       */
+/*-----------------------*/
+
+input[type='number']{
+    width: 34px;
+}

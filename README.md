@@ -34,5 +34,6 @@ Configuring Apache2 to run Python Scripts: https://www.linux.com/training-tutori
  9. sudo pip3 install adafruit-circuitpython-am2320
  10. sudo raspi-config then'Interfacing Options' and 'I2C' to tell the RasPi to enable the I2C interface. Then select 'Finish'
  11. sudo reboot
- 12. ls /dev/i2c*
-  
+ 12. ls /dev/i2c* to make sure that the i2c is visible
+ 13. sudo apt install git
+ 14. git clone ctyler2621/sandbox/this.000019.AlarmHat/
