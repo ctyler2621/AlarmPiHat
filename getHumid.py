@@ -11,9 +11,9 @@
 # Documentation:
 # =============================================================================
 # Imports:
+import time
 import board
 import adafruit_am2320
-import time
 # =============================================================================
 # Codebase:
 i2c = board.I2C()
