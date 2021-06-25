@@ -44,7 +44,7 @@ cd /home/pi/AlarmPiHat
  7. Enable I2C and change permissions to the I2C bus to 666
  8. Reboot the Raspberry Pi
 
-# Accessing the Alram PiHat through the web
+# Accessing the Alarm PiHat through the web
 Just go to the IP address of your Raspberry Pi and then /AlarmPiHat/ for
 example:
 
