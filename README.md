@@ -5,19 +5,6 @@
   * 6 dry contact connections
   * I2C temperature and humidity sensor
 
-## Just a quick note on extending SNMP
-  + Extend a shell script in etc/snmpd.conf using the following format: extend <OID> <name> path/to/script <arguments>
-  + Restart snmpd.
-
-Recipes for Extending Net-SNMP: https://vincent.bernat.ch/en/blog/2012-extending-netsnmp
-How to write an MIB module: https://net-snmp.sourceforge.io/tutorial/tutorial-4/agent/01-intro.html
-
-So you would call the script to run in order to populate the SNMP value at the given OID. For example if you wanted to
-read in the temperature, you would call a python script to get the temperature that returns nothing but the integer
-value.
-
-Configuring Apache2 to run Python Scripts: https://www.linux.com/training-tutorials/configuring-apache2-run-python-scripts/
-
 # Installation
  1. Install raspbian lite on an SD card
  2. Change the pi user Password
