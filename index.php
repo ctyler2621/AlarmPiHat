@@ -33,7 +33,7 @@ foreach($rows as $row){
           $temp =`python getTemp.py`;
           $humid = `python getHumid.py`;
           $contacts = `python getContacts.py`;
-          $relays = `python setRelay.py`;
+          $relays = `python getRelay.py`;
 
           // TEMPERATURE AND HUMIDITY
           print "<span class='heading'>Temperature</span><br /><br />";

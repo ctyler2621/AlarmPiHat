@@ -36,3 +36,6 @@ code or the PCB, well that's also great.
  12. ls /dev/i2c* to make sure that the i2c is visible
  13. sudo apt install git
  14. git clone https://github.com/ctyler2621/AlarmPiHat.git
+ 15. apt install snmpd
+ 16. sudo cp snmpd.conf /etc/snmp/.
+ 17. sudo chown root.root /etc/snmp/snmpd.conf
