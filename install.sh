@@ -37,5 +37,6 @@ else
     sudo systemctl enable --now ufw
     read -n 1 -s -r -p "Press any key to REBOOT..."
     sudo reboot
+fi
 echo "Install script completed."
 echo
