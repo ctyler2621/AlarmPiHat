@@ -37,6 +37,8 @@ else
     sudo systemctl enable --now ufw
     sudo cp includes/snmpd.conf /etc/snmp/snmpd.conf
     sudo cp includes/rc.local /etc/rc.local
+    sudo chmod 777 AlarmPiHat/db
+    sudo chmod 777 AlarmPiHat/db/config.db
     read -n 1 -s -r -p "Press any key to REBOOT..."
     sudo reboot
 fi
