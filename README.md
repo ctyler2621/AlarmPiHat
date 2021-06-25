@@ -36,4 +36,4 @@ Configuring Apache2 to run Python Scripts: https://www.linux.com/training-tutori
  11. sudo reboot
  12. ls /dev/i2c* to make sure that the i2c is visible
  13. sudo apt install git
- 14. git clone ctyler2621/sandbox/this.000019.AlarmHat/
+ 14. git clone https://github.com/ctyler2621/AlarmPiHat.git
