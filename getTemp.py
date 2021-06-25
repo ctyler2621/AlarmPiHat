@@ -16,7 +16,7 @@ import board
 import adafruit_am2320
 # =============================================================================
 # Codebase:
-try:
+#try:
     i2c = board.I2C()
     sensor = adafruit_am2320.AM2320(i2c)
     celsius = '{0}'.format(sensor.temperature)
@@ -24,8 +24,8 @@ try:
     fahrenheit = (celsius * 1.8) + 32
     #time.sleep(1) # Just to make sure that we aren't reading from the sensor too quickly
     print('%0.1fC %0.1fF' %(celsius,fahrenheit))
-except:
-    print("NaN")
+#except:
+#    print("NaN")
 
 #from random import *
 #rando = uniform(70,71)
