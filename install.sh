@@ -35,6 +35,8 @@ else
     sudo ufw allow ssh
     sudo ufw allow http
     sudo systemctl enable --now ufw
+    sudo cp includes/snmpd.conf /etc/snmp/snmpd.conf
+    sudo cp includes/rc.local /etc/rc.local
     read -n 1 -s -r -p "Press any key to REBOOT..."
     sudo reboot
 fi
