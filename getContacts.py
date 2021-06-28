@@ -45,7 +45,7 @@ else:
     contact3 = 0
 contact4 = digitalio.DigitalInOut(board.D13)
 contact4.switch_to_input(pull=digitalio.Pull.DOWN)
-if contact4.value":
+if contact4.value:
     contact4 = 1
 else:
     contact4 = 0
