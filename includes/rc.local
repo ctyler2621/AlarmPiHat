@@ -18,6 +18,6 @@ if [ "$_IP" ]; then
 fi
 
 printf "Set i2c to rw for everyone"
-sudo chmod 666 i2c*
+sudo chmod 666 /dev/i2c*
 
 exit 0

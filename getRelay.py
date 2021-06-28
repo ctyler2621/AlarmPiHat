@@ -11,9 +11,24 @@
 # Documentation:
 # =============================================================================
 # Imports:
-#rom ... import ...
+import board
+import digitalio
+from random import *
 # =============================================================================
 # Codebase:
+
+# Map for Relays
+# Relay 1 = D4
+# Relay 2 = D17
+
+relay1 = digitalio.DigitalInOut(board.D4)
+relay1.direction = digitalio.Direction.OUTPUT
+relay2 = digitalio.DigitalInOut(board.D17)
+relay2.direction = digitalio.Direction.OUTPUT
+
+relay1.value = True
+relay1.value = False
+
 from random import *
 
 arr = []
