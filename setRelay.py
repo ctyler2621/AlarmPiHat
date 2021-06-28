@@ -20,18 +20,10 @@ import digitalio
 # Relay 1 = D4
 # Relay 2 = D17
 
-# Read current state of the pins
-relay1.switch_to_input(pull=digitalio.Pull.DOWN)
-relay2.switch_to_input(pull=digitalio.Pull.DOWN)
+relay1 = digitalio.DigitalInOut(board.D4)
+relay1.direction = digitalio.Direction.OUTPUT
+relay2 = digitalio.DigitalInOut(board.D17)
+relay2.direction = digitalio.Direction.OUTPUT
 
-if relay1.value:
-        relay1 = 1
-else:
-        relay1 = 0
-
-if relay2.value:
-        relay2 = 0
-else:
-        relay2 = 1
-
-print("%s,%s" % (relay1,relay2))
+relay1.value = True
+relay1.value = False
