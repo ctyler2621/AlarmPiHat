@@ -26,14 +26,14 @@ relay2 = digitalio.DigitalInOut(board.D17)
 
 # Read the current state of the relays
 if relay1.value:
-        relay1 = 1
+        relay1_state = 1
 else:
-        relay1 = 0
+        relay1_state = 0
 
 if relay2.value:
-        relay2 = 1
+        relay2_state = 1
 else:
-        relay2 = 0
+        relay2_state = 0
 
 # Output to STDIN
-print("%s,%s" % (relay1,relay2))
+print("%s,%s" % (relay1_state,relay2_state))
