@@ -26,7 +26,3 @@ try:
     print('%0.1f' %(fahrenheit))
 except:
     print("NaN")
-
-#from random import *
-#rando = uniform(70,71)
-#print("{:.2f}".format(rando))

@@ -25,6 +25,7 @@ from random import *
 # 5 = D12
 # 6 = D6
 
+# Define the pins for the dry contacts and read their current values
 contact1 = digitalio.DigitalInOut(board.D26)
 contact1.switch_to_input(pull=digitalio.Pull.DOWN)
 if contact1.value:
@@ -62,13 +63,5 @@ if contact6.value:
 else:
         contact6=0
 
+# Print to STDIN
 print("%s,%s,%s,%s,%s,%s" % (contact1,contact2,contact3,contact4,contact5,contact6))
-
-
-#arr = []
-#for x in range(0,6):
-#    arr.insert(x,randint(0,1))
-
-#print ("%s,%s,%s,%s,%s,%s" % (arr[0],arr[1],arr[2],arr[3],arr[4],arr[5]))
-
-#print("0,0,0,1,0,0")  # This is what the output should look like

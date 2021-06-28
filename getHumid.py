@@ -23,8 +23,3 @@ try:
     print('{0}'.format(sensor.relative_humidity))
 except:
     print("NaN")
-
-
-#from random import *
-#rando = uniform(30,31)
-#print("{:.2f}".format(rando))
