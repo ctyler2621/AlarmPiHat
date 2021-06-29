@@ -269,6 +269,7 @@
                       $relay2_init = $_POST['relay_init_2'];
                       print "<br />";
                       print "DEBUG: ".$relay1_check." ".$relay2_check."<br />";
+                      exit();
                       $pdo = (new SQLiteConnection())->connect();
                       $conn = new SQLiteUpdate($pdo);
                       $result = $conn->updateRelays($relay1,$relay2,$relay1_check,$relay2_check,$relay1_init,$relay2_init);
