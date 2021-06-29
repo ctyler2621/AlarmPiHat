@@ -183,7 +183,16 @@
                 if(isset($_POST['submit_toggle_1'])){
                   $toggle = "relay1";
                   $toggle_time = $_POST['toggle_time_1'];
-                  `python3 getRelay.py 1 $toggle_time`;
+                  $relaystate = exec("sudo gpio read 7 ");
+                  if($relaystate == 0){
+                      exec("sudo gpio write 7 ON");
+                      sleep($toggle_time);
+                      exec("sudo gpio write 7 OFF");
+                    }else{
+                      exec("sudo gpio write 7 OFF");
+                      sleep($toggle_time);
+                      exec("sudo gpio write 7 ON");
+                    }
                 }
 
                 if(isset($_POST['submit_toggle_2'])){

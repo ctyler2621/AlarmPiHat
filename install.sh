@@ -17,7 +17,7 @@ else
     passwd pi
     sudo apt update
     sudo apt upgrade -y
-    sudo apt-get install apache2 snmpd python3-pip php sqlite3 php7.3-sqlite3 php7.3-mysql php-db ufw -y
+    sudo apt-get install apache2 snmpd python3-pip php sqlite3 php7.3-sqlite3 php7.3-mysql php-db ufw wiringpi -y
     sudo ln -s /home/pi/AlarmPiHat /var/www/html
     sudo systemctl enable --now apache2
     sudo pip3 install --upgrade setuptools
