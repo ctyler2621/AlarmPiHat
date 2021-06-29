@@ -201,17 +201,6 @@
                       exec("sudo gpio write $toggle ON");
                     }
                 }
-
-
-                /*
-                Now run some code or a script and pass it $toggle and
-                $toggle_time so that it knows what to toggle and for how long to
-                toggle it for. Probably do this in PHP with a simple
-                sleep($toggle_time) type of function.
-                */
-                if((isset($_POST['submit_toggle_1'])) || (isset($_POST['submit_toggle_2']))){
-                  print '<br /><span style="color:#090;font-weight:bold;">DEBUG: Toggle '.$toggle.' for '.$toggle_time.' seconds</span><br />';
-                }
                 ?>
 
             <form method=post>
@@ -279,7 +268,7 @@
                       $relay1_init = $_POST['relay_init_1'];
                       $relay2_init = $_POST['relay_init_2'];
                       print "<br />";
-
+                      print "DEBUG: ".$relay1_check." ".$relay2_check."<br />";
                       $pdo = (new SQLiteConnection())->connect();
                       $conn = new SQLiteUpdate($pdo);
                       $result = $conn->updateRelays($relay1,$relay2,$relay1_check,$relay2_check,$relay1_init,$relay2_init);
