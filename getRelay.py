@@ -42,7 +42,7 @@ relay2.direction = digitalio.Direction.OUTPUT
 # Reset the state depending on the current value
 if relay1_state == 1:
         relay1.value = True
-elif relay1_state == 0
+elif relay1_state == 0:
         relay1.value = False
 
 if relay2_state == 1:
