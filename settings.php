@@ -183,11 +183,13 @@
                 if(isset($_POST['submit_toggle_1'])){
                   $toggle = "relay1";
                   $toggle_time = $_POST['toggle_time_1'];
+                  `python3 getRelay.py 1 $toggle_time`;
                 }
 
                 if(isset($_POST['submit_toggle_2'])){
                   $toggle = "relay2";
                   $toggle_time = $_POST['toggle_time_2'];
+                  `python3 getRelay.py 1 $toggle_time`;
                 }
 
                 /*
