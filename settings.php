@@ -181,15 +181,16 @@
             </form>
                 <?php
                 if(isset($_POST['submit_toggle_1'])){
-                  $toggle = 7; // Relay 1 is tied to GPIO pin 7
+                  $toggle = 7; // Relay 1 pin D4 is tied to GPIO pin 7
                   $toggle_time = $_POST['toggle_time_1'];
                 }elseif(isset($_POST['submit_toggle_2'])){
-                  $toggle = 11;  // Relay 2 is tied to GPIO pin 11
+                  $toggle = 11;  // Relay 2 pin D17 is tied to GPIO pin 11
                   $toggle_time = $_POST['toggle_time_2'];
                 }
 
                 if((isset($_POST['submit_toggle_1'])) || (isset($_POST['submit_toggle_2']))){
-                  $relaystate = exec("sudo gpio read $toggle ");
+
+                  $relaystate = exec("sudo gpio mode $toggle out&&sudo gpio read $toggle ");
                   if($relaystate == 0){
                       exec("sudo gpio write $toggle ON");
                       sleep($toggle_time);
