@@ -21,7 +21,8 @@
 
           <form method="post">
             Password: <input type=password name=password_check autofocus> <input type=submit name=submit value=Submit><br />
-            Run &quot;php ./setPassword.php&quot; from the command line to reset it.
+            <br />
+            <span style="font-size:.7em">Run &quot;php ./setPassword.php&quot; from the command line to reset it.</span>
           </form>
         </div>
         <?php
