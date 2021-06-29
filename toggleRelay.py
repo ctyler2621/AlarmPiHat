@@ -25,6 +25,8 @@ import digitalio
 relay_num = str(sys.argv[1])  # Denotes the relay
 toggle_time = str(sys.argv[2])  # Denotes the time to toggle
 
+print("Toggleing %s for %s" % (relay_num,toggle_time))
+
 # Define the relay pins
 relay1 = digitalio.DigitalInOut(board.D4)
 relay1.direction = digitalio.Direction.OUTPUT
