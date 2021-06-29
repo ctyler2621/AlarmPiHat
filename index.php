@@ -73,7 +73,7 @@ foreach($rows as $row){
           print "<table>";
           $relay_names = [$relay_name_1,$relay_name_2];
           $counter = 0;
-          $relays = explode(',',$relays);
+          //$relays = explode(',',$relays);
           foreach($relay_names as $relay_name){
             print '<tr><td>'.$relay_name.':</td>';
             print '<td><label class="switch">';
