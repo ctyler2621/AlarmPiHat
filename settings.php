@@ -181,25 +181,25 @@
             </form>
                 <?php
                 if(isset($_POST['submit_toggle_1'])){
-                  $toggle = "relay1";
+                  $toggle = 7; // Relay 1 is tied to GPIO pin 7
+                }elseif(isset($_POST['submit_toggle_2'])){
+                  $toggle = 11;  // Relay 2 is tied to GPIO pin 11
+                }
+
+                if((isset($_POST['submit_toggle_1'])) || (isset($_POST['submit_toggle_2']))){
                   $toggle_time = $_POST['toggle_time_1'];
                   $relaystate = exec("sudo gpio read 7 ");
                   if($relaystate == 0){
-                      exec("sudo gpio write 7 ON");
+                      exec("sudo gpio write $toggle ON");
                       sleep($toggle_time);
-                      exec("sudo gpio write 7 OFF");
+                      exec("sudo gpio write $toggle OFF");
                     }else{
-                      exec("sudo gpio write 7 OFF");
+                      exec("sudo gpio write $toggle OFF");
                       sleep($toggle_time);
-                      exec("sudo gpio write 7 ON");
+                      exec("sudo gpio write $toggle ON");
                     }
                 }
 
-                if(isset($_POST['submit_toggle_2'])){
-                  $toggle = "relay2";
-                  $toggle_time = $_POST['toggle_time_2'];
-                  `python3 getRelay.py 1 $toggle_time`;
-                }
 
                 /*
                 Now run some code or a script and pass it $toggle and
