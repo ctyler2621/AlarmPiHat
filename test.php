@@ -53,8 +53,10 @@ class SQLiteUpdate {
     }
 }
 
+print "<br> /";
 $exec="whoami";
 exec($exec);
+print "<br />";
 
 // Test getting all data
 $pdo = new PDO('sqlite:db/config.db');
