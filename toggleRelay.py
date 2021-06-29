@@ -34,25 +34,20 @@ relay2.direction = digitalio.Direction.OUTPUT
 # Read the current state of the relays
 if relay_num == 1:
 	if relay1.value:
-        relay1_state = 1
 		relay1.value = 0
 		sleep(toggle_time)
 		relay1.value = 1
 	else:
-        relay1_state = 0
 		relay1.value = 1
 		sleep(toggle_time)
 		relay1.value = 0
 
 if relay_num == 2:
 	if relay2.value:
-        relay2_state = 1
 		relay2.value = 0
 		sleep(toggle_time)
 		relay2.value = 1
 	else:
-        relay2_state = 0
 		relay2.value = 1
 		sleep(toggle_time)
 		relay2.value = 0
-		
