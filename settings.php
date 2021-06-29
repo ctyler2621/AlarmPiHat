@@ -188,7 +188,7 @@
 
                 if((isset($_POST['submit_toggle_1'])) || (isset($_POST['submit_toggle_2']))){
                   $toggle_time = $_POST['toggle_time_1'];
-                  $relaystate = exec("sudo gpio read 7 ");
+                  $relaystate = exec("sudo gpio read $toggle ");
                   if($relaystate == 0){
                       exec("sudo gpio write $toggle ON");
                       sleep($toggle_time);
