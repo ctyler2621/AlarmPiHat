@@ -11,6 +11,17 @@ If you find anything of use here, great. If you can make improvements to the
 code or the PCB, well that's also great.
 
 ## Board and Schematics will be made available here once finalized.
+Raspberry Pi Pins:
+|GPIO|LABEL|PIN|DESCRIPTION|
+---|---|---|---
+| 0  | D17 | 11 | Relay 2   |
+| 7  | D4  | 7  | Relay 1   |
+| 25 | D26 | 37 | Contact 1 |
+|    | D16 | 10 | Contact 2 |
+| 24 | D19 | 35 | Contact 3 |
+| 23 | D13 | 33 | Contact 4 |
+| 26 | D12 | 32 | Contact 5 |
+| 22 | D6  | 31 | Contact 6 |
 
 ## BOM for the PCB (Everything available from Mouser.com)
   - Temperature/Humidity Sensor: Adafruit AM2320 Part#:3721 (1)
