@@ -54,8 +54,7 @@ class SQLiteUpdate {
 }
 
 print "<br> /";
-$exec="whoami";
-exec($exec);
+echo exec('whoami');
 print "<br />";
 
 // Test getting all data
