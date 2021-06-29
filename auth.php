@@ -16,11 +16,12 @@
           Check the password against the data base and if the hash matches then proceed to
           the settings page and if not, then block getting there.
           */
-
           session_start();
           ?>
+
           <form method="post">
-            Password: <input type=password name=password_check autofocus> <input type=submit name=submit value=Submit>
+            Password: <input type=password name=password_check autofocus> <input type=submit name=submit value=Submit><br />
+            Run &quot;php ./setPassword.php&quot; from the command line to reset it.
           </form>
         </div>
         <?php
