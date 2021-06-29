@@ -17,7 +17,7 @@ Raspberry Pi Pins:
 | 0  | D17 | 11 | Relay 2   |
 | 7  | D4  | 7  | Relay 1   |
 | 25 | D26 | 37 | Contact 1 |
-|    | D16 | 10 | Contact 2 |
+| 27 | D16 | 36 | Contact 2 |
 | 24 | D19 | 35 | Contact 3 |
 | 23 | D13 | 33 | Contact 4 |
 | 26 | D12 | 32 | Contact 5 |
