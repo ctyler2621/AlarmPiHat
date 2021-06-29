@@ -259,33 +259,44 @@
                <tr>
                  <td colspan="3" align=center>
                    <input type=submit value=Submit name=submit_relay> <input type=reset value=Reset name=reset>
-                   <?php
-                    if(isset($_POST['submit_relay'])){
-                      $relay1 = $_POST['relay1'];
-                      $relay2 = $_POST['relay2'];
-                      $relay1_check = $_POST['relay1_check'];
-                      $relay2_check = $_POST['relay2_check'];
-                      $relay1_init = $_POST['relay_init_1'];
-                      $relay2_init = $_POST['relay_init_2'];
-                      print "<br />";
-                      print "DEBUG: (1:".$relay1_check.") (2:".$relay2_check.")<br />";
-                      exit();
-                      $pdo = (new SQLiteConnection())->connect();
-                      $conn = new SQLiteUpdate($pdo);
-                      $result = $conn->updateRelays($relay1,$relay2,$relay1_check,$relay2_check,$relay1_init,$relay2_init);
-                      if ($result) {
-                        echo 'Relays updated<br />';
-                        header("Refresh:0");
-                      }else{
-                        echo '<span style="font-weight:bold;color:#f00;">Database error.<br/ >Relays not updated</span><br />';
-                      }
-                    }
-                   ?>
                   </td>
                </tr>
                <tr><td colspan=3>&nbsp;</td></tr>
             </table>
           </form>
+          <?php
+           if(isset($_POST['submit_relay'])){
+             $relay1 = $_POST['relay1'];
+             $relay2 = $_POST['relay2'];
+             $relay1_check = $_POST['relay1_check'];
+             $relay2_check = $_POST['relay2_check'];
+             $relay1_init = $_POST['relay_init_1'];
+             $relay2_init = $_POST['relay_init_2'];
+             print "<br />";
+
+             if($relay1_check == "on"){
+               exec("sudo gpio mode 7 out&&sudo gpio write 7 on");
+             } else {
+               exec("sudo gpio mode 7 out&&sudo gpio write 7 off");
+             }
+             if($relay2_check == "on"){
+               exec("sudo gpio mode 11 out&&sudo gpio write 11 on");
+             }else{
+               exec("sudo gpio mode 11 out&&sudo gpio write 11 off");
+             }
+
+             $pdo = (new SQLiteConnection())->connect();
+             $conn = new SQLiteUpdate($pdo);
+             $result = $conn->updateRelays($relay1,$relay2,$relay1_check,$relay2_check,$relay1_init,$relay2_init);
+             if ($result) {
+               echo 'Relays updated<br />';
+               header("Refresh:0");
+             }else{
+               echo '<span style="font-weight:bold;color:#f00;">Database error.<br/ >Relays not updated</span><br />';
+             }
+           }
+          ?>
+
           <form method="post">
             <table>
                 <tr><td colspan=2><hr /></td></tr>
