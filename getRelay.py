@@ -35,5 +35,20 @@ if relay2.value:
 else:
         relay2_state = 0
 
-# Output to STDIN
+# Change pins to output
+relay1.direction = digitalio.Direction.OUTPUT
+relay2.direction = digitalio.Direction.OUTPUT
+
+# Reset the state depending on the current value
+if relay1_state == 1:
+        relay1.value = True
+elif relay1_state == 0
+        relay1.value = False
+
+if relay2_state == 1:
+        relay2.value = True
+elif relay2_state == 0:
+        relay2.value = False
+
+# Output the current state to STDIN
 print("%s,%s" % (relay1_state,relay2_state))
