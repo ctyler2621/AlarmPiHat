@@ -34,7 +34,7 @@ foreach($rows as $row){
           $humid = `python3 getHumid.py`;
           $contacts = `python3 getContacts.py`;
           $relay1 = exec("sudo gpio read 7");
-          $relay2 = exec("sudo gpio read 11");
+          $relay2 = exec("sudo gpio read 0");
           $relays = array($relay1,$relay2);
 
           // TEMPERATURE AND HUMIDITY

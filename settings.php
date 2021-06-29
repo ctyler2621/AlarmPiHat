@@ -181,10 +181,10 @@
             </form>
                 <?php
                 if(isset($_POST['submit_toggle_1'])){
-                  $toggle = 7; // Relay 1 pin D4 is tied to GPIO pin 7
+                  $toggle = 7; // Relay 1 pin D4 is tied to GPIO 7 pin 7
                   $toggle_time = $_POST['toggle_time_1'];
                 }elseif(isset($_POST['submit_toggle_2'])){
-                  $toggle = 11;  // Relay 2 pin D17 is tied to GPIO pin 11
+                  $toggle = 0;  // Relay 2 pin D17 is tied to GPIO 0 pin 11
                   $toggle_time = $_POST['toggle_time_2'];
                 }
 
@@ -280,9 +280,9 @@
                exec("sudo gpio mode 7 out&&sudo gpio write 7 off");
              }
              if($relay2_check == "on"){
-               exec("sudo gpio mode 11 out&&sudo gpio write 11 on");
+               exec("sudo gpio mode 11 out&&sudo gpio write 0 on");
              }else{
-               exec("sudo gpio mode 11 out&&sudo gpio write 11 off");
+               exec("sudo gpio mode 11 out&&sudo gpio write 0 off");
              }
 
              $pdo = (new SQLiteConnection())->connect();
