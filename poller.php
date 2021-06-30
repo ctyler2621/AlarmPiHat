@@ -68,7 +68,7 @@ function time2string($timeline) {
   foreach($periods AS $name => $seconds){
     $num = floor($timeline / $seconds);
     $timeline -= ($num * $seconds);
-    $ret .= $num.' '.$name.(($num > 1) ? 's' : '').' ';
+    $ret = $num.' '.$name.(($num > 1) ? 's' : '').' ';
   }
 
   return trim($ret);
@@ -105,7 +105,7 @@ function mailer($contact,$alarm,$now) {
   $contact_name = $row['contact_name_'.$contact];
   $contact_alarm = $row['contact'.$contact.'_alarm'];
 
-  $duration = $contact_alarm - $now;
+  //$duration = $contact_alarm - $now;
 
   print "\r\nContact: $contact_name\r\n";
 
