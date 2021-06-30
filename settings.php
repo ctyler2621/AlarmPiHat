@@ -102,9 +102,9 @@
             SET
               email_to = :email_to,
               email_from = :email_from,
-              email_subject = :email_subject
-              smtp_server = :smtp_server
-              smtp_user = :smtp_user
+              email_subject = :email_subject,
+              smtp_server = :smtp_server,
+              smtp_user = :smtp_user,
               smtp_pass = :smtp_pass
             WHERE id = 1";
           $stmt = $this->pdo->prepare($sql);
