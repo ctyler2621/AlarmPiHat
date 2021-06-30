@@ -51,6 +51,20 @@ function clearalarm($counter){
 
 function checkalarm($contact){
   // check to see if alarm time is set and what the last alarm time was
+  // Get the mail and contact naming information from the database
+  $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
+  $stm = $pdo->query("SELECT * FROM config");
+  $stm->execute();
+  $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
+  foreach($rows as $row){
+    $contact1_alarm = $row['contact1_alarm'];
+    $contact2_alarm = $row['contact2_alarm'];
+    $contact3_alarm = $row['contact3_alarm'];
+    $contact4_alarm = $row['contact4_alarm'];
+    $contact5_alarm = $row['contact5_alarm'];
+    $contact6_alarm = $row['contact6_alarm'];
+  }
+
   print "DEBUG: Contact: $contact";
   print "DEBUG: Conatct data:".$row['contact'.$contact.'_alarm'];
   if(!empty($row['contact'.$contact.'_alarm'])){
