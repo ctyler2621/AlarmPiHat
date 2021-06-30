@@ -176,6 +176,14 @@
         <?php include('header.php'); ?>
         <div class="body">
           <h1>Settings</h1>
+          <form method=post>
+            Settings are stored in RAM. <input type=submit name=write_to_disk value="Write to disk">
+          </form>
+          <?php
+          if(isset($_POST['write_to_disk'])){
+            exec("writeDb.php");
+          }
+          ?>
           <hr />
           <form method="post">
             <table>
