@@ -131,7 +131,7 @@ function mailer($contact,$alarm,$now) {
       $msg  = "Date     : ".$now->format("Y-M-d")."\r\n";
       $msg .= "Time     : ".$now->format("H:i:s")."\r\n";
       $msg .= "Contact  : ".$contact_name."\r\n";
-      $msg .= "Duration : ".$duration->d." Days ".$duration->h." Hours ".$duration->m." Minutes\r\n";
+      $msg .= "Duration : ".$duration->d." Days ".$duration->h." Hours ".$duration->i." Minutes\r\n";
 
       // Subject line
       $subject = $subject." - ".$contact_name." detected";
