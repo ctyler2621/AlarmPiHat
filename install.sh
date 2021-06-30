@@ -17,31 +17,42 @@ else
     passwd pi
     sudo apt update
     sudo apt upgrade -y
+    # Start installation of required packages
     sudo apt-get install apache2 snmpd python3-pip php sqlite3 php7.3-sqlite3 php7.3-mysql php-db ufw wiringpi composer -y
-    sudo ln -s /home/pi/AlarmPiHat /var/www/html
-    sudo systemctl enable --now apache2
     sudo pip3 install --upgrade setuptools
     sudo pip3 install --upgrade adafruit-python-shell
     sudo pip3 install adafruit-blinka
     sudo pip3 install adafruit-circuitpython-am2320
+    # Create a symbolic link to the www directory
+    sudo ln -s /home/pi/AlarmPiHat /var/www/html
+    # Enable Apache
+    sudo systemctl enable --now apache2
     echo "In raspi-config click 'Interfacing Options' and 'I2C' to tell the RasPi"
     echo "to enable the I2C interface. Then select 'Finish'"
     read -n 1 -s -r -p "Press any key to launch raspi-config..."
     sudo raspi-config
-    ls /dev/i2c* to make sure that the i2c is visible
+    # Make sure that i2c is visible and set permissions so that it is readable
+    ls /dev/i2c*
     sudo chmod 666 /dev/i2c*
+    # Set up some basic firewalling
     sudo ufw default deny incoming
     sudo ufw default allow outgoing
     sudo ufw allow ssh
     sudo ufw allow http
     sudo systemctl enable --now ufw
+    # Copy files needed for proper operation
     sudo cp includes/snmpd.conf /etc/snmp/snmpd.conf
     sudo cp includes/rc.local /etc/rc.local
-    sudo cp /home/pi/AlarmPiHat/poller.php /etc/cron.d/AlarmPiHat
+    sudo echo /home/pi/AlarmPiHat/includes/AlarmPiHat.cron >> /etc/crontab
+    # Make the SQLite3 database writeable by EVERYONE
     sudo chmod 777 AlarmPiHat/db
     sudo chmod 777 AlarmPiHat/db/config.db
+    # Install PHP Mailer
     cd ~/AlarmPiHat
     composer require phpmailer/phpmailer
+    # Make the poller executable
+    sudo chmod +x /home/pi/AlarmPiHat/poller.php
+    # Reboot the Pi
     read -n 1 -s -r -p "Press any key to REBOOT..."
     sudo reboot
 fi

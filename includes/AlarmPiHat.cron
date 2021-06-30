@@ -1,5 +1,3 @@
-# /etc/cron.d/AlarmPiHat: crontab fragment for AlarmPiHat
-#  This runs the poller every x minutes.
-
-# Run the poller every x minutes
-*/5 * * * *     root  /home/pi/AlarmPiHat/poller.php
+# Run the AlarmPiHat poller every x minutes
+*/5 * * * *     root  /usr/bin/php /home/pi/AlarmPiHat/poller.php
+#
