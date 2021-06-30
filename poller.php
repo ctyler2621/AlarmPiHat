@@ -29,8 +29,8 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-function storealarm($counter){
-  print time2string(time()-strtotime('2010-04-28 17:25:43')).' ago';
+function storealarm($counter,$contact_alarm){
+  print "DEBUG: $contact_alarm";
   $contact_name = 'contact'.$counter.'_alarm';
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("UPDATE config SET $contact_name=CURRENT_TIMESTAMP WHERE 1");
@@ -166,8 +166,8 @@ foreach($contacts as $contact){
   $counter++;
   if($contact == 1){
     $alarm = checkalarm($contact);
-    mailer($counter,$alarm,$now);
-    storealarm($counter);
+    $contact_alarm = mailer($counter,$alarm,$now);
+    storealarm($counter,$contact_alarm);
   } else {
     clearalarm($counter);
   }
