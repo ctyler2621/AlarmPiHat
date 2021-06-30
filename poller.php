@@ -31,6 +31,7 @@ require 'vendor/autoload.php';
 
 function storealarm($counter,$now){
   $contact_name = 'contact'.$counter.'_alarm';
+  print "DEBUG: Name: $contact_name\tTime:$now\r\n";
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("UPDATE config SET $contact_name=$now WHERE 1");
   $stm->execute();
@@ -132,6 +133,7 @@ $con3 = exec("gpio read 24");
 $con4 = exec("gpio read 23");
 $con5 = exec("gpio read 26");
 $con6 = exec("gpio read 22");
+$con1 = 1;
 
 $contacts=array($con1,$con2,$con3,$con4,$con5,$con6);
 $counter = 0;
