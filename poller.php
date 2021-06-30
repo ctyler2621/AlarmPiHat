@@ -37,8 +37,9 @@ function storealarm($counter,$contact_alarm){
   } else {
     print "NULL - STORING DATA";
     $contact_name = 'contact'.$counter.'_alarm';
+    $now = new datetime();
     $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
-    $stm = $pdo->query("UPDATE config SET $contact_name=CURRENT_TIMESTAMP WHERE 1");
+    $stm = $pdo->query("UPDATE config SET $contact_name=$now WHERE 1");
     $stm->execute();
   }
 }
@@ -67,7 +68,7 @@ function checkalarm($contact){
   }
 
   $alarm_time = $row['contact'.$contact.'_alarm'];
-    $alarm_start = new datetime($alarm_time);
+  $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
   print "DEBUG: Duration in hours: ".$duration->h."\r\n";
