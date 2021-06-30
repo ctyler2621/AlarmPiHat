@@ -68,8 +68,13 @@ function checkalarm($contact){
   $alarm_time = $row['contact'.$contact.'_alarm'];
   print "DEBUG: Alarm DateTime: ".$alarm_time."\r\n\r\n";
 
+  $alarm_start = new datetime($alarm_time);
+  $rightnow = new datetime();
+  $duration = $alarm_start->diff($rightnow);
+
+
   if(!empty($alarm_time)){
-    if ($alarm_time > time() + 3600 ) {
+    if($duration->h <= 1){
       print "1 hour has passed, sending message\r\n";
       $status = "send";
     } else {
@@ -115,15 +120,14 @@ function mailer($contact,$alarm,$now) {
   $contact_name = $row['contact_name_'.$contact];
   $contact_alarm = $row['contact'.$contact.'_alarm'];
 
-  $alarm_start = new datetime($contact_alarm);
-  $rightnow = new datetime();
-
-  $duration = $alarm_start->diff($rightnow);
-  print "DEBUG: Duration: ".$duration->format('%Y-%m-%d %H:%i:%s')."\r\n";
-
   print "\r\nContact: $contact_name\r\n";
 
   if($alarm == "send"){
+    // Diff the time so we know how long the alarm has been active
+    $alarm_start = new datetime($contact_alarm);
+    $rightnow = new datetime();
+    $duration = $alarm_start->diff($rightnow);
+
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
     try {
@@ -131,6 +135,9 @@ function mailer($contact,$alarm,$now) {
       $msg  = "Date     : ".$now->format("Y-m-d")."\r\n";
       $msg .= "Time     : ".$now->format("H:i:s")."\r\n";
       $msg .= "Contact  : $contact_name\r\n\r\n";
+      $msg .= "Duration : ".$duration->format('%Y-%m-%d %H:%i:%s')."\r\n";
+
+      // Subject line
       $subject = $subject." - ".$contact_name." detected";
 
       //Server settings
