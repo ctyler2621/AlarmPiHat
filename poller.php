@@ -25,6 +25,7 @@ Documentation:
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+date_default_timezone_set("America/Chicago");
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
