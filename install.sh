@@ -37,6 +37,7 @@ else
     sudo systemctl enable --now ufw
     sudo cp includes/snmpd.conf /etc/snmp/snmpd.conf
     sudo cp includes/rc.local /etc/rc.local
+    sudo cp /home/pi/AlarmPiHat/poller.php /etc/cron.d/AlarmPiHat
     sudo chmod 777 AlarmPiHat/db
     sudo chmod 777 AlarmPiHat/db/config.db
     cd ~/AlarmPiHat
