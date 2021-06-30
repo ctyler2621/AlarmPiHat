@@ -84,18 +84,6 @@ function checkalarm($contact){
 }
 // Then if last alarm time was more than 60 mins ago send mail
 
-function time2string($timeline) {
-  $periods = array('day' => 86400, 'hour' => 3600, 'minute' => 60, 'second' => 1);
-
-  foreach($periods AS $name => $seconds){
-    $num = floor($timeline / $seconds);
-    $timeline -= ($num * $seconds);
-    $ret = $num.' '.$name.(($num > 1) ? 's' : '').' ';
-  }
-
-  return trim($ret);
-}
-
 function mailer($contact,$alarm,$now) {
   // Get the mail and contact naming information from the database
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
@@ -126,10 +114,12 @@ function mailer($contact,$alarm,$now) {
   // Corrolate the name to the contact in alarm state
   $contact_name = $row['contact_name_'.$contact];
   $contact_alarm = $row['contact'.$contact.'_alarm'];
-  $alarm_start = new datetime($contact_alarm);
 
-  $duration = date_diff($alarm_start,$now);
-  print "DEBUG: Duration: ".$duration->format('Y-m-d H:i:s')."\r\n";
+  $alarm_start = new datetime($contact_alarm);
+  $rightnow = new datetime();
+
+  $duration = $alarm_start->diff($rigtnow);
+  print "DEBUG: Duration: ".$duration->format('%Y-%m-%d %H:%i:%s')."\r\n";
 
   print "\r\nContact: $contact_name\r\n";
 
