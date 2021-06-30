@@ -109,10 +109,11 @@ function mailer($contact,$alarm,$now) {
   // Corrolate the name to the contact in alarm state
   $contact_name = $row['contact_name_'.$contact];
   $contact_alarm = $row['contact'.$contact.'_alarm'];
+  $alarm_start = new datetime($contact_alarm);
 
-  $duration = date_diff($contact_alarm,$now);
+  $duration = date_diff($alarm_start,$now);
   print "DEBUG: Duration: $duration\r\n";
-  
+
   print "\r\nContact: $contact_name\r\n";
 
   if($alarm == "send"){
