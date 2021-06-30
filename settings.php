@@ -96,18 +96,24 @@
           return $stmt->execute();
       }
 
-      public function updateEmail($to_email,$from_email,$subject) {
+      public function updateEmail($to_email,$from_email,$subject,$server,$user,$pass) {
           // SQL statement to update status of a task to completed
           $sql = "UPDATE config
             SET
               email_to = :email_to,
               email_from = :email_from,
               email_subject = :email_subject
+              smtp_server = :smtp_server
+              smtp_user = :smtp_user
+              smtp_pass = :smtp_pass
             WHERE id = 1";
           $stmt = $this->pdo->prepare($sql);
           $stmt->bindValue(':email_to', $to_email);
           $stmt->bindValue(':email_from', $from_email);
           $stmt->bindValue(':email_subject', $subject);
+          $stmt->bindValue(':smtp_server', $server);
+          $stmt->bindValue(':smtp_user', $user);
+          $stmt->bindValue(':smtp_pass', $pass);
           return $stmt->execute();
       }
 
@@ -158,6 +164,9 @@
     $email_to = $row['email_to'];
     $email_from = $row['email_from'];
     $email_subject = $row['email_subject'];
+    $smtp_server = $row['smtp_server'];
+    $smtp_user = $row['smtp_user'];
+    $smtp_pass = $row['smtp_pass'];
   }
 ?>
 
@@ -373,6 +382,18 @@
                   <table>
                       <tr><td colspan=2 class=heading>EMAIL</td></tr>
                       <tr>
+                          <td>SMTP Server:</td>
+                          <td><input type=text name=smtp_server value="<?php print $smtp_server; ?>"></td>
+                      </tr>
+                      <tr>
+                          <td>SMTP User:</td>
+                          <td><input type=text name=smtp_user value="<?php print $smtp_user; ?>"></td>
+                      </tr>
+                      <tr>
+                          <td>SMTP Password:</td>
+                          <td><input type=text name=smtp_pass value="<?php print $smtp_pass; ?>"></td>
+                      </tr>
+                      <tr>
                           <td>Mail To Address:</td>
                           <td><input type=text name=to_email value="<?php print $email_to; ?>"></td>
                         </tr>
@@ -392,11 +413,15 @@
                                  $to_email = $_POST["to_email"];
                                  $from_email = $_POST["from_email"];
                                  $subject = $_POST["subject"];
+                                 $server = $_POST['smtp_server'];
+                                 $user = $_POST['smtp_user'];
+                                 $pass = $_POST['smtp_pass'];
+
                                  print "<br />";
 
                                  $pdo = (new SQLiteConnection())->connect();
                                  $conn = new SQLiteUpdate($pdo);
-                                 $result = $conn->updateEmail($to_email,$from_email,$subject);
+                                 $result = $conn->updateEmail($to_email,$from_email,$subject,$server,$user,$pass);
                                  if ($result) {
                                    echo 'Email information updated<br />';
                                    header("Refresh:0");
