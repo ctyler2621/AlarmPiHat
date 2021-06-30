@@ -29,7 +29,31 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-function mailer($contact) {
+function storealarm($contact_name){
+  $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
+  $stm = $pdo->query("UPDATE config SET $contact_name=$now WHERE 1");
+  $stm->execute();
+}
+
+function checkalarm($contact){
+  // check to see if alarm time is set and what the last alarm time was
+  if(!empty($row['contact'.$contact.'_alarm'])){
+    if ($row['contact'.$contact.'_alarm'] > strtotime('1:00:00')) {
+      print "1 hour has passed, sending message";
+      $status = "send";
+    } else {
+      print "Not sending message, 1 hour has not passed since last alarm";
+      $status = "no_send";
+    }
+  } else {
+    print "No alarm state, sending message";
+    $status = "send";
+  }
+  return $status;
+}
+  // Then if last alarm time was more than 60 mins ago send mail
+
+function mailer($contact,$alarm) {
   // Get the mail and contact naming information from the database
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("SELECT * FROM config");
@@ -59,20 +83,6 @@ function mailer($contact) {
 
   // Corrolate the name to the contact in alarm state
   $contact_name = $row['contact_name_'.$contact];
-
-  // check to see if alarm time is set and what the last alarm time was
-  if(!empty($row['contact'.$contact.'_alarm'])){
-    if ($row['contact'.$contact.'_alarm'] > strtotime('1:00:00')) {
-      print "1 hour has passed, sending message";
-    } else {
-      print "Not sending message, 1 hour has not passed since last alarm";
-    }
-  } else {
-    print "No alarm state, sending message";
-  }
-
-  // Then if last alarm time was more than 60 mins ago send mail
-
   print "\r\nContact: $contact_name\r\n";
 
   //Create an instance; passing `true` enables exceptions
@@ -125,7 +135,9 @@ $counter = 0;
 foreach($contacts as $contact){
   $counter++;
   if($contact == 1){
-    mailer($counter);
+    $alarm = checkalarm($contact);
+    mailer($counter,$alarm);
+    storealarm($contact_name);
   }
 }
 ?>
