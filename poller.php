@@ -65,8 +65,8 @@ function checkalarm($contact){
     $contact6_alarm = $row['contact6_alarm'];
   }
 
-  print "DEBUG: Contact: $contact";
-  print "DEBUG: Conatct data:".$row['contact'.$contact.'_alarm'];
+  print "DEBUG: Contact: $contact\r\n";
+  print "DEBUG: Conatct data:".$row['contact'.$contact.'_alarm']."\r\n";
   if(!empty($row['contact'.$contact.'_alarm'])){
     if ($row['contact'.$contact.'_alarm'] > strtotime('1:00:00')) {
       print "1 hour has passed, sending message";
