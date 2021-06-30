@@ -68,7 +68,7 @@ function checkalarm($contact){
   $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
-  print "Duration: ".$duration->d." Days ".$duration->h." Hours ".$duration->m." Minutes\r\n";
+  print "Duration: ".$duration->j." Days ".$duration->H." Hours ".$duration->i." Minutes\r\n";
 
 
   if(!empty($alarm_time)){
