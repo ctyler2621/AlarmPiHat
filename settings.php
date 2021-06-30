@@ -178,8 +178,12 @@
           <h1>Settings</h1>
           <form method=post>
             Settings are stored in RAM in order to conserve the SD card.<br />
-            They are stored to disk nightly. If you make changes on this page and do not write them to disk<br />
-            they will be lost after a reboot unless 24 hours have passed or you manually wirte the changes to disk.<br />
+            They are stored to disk at midnight each night. If you make <br />
+            changes on this page and do not write them to disk they will <br />
+            be lost after a reboot unless the reboot take place after midnight<br />
+            or you manually write the changes to disk using the button below.<br />
+            Note that this is not the same as submitting changes. Submitting<br />
+            changes only updates the database stored in RAM.<br />
             <input type=submit name=write_to_disk value="Write to disk">
           </form>
           <?php
