@@ -120,6 +120,7 @@ function mailer($contact,$alarm) {
   } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\r\n";
   }
+  return $contact_name;
 }
 
 // Get status of contacts
@@ -136,7 +137,7 @@ foreach($contacts as $contact){
   $counter++;
   if($contact == 1){
     $alarm = checkalarm($contact);
-    mailer($counter,$alarm);
+    $contact_name = mailer($counter,$alarm);
     storealarm($contact_name);
   }
 }
