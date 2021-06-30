@@ -66,11 +66,10 @@ function checkalarm($contact){
   }
 
   $alarm_time = $row['contact'.$contact.'_alarm'];
-  print "DEBUG: Alarm DateTime: ".$alarm_time."\r\n\r\n";
-
-  $alarm_start = new datetime($alarm_time);
+    $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
+  print "DEBUG: Duration in hours: ".$duration->h."\r\n";
 
 
   if(!empty($alarm_time)){
