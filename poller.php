@@ -33,7 +33,7 @@ function storealarm($counter,$now){
   $contact_name = 'contact'.$counter.'_alarm';
   print "DEBUG: Name: $contact_name\tTime:$now\r\n";
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
-  $stm = $pdo->query("UPDATE config SET $contact_name=$now WHERE 1");
+  $stm = $pdo->query("UPDATE config SET $contact_name=CURRENT_TIMESTAMP WHERE 1");
   $stm->execute();
 }
 
