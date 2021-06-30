@@ -128,7 +128,7 @@ function mailer($contact,$alarm,$now) {
     $mail = new PHPMailer(true);
     try {
       // Format the message
-      $msg  = "Date     : ".$now->format("Y-m-d")."\r\n";
+      $msg  = "Date     : ".$now->format("Y-M-d")."\r\n";
       $msg .= "Time     : ".$now->format("H:i:s")."\r\n";
       $msg .= "Contact  : $contact_name\r\n\r\n";
       $msg .= "Duration : ".$duration->h." Hours ".$duration->m." Minutes\r\n";
