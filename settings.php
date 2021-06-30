@@ -177,7 +177,10 @@
         <div class="body">
           <h1>Settings</h1>
           <form method=post>
-            Settings are stored in RAM. <input type=submit name=write_to_disk value="Write to disk">
+            Settings are stored in RAM in order to conserve the SD card.<br />
+            They are stored to disk nightly. If you make changes on this page and do not write them to disk<br />
+            they will be lost after a reboot unless 24 hours have passed or you manually wirte the changes to disk.<br />
+            <input type=submit name=write_to_disk value="Write to disk">
           </form>
           <?php
           if(isset($_POST['write_to_disk'])){
