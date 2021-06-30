@@ -30,7 +30,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 function storealarm($counter){
-  print time2string(time()-strtotime(new datetime)).' ago';
+  print time2string(time()-strtotime('2010-04-28 17:25:43')).' ago';
   $contact_name = 'contact'.$counter.'_alarm';
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("UPDATE config SET $contact_name=CURRENT_TIMESTAMP WHERE 1");
