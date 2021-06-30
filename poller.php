@@ -73,7 +73,7 @@ function checkalarm($contact){
 
 
   if(!empty($alarm_time)){
-    if($duration->h <= 1){
+    if($duration->h >= 1){
       print "1 hour has passed, sending message\r\n";
       $status = "send";
     } else {
