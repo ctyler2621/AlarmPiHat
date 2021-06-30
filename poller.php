@@ -32,12 +32,8 @@ require 'vendor/autoload.php';
 
 function storealarm($counter,$contact_alarm){
   # Store the data only if there isn't a time stored already
-  if($contact_alarm != NULL){
-    print "NOT NULL - NO DATA STORED";
-  } else {
-    $now = new datetime();
-    $now = $now->format('Y-m-d H:i:s');
-    print "NULL - STORING DATA";
+  if($contact_alarm == NULL){
+    print "NULL - DATA STORED\r\n";
     $contact_name = 'contact'.$counter.'_alarm';
     $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
     $stm = $pdo->query("UPDATE config SET $contact_name=datetime('now','localtime') WHERE 1");
@@ -72,19 +68,19 @@ function checkalarm($contact){
   $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
-  print "DEBUG: Duration in hours: ".$duration->h."\r\n";
+  print "Duration in hours: ".$duration->h."\r\n";
 
 
   if(!empty($alarm_time)){
     if($duration->h >= 1){
-      print "1 hour has passed, sending message\r\n";
+      print "One hour or more has passed, sending message\r\n";
       $status = "send";
     } else {
-      print "Not sending message, 1 hour has not passed since last alarm\r\n";
+      print "Not sending message, one hour or more has not passed since last alarm\r\n";
       $status = "no_send";
     }
   } else {
-    print "No alarm state, sending message\r\n";
+    print "No previous alarm state, sending message\r\n";
     $status = "send";
   }
   return $status;
@@ -122,8 +118,6 @@ function mailer($contact,$alarm,$now) {
   $contact_name = $row['contact_name_'.$contact];
   $contact_alarm = $row['contact'.$contact.'_alarm'];
 
-  print "\r\nContact: $contact_name\r\n";
-
   if($alarm == "send"){
     // Diff the time so we know how long the alarm has been active
     $alarm_start = new datetime($contact_alarm);
@@ -137,7 +131,7 @@ function mailer($contact,$alarm,$now) {
       $msg  = "Date     : ".$now->format("Y-m-d")."\r\n";
       $msg .= "Time     : ".$now->format("H:i:s")."\r\n";
       $msg .= "Contact  : $contact_name\r\n\r\n";
-      $msg .= "Duration : ".$duration->format('%Y-%m-%d %H:%i:%s')."\r\n";
+      $msg .= "Duration : ".$duration->h." Hours ".$duration->m." Minutes\r\n";
 
       // Subject line
       $subject = $subject." - ".$contact_name." detected";
