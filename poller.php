@@ -42,6 +42,12 @@ function mailer($contact) {
     $contact_4 = $row['contact_name_4'];
     $contact_5 = $row['contact_name_5'];
     $contact_6 = $row['contact_name_6'];
+    $contact1_alarm = $row['contact1_alarm'];
+    $contact2_alarm = $row['contact2_alarm'];
+    $contact3_alarm = $row['contact3_alarm'];
+    $contact4_alarm = $row['contact4_alarm'];
+    $contact5_alarm = $row['contact5_alarm'];
+    $contact6_alarm = $row['contact6_alarm'];
     $mailto = $row['email_to'];
     $mailfrom = $row['email_from'];
     $subject = $row['email_subject'];
@@ -53,6 +59,20 @@ function mailer($contact) {
 
   // Corrolate the name to the contact in alarm state
   $contact_name = $row['contact_name_'.$contact];
+
+  // check to see if alarm time is set and what the last alarm time was
+  if(!empty($row['contact'.$contact.'_alarm'])){
+    if ($row['contact'.$contact.'_alarm'] > strtotime('1:00:00')) {
+      print "1 hour has passed, sending message";
+    } else {
+      print "Not sending message, 1 hour has not passed since last alarm";
+    }
+  } else {
+    print "No alarm state, sending message";
+  }
+  
+  // Then if last alarm time was more than 60 mins ago send mail
+
   print "\r\nContact: $contact_name\r\n";
 
   //Create an instance; passing `true` enables exceptions
