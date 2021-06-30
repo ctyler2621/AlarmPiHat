@@ -112,7 +112,7 @@ function mailer($contact,$alarm,$now) {
   $alarm_start = new datetime($contact_alarm);
 
   $duration = date_diff($alarm_start,$now);
-  print "DEBUG: Duration: $duration\r\n";
+  print "DEBUG: Duration: ".$duration->format("Y-m-d H:i:s")."\r\n";
 
   print "\r\nContact: $contact_name\r\n";
 
