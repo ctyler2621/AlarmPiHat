@@ -35,10 +35,10 @@ function storealarm($counter,$contact_alarm){
   if($contact_alarm != NULL){
     print "NOT NULL - NO DATA STORED";
   } else {
-    print "NULL - STORING DATA";
-    $contact_name = 'contact'.$counter.'_alarm';
     $now = new datetime();
     $now = $now->format('Y-m-d H:i:s');
+    print "NULL - STORING DATA";
+    $contact_name = 'contact'.$counter.'_alarm';
     $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
     $stm = $pdo->query("UPDATE config SET $contact_name=$now WHERE 1");
     $stm->execute();
