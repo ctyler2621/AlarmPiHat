@@ -37,6 +37,12 @@ function storealarm($counter){
   $stm->execute();
 }
 
+function clearalarm($counter){
+  $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
+  $stm = $pdo->query("UPDATE config SET $contact_name=NULL WHERE 1");
+  $stm->execute();
+}
+
 function checkalarm($contact){
   // check to see if alarm time is set and what the last alarm time was
   if(!empty($row['contact'.$contact.'_alarm'])){
@@ -143,6 +149,8 @@ foreach($contacts as $contact){
     $alarm = checkalarm($contact);
     $contact_name = mailer($counter,$alarm,$now);
     storealarm($counter);
+  } else {
+    clearalarm($counter);
   }
 }
 ?>
