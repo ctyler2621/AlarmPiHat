@@ -42,6 +42,7 @@ function storealarm($counter,$contact_alarm){
 }
 
 function clearalarm($counter){
+  // If there isn't currently and alarm then clear the contact(x)_alarm field in the database
   $contact_name = 'contact'.$counter.'_alarm';
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("UPDATE config SET $contact_name=NULL WHERE 1");
@@ -49,7 +50,6 @@ function clearalarm($counter){
 }
 
 function checkalarm($contact){
-  // check to see if alarm time is set and what the last alarm time was
   // Get the mail and contact naming information from the database
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("SELECT * FROM config");
@@ -64,12 +64,14 @@ function checkalarm($contact){
     $contact6_alarm = $row['contact6_alarm'];
   }
 
+  // TODO: check to see if alarm time is set and what the last alarm time was this kind of needs to depend on when the last email was sent
+  // and not the time of the initial alarm, the initial time is good for knowing the duration of the even though, so not wasted effort.
+  // Just need to change these to email_time instead of alarm time and add columns to the database for email time.
   $alarm_time = $row['contact'.$contact.'_alarm'];
   $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
   print "Duration: ".$duration->d." Days ".$duration->h." Hours ".$duration->i." Minutes\r\n";
-
 
   if(!empty($alarm_time)){
     if($duration->h >= 1){
@@ -85,7 +87,6 @@ function checkalarm($contact){
   }
   return $status;
 }
-// Then if last alarm time was more than 60 mins ago send mail
 
 function mailer($contact,$alarm,$now) {
   // Get the mail and contact naming information from the database
@@ -163,6 +164,9 @@ function mailer($contact,$alarm,$now) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\r\n";
     }
   }
+  // TODO: Need to do store a notification datetime in the database so that we know when the last message was sent out and then not spam the inboxes
+  // Similar to the storage above but different.
+
   return $contact_alarm;
 }
 
