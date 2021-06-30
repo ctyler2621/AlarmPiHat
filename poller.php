@@ -30,7 +30,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 function storealarm($counter,$contact_alarm){
-  print "DEBUG: $contact_alarm";
+  # Store the data only if there isn't a time stored already
   if($contact_alarm != NULL){
     print "NOT NULL - NO DATA STORED";
   } else {
@@ -110,8 +110,9 @@ function mailer($contact,$alarm,$now) {
   $contact_name = $row['contact_name_'.$contact];
   $contact_alarm = $row['contact'.$contact.'_alarm'];
 
-  //$duration = $contact_alarm - $now;
-
+  $duration = date_diff($contact_alarm,$now);
+  print "DEBUG: Duration: $duration\r\n";
+  
   print "\r\nContact: $contact_name\r\n";
 
   if($alarm == "send"){
