@@ -69,7 +69,7 @@ function checkalarm($contact){
   print "DEBUG: Alarm DateTime: ".$alarm_time."\r\n\r\n";
 
   if(!empty($alarm_time)){
-    if ($alarm_time > strtotime('00:01:00')) {
+    if ($alarm_time > time() + 3600 ) {
       print "1 hour has passed, sending message\r\n";
       $status = "send";
     } else {
