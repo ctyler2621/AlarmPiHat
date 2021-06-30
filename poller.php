@@ -33,7 +33,7 @@ require 'vendor/autoload.php';
 function storealarm($counter,$contact_alarm){
   # Store the data only if there isn't a time stored already
   if($contact_alarm == NULL){
-    print "NULL - DATA STORED\r\n";
+    print "Alarm data stored in database\r\n";
     $contact_name = 'contact'.$counter.'_alarm';
     $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
     $stm = $pdo->query("UPDATE config SET $contact_name=datetime('now','localtime') WHERE 1");
@@ -68,7 +68,7 @@ function checkalarm($contact){
   $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
-  print "Duration in hours: ".$duration->h."\r\n";
+  print "Duration: ".$duration->d." Days ".$duration->h." Hours ".$duration->m." Minutes\r\n";
 
 
   if(!empty($alarm_time)){
@@ -130,8 +130,8 @@ function mailer($contact,$alarm,$now) {
       // Format the message
       $msg  = "Date     : ".$now->format("Y-M-d")."\r\n";
       $msg .= "Time     : ".$now->format("H:i:s")."\r\n";
-      $msg .= "Contact  : $contact_name\r\n\r\n";
-      $msg .= "Duration : ".$duration->h." Hours ".$duration->m." Minutes\r\n";
+      $msg .= "Contact  : ".$contact_name."\r\n";
+      $msg .= "Duration : ".$duration->d." Days ".$duration->h." Hours ".$duration->m." Minutes\r\n";
 
       // Subject line
       $subject = $subject." - ".$contact_name." detected";
