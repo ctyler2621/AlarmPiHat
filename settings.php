@@ -298,7 +298,7 @@
              $conn = new SQLiteUpdate($pdo);
              $result = $conn->updateRelays($relay1,$relay2,$relay1_check,$relay2_check,$relay1_init,$relay2_init);
              if ($result) {
-               echo 'Relays updated<br />';
+               echo 'Relays updated, refresh page to see changes.<br />';
                header("Refresh:0");
              }else{
                echo '<span style="font-weight:bold;color:#f00;">Database error.<br/ >Relays not updated</span><br />';
@@ -333,7 +333,7 @@
                         $conn = new SQLiteUpdate($pdo);
                         $result = $conn->updateContacts($contact_1,$contact_2,$contact_3,$contact_4,$contact_5,$contact_6);
                         if ($result) {
-                          echo 'Contact names updated<br />';
+                          echo 'Contact names updated, refresh page to see changes.<br />';
                           header("Refresh:0");
                         }else{
                           echo '<span style="font-weight:bold;color:#f00;">Database error.<br/ >Contact names not updated</span><br />';
@@ -363,7 +363,7 @@
                             $conn = new SQLiteUpdate($pdo);
                             $result = $conn->updateCommunity($comm_string);
                             if ($result) {
-                              echo 'Community string updated<br />';
+                              echo 'Community string updated, refresh page to see changes.<br />';
                               header("Refresh:0");
                             }else{
                               echo '<span style="font-weight:bold;color:#f00;">Database error.<br/ >Community string not updated ['.$comm_string.']</span><br />';
@@ -423,7 +423,7 @@
                                  $conn = new SQLiteUpdate($pdo);
                                  $result = $conn->updateEmail($to_email,$from_email,$subject,$server,$user,$pass);
                                  if ($result) {
-                                   echo 'Email information updated<br />';
+                                   echo 'Email information updated, refresh page to see changes.<br />';
                                    header("Refresh:0");
                                  }else{
                                    echo '<span style="font-weight:bold;color:#f00;">Database error.<br/ >Email information not updated</span><br />';
