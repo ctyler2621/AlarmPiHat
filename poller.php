@@ -51,7 +51,7 @@ function mailer($contact) {
     $mailto = $row['email_to'];
     $mailfrom = $row['email_from'];
     $subject = $row['email_subject'];
-    $smtp = $row['smtp_server'];
+    $smtp_server = $row['smtp_server'];
     $smtp_user = $row['smtp_user'];
     $smtp_pass = $row['smtp_pass'];
   }
@@ -70,7 +70,7 @@ function mailer($contact) {
   } else {
     print "No alarm state, sending message";
   }
-  
+
   // Then if last alarm time was more than 60 mins ago send mail
 
   print "\r\nContact: $contact_name\r\n";
