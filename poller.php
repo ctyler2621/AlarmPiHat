@@ -31,7 +31,7 @@ require 'vendor/autoload.php';
 
 function storealarm($counter){
   $contact_name = 'contact'.$counter.'_alarm';
-  print "DEBUG: Name: $contact_name\tTime:$now\r\n";
+  print "DEBUG: Name: $contact_name\r\n";
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("UPDATE config SET $contact_name=CURRENT_TIMESTAMP WHERE 1");
   $stm->execute();
