@@ -11,7 +11,7 @@ function usage($error) {
                             than eight charaters in length. Best practice is to encase
                             the password string in quotes so that it accepts special
                             characters.\r\n
-  \r\n
+                            \r\n
   Example Usage: php setPassword.php -p \"MyPass\"\r\n";
   exit();
 }
@@ -31,7 +31,7 @@ if(count($argv) == 1) {
 }
 
 class Config {
- /**
+  /**
   * path to the sqlite file
   */
   const PATH_TO_SQLITE_FILE = '/home/pi/AlarmPiHat/ramdisk/config.db';
@@ -39,33 +39,33 @@ class Config {
 
 class SQLiteConnection {
   /**
-   * PDO instance
-   * @var type
-   */
+  * PDO instance
+  * @var type
+  */
   private $pdo;
 
   public function connect() {
-      if ($this->pdo == null) {
-          $this->pdo = new \PDO("sqlite:" . Config::PATH_TO_SQLITE_FILE);
-      }
-      return $this->pdo;
+    if ($this->pdo == null) {
+      $this->pdo = new \PDO("sqlite:" . Config::PATH_TO_SQLITE_FILE);
+    }
+    return $this->pdo;
   }
 }
 
 class SQLiteUpdate {
-    private $pdo;
+  private $pdo;
 
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
-    }
+  public function __construct($pdo) {
+    $this->pdo = $pdo;
+  }
 
-    public function updatePassword($hash) {
-        // SQL statement to update status of a task to completed
-        $sql = "UPDATE config SET password = :hash WHERE id = 1";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':hash', $hash);
-        return $stmt->execute();
-    }
+  public function updatePassword($hash) {
+    // SQL statement to update status of a task to completed
+    $sql = "UPDATE config SET password = :hash WHERE id = 1";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':hash', $hash);
+    return $stmt->execute();
+  }
 }
 
 // Set the password
@@ -74,7 +74,7 @@ $pdo = (new SQLiteConnection())->connect();
 $conn = new SQLiteUpdate($pdo);
 $result = $conn->updatePassword($hash);
 if ($result)
-    echo "\r\n  Password updated using $new_pass\r\n\r\n";
+echo "\r\n  Password updated using $new_pass\r\n\r\n";
 else
-    echo "\r\n  ERROR, Password not updated\r\n\r\n";
+echo "\r\n  ERROR, Password not updated\r\n\r\n";
 ?>
