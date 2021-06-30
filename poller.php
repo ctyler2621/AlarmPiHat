@@ -38,6 +38,7 @@ function storealarm($counter){
 }
 
 function clearalarm($counter){
+  $contact_name = 'contact'.$counter.'_alarm';
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("UPDATE config SET $contact_name=NULL WHERE 1");
   $stm->execute();
