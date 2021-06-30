@@ -66,18 +66,18 @@ function checkalarm($contact){
   }
 
   $alarm_time = $row['contact'.$contact.'_alarm'];
-  print "DEBUG: Conatct data:".$alarm_time."\r\n\r\n";
+  print "DEBUG: Alarm DateTime: ".$alarm_time."\r\n\r\n";
 
   if(!empty($alarm_time)){
-    if ($alarm_time > strtotime('1:00:00')) {
-      print "1 hour has passed, sending message";
+    if ($alarm_time > strtotime('00:01:00')) {
+      print "1 hour has passed, sending message\r\n";
       $status = "send";
     } else {
-      print "Not sending message, 1 hour has not passed since last alarm";
+      print "Not sending message, 1 hour has not passed since last alarm\r\n";
       $status = "no_send";
     }
   } else {
-    print "No alarm state, sending message";
+    print "No alarm state, sending message\r\n";
     $status = "send";
   }
   return $status;
