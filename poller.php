@@ -53,7 +53,7 @@ function checkalarm($contact){
 }
   // Then if last alarm time was more than 60 mins ago send mail
 
-function mailer($contact,$alarm) {
+function mailer($contact,$alarm,$now) {
   // Get the mail and contact naming information from the database
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("SELECT * FROM config");
@@ -79,7 +79,6 @@ function mailer($contact,$alarm) {
     $smtp_user = $row['smtp_user'];
     $smtp_pass = $row['smtp_pass'];
   }
-  $now = new DateTime;
 
   // Corrolate the name to the contact in alarm state
   $contact_name = $row['contact_name_'.$contact];
@@ -123,6 +122,8 @@ function mailer($contact,$alarm) {
   return $contact_name;
 }
 
+$now = new DateTime;
+
 // Get status of contacts
 $con1 = exec("gpio read 25");
 $con2 = exec("gpio read 27");
@@ -137,8 +138,8 @@ foreach($contacts as $contact){
   $counter++;
   if($contact == 1){
     $alarm = checkalarm($contact);
-    $contact_name = mailer($counter,$alarm);
-    storealarm($contact_name);
+    $contact_name = mailer($counter,$alarm,$now);
+    storealarm($contact_name,$now);
   }
 }
 ?>
