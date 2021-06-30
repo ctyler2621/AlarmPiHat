@@ -30,8 +30,8 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 function storealarm($counter){
+  print time2string(time()-strtotime(new datetime)).' ago';
   $contact_name = 'contact'.$counter.'_alarm';
-  print "DEBUG: Name: $contact_name\r\n";
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("UPDATE config SET $contact_name=CURRENT_TIMESTAMP WHERE 1");
   $stm->execute();
@@ -60,7 +60,19 @@ function checkalarm($contact){
   }
   return $status;
 }
-  // Then if last alarm time was more than 60 mins ago send mail
+// Then if last alarm time was more than 60 mins ago send mail
+
+function time2string($timeline) {
+  $periods = array('day' => 86400, 'hour' => 3600, 'minute' => 60, 'second' => 1);
+
+  foreach($periods AS $name => $seconds){
+    $num = floor($timeline / $seconds);
+    $timeline -= ($num * $seconds);
+    $ret .= $num.' '.$name.(($num > 1) ? 's' : '').' ';
+  }
+
+  return trim($ret);
+}
 
 function mailer($contact,$alarm,$now) {
   // Get the mail and contact naming information from the database
@@ -91,18 +103,23 @@ function mailer($contact,$alarm,$now) {
 
   // Corrolate the name to the contact in alarm state
   $contact_name = $row['contact_name_'.$contact];
+  $contact_alarm = $row['contact'.$contact.'_alarm'];
+
+  $duration = $contact_alarm - $now;
+
   print "\r\nContact: $contact_name\r\n";
 
-  //Create an instance; passing `true` enables exceptions
-  $mail = new PHPMailer(true);
-  try {
-    // Format the message
-    $msg  = "Date     : ".$now->format("Y-m-d")."\r\n";
-    $msg .= "Time     : ".$now->format("H:i:s")."\r\n";
-    $msg .= "Contact  : $contact_name\r\n\r\n";
-    $subject = $subject." - ".$contact_name." detected";
+  if($alarm == "send"){
+    //Create an instance; passing `true` enables exceptions
+    $mail = new PHPMailer(true);
+    try {
+      // Format the message
+      $msg  = "Date     : ".$now->format("Y-m-d")."\r\n";
+      $msg .= "Time     : ".$now->format("H:i:s")."\r\n";
+      $msg .= "Contact  : $contact_name\r\n\r\n";
+      $subject = $subject." - ".$contact_name." detected";
 
-    //Server settings
+      //Server settings
       //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
       $mail->isSMTP();                                            //Send using SMTP
       $mail->Host       = $smtp_server;                           //Set the SMTP server to send through
@@ -125,10 +142,11 @@ function mailer($contact,$alarm,$now) {
 
       $mail->send();
       echo "Message has been sent\r\n";
-  } catch (Exception $e) {
+    } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\r\n";
+    }
   }
-  return $contact_name;
+  return $contact_alarm;
 }
 
 $now = new DateTime;
@@ -148,7 +166,7 @@ foreach($contacts as $contact){
   $counter++;
   if($contact == 1){
     $alarm = checkalarm($contact);
-    $contact_name = mailer($counter,$alarm,$now);
+    mailer($counter,$alarm,$now);
     storealarm($counter);
   } else {
     clearalarm($counter);
