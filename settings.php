@@ -22,7 +22,7 @@
    /**
     * path to the sqlite file
     */
-    const PATH_TO_SQLITE_FILE = 'db/config.db';
+    const PATH_TO_SQLITE_FILE = '/home/pi/AlarmPiHat/ramdisk/config.db';
   }
 
   class SQLiteConnection {
@@ -142,7 +142,7 @@
       }
   }
   // Get existing config from database for use on this page
-  $pdo = new PDO('sqlite:db/config.db');
+  $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("SELECT * FROM config");
   $stm->execute();
   $rows = $stm->fetchAll(PDO::FETCH_ASSOC);

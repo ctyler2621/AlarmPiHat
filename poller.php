@@ -31,7 +31,7 @@ require 'vendor/autoload.php';
 
 function mailer($contact) {
   // Get the mail and contact naming information from the database
-  $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/db/config.db');
+  $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("SELECT * FROM config");
   $stm->execute();
   $rows = $stm->fetchAll(PDO::FETCH_ASSOC);

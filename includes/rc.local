@@ -17,7 +17,22 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
-printf "Set i2c to rw for everyone"
+# Set the i2c permissions
+printf "[AlarmPiHat] Set i2c read permissions to everyone"
 sudo chmod 666 /dev/i2c*
+
+# Make a ram disk to spare the SD card
+if [[ ! -d "/home/pi/AlarmPiHat/ramdisk" ]]; then
+  printf "[AlarmPiHat] Create ramdisk directory"
+  mkdir /home/pi/AlarmPiHat/ramdisk
+fi
+printf "[AlarmPiHat] Mounting Ram Disk"
+sudo mount -t tmpfs -o size=100m ramdisk /home/pi/AlarmPiHat/ramdisk
+sudo chmod 777 /home/pi/AlarmPiHat/ramdisk
+
+# copy the AlarmPiHat database to the ram disk
+printf "[AlarmPiHat] Copy AlarmPiHat database to ram disk"
+cp /home/pi/AlarmPiHat/db/config.db /home/pi/AlarmPiHat/ramdisk/config.db
+sudo chmod 777 /home/pi/AlarmPiHat/ramdisk/config.db
 
 exit 0

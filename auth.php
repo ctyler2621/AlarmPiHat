@@ -33,7 +33,7 @@
             // Open the config.db database
             class MyDB extends SQLite3 {
               function __construct() {
-                $this->open('db/config.db');
+                $this->open('/home/pi/AlarmPiHat/ramdisk/config.db');
               }
             }
 
