@@ -51,6 +51,8 @@ function clearalarm($counter){
 
 function checkalarm($contact){
   // check to see if alarm time is set and what the last alarm time was
+  print "DEBUG: Contact: $contact";
+  print "DEBUG: Conatct data:".$row['contact'.$contact.'_alarm'];
   if(!empty($row['contact'.$contact.'_alarm'])){
     if ($row['contact'.$contact.'_alarm'] > strtotime('1:00:00')) {
       print "1 hour has passed, sending message";
