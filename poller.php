@@ -40,7 +40,7 @@ function storealarm($counter,$contact_alarm){
     print "NULL - STORING DATA";
     $contact_name = 'contact'.$counter.'_alarm';
     $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
-    $stm = $pdo->query("UPDATE config SET $contact_name=datetime('now') WHERE 1");
+    $stm = $pdo->query("UPDATE config SET $contact_name=datetime('now','localtime') WHERE 1");
     $stm->execute();
   }
 }
