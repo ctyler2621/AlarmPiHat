@@ -32,14 +32,14 @@ require 'vendor/autoload.php';
 function storealarm($counter,$contact_alarm){
   print "DEBUG: $contact_alarm";
   if($contact_alarm != NULL){
-    print "NOT NULL";
+    print "NOT NULL - NO DATA STORED";
   } else {
-    print "NULL";
+    print "NULL - STORING DATA";
+    $contact_name = 'contact'.$counter.'_alarm';
+    $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
+    $stm = $pdo->query("UPDATE config SET $contact_name=CURRENT_TIMESTAMP WHERE 1");
+    $stm->execute();
   }
-  $contact_name = 'contact'.$counter.'_alarm';
-  $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
-  $stm = $pdo->query("UPDATE config SET $contact_name=CURRENT_TIMESTAMP WHERE 1");
-  $stm->execute();
 }
 
 function clearalarm($counter){
