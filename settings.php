@@ -185,7 +185,7 @@
             or you manually write the changes to disk using the button below.<br />
             Note that this is not the same as submitting changes. Submitting<br />
             changes only updates the database stored in RAM.<br />
-            </span>
+          </span><br />
             <input type=submit name=write_to_disk value="Write to disk">
           </form>
           <?php
