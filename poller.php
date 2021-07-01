@@ -88,7 +88,7 @@ function checkalarm($contact,$notification_timer){
   return $status;
 }
 
-function mailer($contact,$now) {
+function mailer($contact,$now,$notification_timer) {
   // Check to see if last notification was within the timer or not
   $alarm = checkalarm($contact,$notification_timer);
 
@@ -201,7 +201,7 @@ $counter = 0;
 foreach($contacts as $contact){
   $counter++;
   if($contact == 1){
-    $contact_alarm = mailer($counter,$alarm,$now);
+    $contact_alarm = mailer($counter,$now);
     storealarm($counter,$contact_alarm);
   } else {
     clearalarm($counter);
