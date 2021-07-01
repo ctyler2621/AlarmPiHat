@@ -56,22 +56,19 @@ function checkalarm($contact){
   $stm->execute();
   $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
   foreach($rows as $row){
-    $contact1_alarm = $row['contact1_alarm'];
-    $contact2_alarm = $row['contact2_alarm'];
-    $contact3_alarm = $row['contact3_alarm'];
-    $contact4_alarm = $row['contact4_alarm'];
-    $contact5_alarm = $row['contact5_alarm'];
-    $contact6_alarm = $row['contact6_alarm'];
+    $notification1 = $row['notification1'];
+    $notification2 = $row['notification2'];
+    $notification3 = $row['notification3'];
+    $notification4 = $row['notification4'];
+    $notification5 = $row['notification5'];
+    $notification6 = $row['notification6'];
   }
 
-  // TODO: check to see if alarm time is set and what the last alarm time was this kind of needs to depend on when the last email was sent
-  // and not the time of the initial alarm, the initial time is good for knowing the duration of the even though, so not wasted effort.
-  // Just need to change these to email_time instead of alarm time and add columns to the database for email time.
-  $alarm_time = $row['contact'.$contact.'_alarm'];
+  $alarm_time = $row['notificaiton'.$contact];
   $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
-  print "Duration: ".$duration->d." Days ".$duration->h." Hours ".$duration->i." Minutes\r\n";
+  print "Notificaiton: ".$duration->d." Days ".$duration->h." Hours ".$duration->i." Minutes\r\n";
 
   if(!empty($alarm_time)){
     if($duration->h >= 1){
@@ -107,6 +104,12 @@ function mailer($contact,$alarm,$now) {
     $contact4_alarm = $row['contact4_alarm'];
     $contact5_alarm = $row['contact5_alarm'];
     $contact6_alarm = $row['contact6_alarm'];
+    $notification1 = $row['notification1'];
+    $notification2 = $row['notification2'];
+    $notification3 = $row['notification3'];
+    $notification4 = $row['notification4'];
+    $notification5 = $row['notification5'];
+    $notification6 = $row['notification6'];
     $mailto = $row['email_to'];
     $mailfrom = $row['email_from'];
     $subject = $row['email_subject'];
@@ -118,6 +121,7 @@ function mailer($contact,$alarm,$now) {
   // Corrolate the name to the contact in alarm state
   $contact_name = $row['contact_name_'.$contact];
   $contact_alarm = $row['contact'.$contact.'_alarm'];
+  $notification = $row['notificaiton'.$contact];
 
   if($alarm == "send"){
     // Diff the time so we know how long the alarm has been active
@@ -164,8 +168,11 @@ function mailer($contact,$alarm,$now) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\r\n";
     }
   }
-  // TODO: Need to do store a notification datetime in the database so that we know when the last message was sent out and then not spam the inboxes
-  // Similar to the storage above but different.
+  // Write $notification to the database
+  $notification_name = "notification$contact";
+  $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
+  $stm = $pdo->query("UPDATE config SET $notification_name=datetime('now','localtime') WHERE 1");
+  $stm->execute();
 
   return $contact_alarm;
 }
