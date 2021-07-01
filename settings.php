@@ -96,7 +96,7 @@ class SQLiteUpdate {
     return $stmt->execute();
   }
 
-  public function updateEmail($to_email,$from_email,$subject,$server,$user,$pass) {
+  public function updateEmail($to_email,$from_email,$subject,$server,$user,$pass,$alert) {
     // SQL statement to update status of a task to completed
     $sql = "UPDATE config
     SET
@@ -105,7 +105,8 @@ class SQLiteUpdate {
     email_subject = :email_subject,
     smtp_server = :smtp_server,
     smtp_user = :smtp_user,
-    smtp_pass = :smtp_pass
+    smtp_pass = :smtp_pass,
+    alert_timer = :alert_timer
     WHERE id = 1";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':email_to', $to_email);
@@ -114,6 +115,7 @@ class SQLiteUpdate {
     $stmt->bindValue(':smtp_server', $server);
     $stmt->bindValue(':smtp_user', $user);
     $stmt->bindValue(':smtp_pass', $pass);
+    $stmt->bindValue(':alert_timer', $alert);
     return $stmt->execute();
   }
 
@@ -167,6 +169,7 @@ foreach($rows as $row){
   $smtp_server = $row['smtp_server'];
   $smtp_user = $row['smtp_user'];
   $smtp_pass = $row['smtp_pass'];
+  $alert_timer = $row['alert_timer'];
 }
 ?>
 
@@ -423,6 +426,10 @@ foreach($rows as $row){
             <td><input type=text name=subject value="<?php print $email_subject; ?>"></td>
           </tr>
           <tr>
+            <td>Notification Timer:</td>
+            <td><input type=text name=alert_timer value="<?php print $alert_timer; ?>"></td>
+          </tr>
+          <tr>
             <td colspan="2" align=center>
               <input type=submit value=Submit name=submit_email> <input type=reset value=Reset name=reset>
               <?php
@@ -433,12 +440,13 @@ foreach($rows as $row){
                 $server = $_POST['smtp_server'];
                 $user = $_POST['smtp_user'];
                 $pass = $_POST['smtp_pass'];
+                $alert = $_POST['alert_timer'];
 
                 print "<br />";
 
                 $pdo = (new SQLiteConnection())->connect();
                 $conn = new SQLiteUpdate($pdo);
-                $result = $conn->updateEmail($to_email,$from_email,$subject,$server,$user,$pass);
+                $result = $conn->updateEmail($to_email,$from_email,$subject,$server,$user,$pass,$alert);
                 if ($result) {
                   echo 'Email information updated, refresh page to see changes.<br />';
                   header("Refresh:0");

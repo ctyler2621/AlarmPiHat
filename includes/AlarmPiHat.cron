@@ -1,6 +1,3 @@
 # Run the AlarmPiHat poller every x minutes
-*/5 * * * *  /usr/bin/php /home/pi/AlarmPiHat/poller.php
-#
-# Every 24 hours at midnight copy the database from the ram disk to the SD card
-0 0 * * *    /usr/bin/php /home/pi/AlarmPiHat/writeDB.php
+*/1 * * * *  /usr/bin/php /home/pi/AlarmPiHat/poller.php
 #
