@@ -201,7 +201,7 @@ $counter = 0;
 foreach($contacts as $contact){
   $counter++;
   if($contact == 1){
-    $contact_alarm = mailer($counter,$now);
+    $contact_alarm = mailer($contact,$now,$notification_timer);
     storealarm($counter,$contact_alarm);
   } else {
     clearalarm($counter);
