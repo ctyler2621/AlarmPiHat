@@ -49,7 +49,7 @@ function clearalarm($counter){
   $contact_name = 'contact'.$counter.'_alarm';
   $notification_name = 'notificaiton'.$counter;
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
-  $stm = $pdo->query("UPDATE config SET $contact_name=NULL $notification_name=NULL WHERE 1");
+  $stm = $pdo->query("UPDATE config SET $contact_name=NULL, $notification_name=NULL WHERE 1");
   $stm->execute();
 }
 
