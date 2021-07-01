@@ -48,8 +48,9 @@ function clearalarm($counter){
   // If there isn't currently and alarm then clear the contact(x)_alarm field in the database
   $contact_name = 'contact'.$counter.'_alarm';
   $notification_name = 'notificaiton'.$counter;
+  print "DEBUG: $notification_name\r\n";
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
-  $stm = $pdo->query("UPDATE config SET $notification_name=NULL WHERE 1");
+  $stm = $pdo->query("UPDATE config SET $contact_name=NULL WHERE 1");
   $stm->execute();
 }
 
