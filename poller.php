@@ -77,6 +77,7 @@ function checkalarm($contact,$notification_timer){
 
   if(!empty($alarm_time)){
     if($duration->m >= $notification_timer){
+      print "DEBUG Duration: $duration->m\r\n";
       print "$notification_timer minutes or more have passed, sending message\r\n";
       $status = "send";
     } else {
