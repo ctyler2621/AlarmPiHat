@@ -164,15 +164,17 @@ function mailer($contact,$alarm,$now) {
 
       $mail->send();
       echo "Message has been sent\r\n";
+
+      // Write $notification to the database
+      $notification_name = "notification$contact";
+      $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
+      $stm = $pdo->query("UPDATE config SET $notification_name=datetime('now','localtime') WHERE 1");
+      $stm->execute();
     } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\r\n";
     }
   }
-  // Write $notification to the database
-  $notification_name = "notification$contact";
-  $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
-  $stm = $pdo->query("UPDATE config SET $notification_name=datetime('now','localtime') WHERE 1");
-  $stm->execute();
+
 
   return $contact_alarm;
 }
