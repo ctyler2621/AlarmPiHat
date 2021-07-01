@@ -74,7 +74,6 @@ function checkalarm($contact,$notification_timer){
   print "Notificaiton Contact ".$contact.": ".$duration->d." Days ".$duration->h." Hours ".$duration->i." Minutes\r\n";
 
   if(!empty($alarm_time)){
-    print "DEBUG Duration: $duration->i\r\n";
     if($duration->i >= $notification_timer){
       print "$notification_timer minutes or more have passed, sending message\r\n";
       $status = "send";
@@ -196,6 +195,7 @@ $con4 = exec("gpio read 23");
 $con5 = exec("gpio read 26");
 $con6 = exec("gpio read 22");
 $con1 = 1;
+$con3 = 1;
 
 $contacts=array($con1,$con2,$con3,$con4,$con5,$con6);
 $counter = 0;
