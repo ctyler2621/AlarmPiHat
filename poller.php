@@ -203,8 +203,8 @@ $counter = 0;
 foreach($contacts as $contact){
   $counter++;
   if($contact == 1){
-    print "DEBUG Initial Contact#: $contact\r\n";
-    $contact_alarm = mailer($contact,$now,$notification_timer);
+    print "DEBUG Initial Contact#: $contact $counter\r\n";
+    $contact_alarm = mailer($counter,$now,$notification_timer);
     storealarm($counter,$contact_alarm);
   } else {
     clearalarm($counter);
