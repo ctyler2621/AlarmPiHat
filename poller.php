@@ -19,6 +19,9 @@ Documentation:
 22	D6	31	Contact 6
 =============================================================================
 */
+// Variable to set the time between notifications in minutes might add this to the settings page as well
+// and store it in the database, but for now this should work
+$notification_timer = "15";
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -71,11 +74,11 @@ function checkalarm($contact){
   print "Notificaiton: ".$duration->d." Days ".$duration->h." Hours ".$duration->i." Minutes\r\n";
 
   if(!empty($alarm_time)){
-    if($duration->h >= 1){
-      print "One hour or more has passed, sending message\r\n";
+    if($duration->m >= $notification_timer){
+      print "$notification_timer minutes or more have passed, sending message\r\n";
       $status = "send";
     } else {
-      print "Not sending message, one hour or more has not passed since last alarm\r\n";
+      print "Not sending message, $notification_timer minutes have not passed since last alarm\r\n";
       $status = "no_send";
     }
   } else {
