@@ -64,7 +64,7 @@ function checkalarm($contact){
     $notification6 = $row['notification6'];
   }
 
-  $alarm_time = $row['notificaiton'.$contact];
+  $alarm_time = $row['notification'.$contact];
   $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
@@ -121,7 +121,7 @@ function mailer($contact,$alarm,$now) {
   // Corrolate the name to the contact in alarm state
   $contact_name = $row['contact_name_'.$contact];
   $contact_alarm = $row['contact'.$contact.'_alarm'];
-  $notification = $row['notificaiton'.$contact];
+  $notification = $row['notification'.$contact];
 
   if($alarm == "send"){
     // Diff the time so we know how long the alarm has been active
