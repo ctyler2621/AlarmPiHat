@@ -19,10 +19,6 @@ Documentation:
 22	D6	31	Contact 6
 =============================================================================
 */
-// Variable to set the time between notifications in minutes might add this to the settings page as well
-// and store it in the database, but for now this should work
-$notification_timer = "15";
-
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -48,7 +44,6 @@ function clearalarm($counter){
   // If there isn't currently and alarm then clear the contact(x)_alarm field in the database
   $contact_name = 'contact'.$counter.'_alarm';
   $notification_name = 'notification'.$counter;
-  print "DEBUG: $notification_name\r\n";
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("UPDATE config SET $contact_name=NULL, $notification_name=NULL WHERE 1");
   $stm->execute();
@@ -67,6 +62,7 @@ function checkalarm($contact,$notification_timer){
     $notification4 = $row['notification4'];
     $notification5 = $row['notification5'];
     $notification6 = $row['notification6'];
+    $notificaiton_timer = $row['alert_timer'];
   }
 
   $alarm_time = $row['notification'.$contact];
@@ -196,8 +192,6 @@ $con3 = exec("gpio read 24");
 $con4 = exec("gpio read 23");
 $con5 = exec("gpio read 26");
 $con6 = exec("gpio read 22");
-$con1 = 1;
-$con3 = 1;
 
 $contacts=array($con1,$con2,$con3,$con4,$con5,$con6);
 $counter = 0;
