@@ -53,6 +53,7 @@ function clearalarm($counter){
 }
 
 function checkalarm($contact,$notification_timer){
+  print "DEBUG Contact#: $contact\r\n";
   // Get the mail and contact naming information from the database
   $pdo = new PDO('sqlite:/home/pi/AlarmPiHat/ramdisk/config.db');
   $stm = $pdo->query("SELECT * FROM config");
@@ -68,6 +69,7 @@ function checkalarm($contact,$notification_timer){
   }
 
   $alarm_time = $row['notification'.$contact];
+  print "DEBUG Alarmtime: $alarm_time\r\n";
   $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
@@ -201,6 +203,7 @@ $counter = 0;
 foreach($contacts as $contact){
   $counter++;
   if($contact == 1){
+    print "DEBUG Initial Contact#: $contact\r\n";
     $contact_alarm = mailer($contact,$now,$notification_timer);
     storealarm($counter,$contact_alarm);
   } else {
