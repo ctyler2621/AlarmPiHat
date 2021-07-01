@@ -71,7 +71,7 @@ function checkalarm($contact){
   $alarm_start = new datetime($alarm_time);
   $rightnow = new datetime();
   $duration = $alarm_start->diff($rightnow);
-  print "Notificaiton: ".$duration->d." Days ".$duration->h." Hours ".$duration->i." Minutes\r\n";
+  print "Notificaiton Contact ".$contact.": ".$duration->d." Days ".$duration->h." Hours ".$duration->i." Minutes\r\n";
 
   if(!empty($alarm_time)){
     if($duration->m >= $notification_timer){
