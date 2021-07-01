@@ -427,7 +427,7 @@ foreach($rows as $row){
           </tr>
           <tr>
             <td>Notification Timer:</td>
-            <td><input type=text name=alert_timer value="<?php print $alert_timer; ?>"></td>
+            <td><input type=number min=1 max=60 name=alert_timer value="<?php print $alert_timer; ?>"> minutes</td>
           </tr>
           <tr>
             <td colspan="2" align=center>
