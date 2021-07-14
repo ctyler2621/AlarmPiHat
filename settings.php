@@ -176,11 +176,11 @@ foreach($rows as $row){
 
 <body class="standard">
   <div id="container">
+    <div class="miblink">
+      <a class="miblink" href="includes/TOTALHIGHSPEED-MIB.txt">SNMP MIB<br />DOWNLOAD</a>
+    </div>
     <?php include('header.php'); ?>
     <div class="body">
-      <div class="miblink">
-        <a class="miblink" href="includes/TOTALHIGHSPEED-MIB.txt">SNMP MIB<br />DOWNLOAD</a>
-      </div>
       <h1>Settings</h1>
       <form method=post>
         <span style="color:#900;">
