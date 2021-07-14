@@ -177,7 +177,7 @@ foreach($rows as $row){
 <body class="standard">
   <div id="container">
     <div class="miblink">
-      <a class="miblink" href="includes/TOTALHIGHSPEED-MIB.txt">SNMP MIB<br />DOWNLOAD</a>
+      <a class="miblink" href="includes/TOTALHIGHSPEED-MIB.txt">SNMP MIB</a>
     </div>
     <?php include('header.php'); ?>
     <div class="body">
