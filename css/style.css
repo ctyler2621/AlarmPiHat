@@ -135,6 +135,23 @@ div.body {
   text-align: center;
 }
 
+a.miblink:link{
+  color:#900;
+}
+
+a.miblink:visited{
+  color:#900;
+}
+
+a.miblink:hover{
+  color:#900;
+  text-decoration: underline;
+}
+
+a.miblink:active{
+  text-decoration: underline;
+}
+
 /*-----------------------*/
 /*          FOOTER       */
 /*-----------------------*/
