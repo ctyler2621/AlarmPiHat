@@ -143,10 +143,12 @@ div.miblink{
 
 a.miblink:link{
   color:#900;
+  text-decoration: none;
 }
 
 a.miblink:visited{
   color:#900;
+  text-decoration: none;
 }
 
 a.miblink:hover{

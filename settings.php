@@ -178,7 +178,9 @@ foreach($rows as $row){
   <div id="container">
     <?php include('header.php'); ?>
     <div class="body">
-      <div class="miblink"><a class="miblink" href="includes/TOTALHIGHSPEED-MIB.txt">MIB</a></div>
+      <div class="miblink">
+        <a class="miblink" href="includes/TOTALHIGHSPEED-MIB.txt">MIB</a>
+      </div>
       <h1>Settings</h1>
       <form method=post>
         <span style="color:#900;">
