@@ -18,6 +18,8 @@ Documentation:
 26	D12	32	Contact 5
 22	D6	31	Contact 6
 =============================================================================
+TODO: Need to figure out how to send a recovery notification as well, right now it just stops sending emails
+but there is no notification when a contact ceases to be in an alarm state.
 */
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function

@@ -1,0 +1,81 @@
+TOTALHIGHSPEED-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, enterprises FROM SNMPv2-SMI
+    OBJECT-GROUP FROM SNMPv2-CONF
+;
+
+totalhighspeed MODULE-IDENTITY
+    LAST-UPDATED "202005100000Z"
+    ORGANIZATION "Total Highspeed, LLC"
+    CONTACT-INFO
+         "postal:   1091 W Kathryn
+		    Nixa, MO 65714
+          email:    noc@totalhighspeed.net"
+    DESCRIPTION
+        "This Mib module defines objects for Total Highspeed devices"
+    REVISION     "202005100000Z"
+    DESCRIPTION
+        "Corrected notification example definitions"
+    REVISION     "200202060000Z"
+    DESCRIPTION
+        "First draft"
+    ::= { enterprises 47554 }
+
+--
+-- top level structure
+--
+piHatMIB       OBJECT IDENTIFIER ::= { totalhighspeed 19 }
+thisGroups    OBJECT IDENTIFIER ::= { totalhighspeed 1 }
+
+--
+-- scalars
+--
+
+piHatStatus OBJECT-GROUP
+    OBJECTS {
+            piHatTemperature,
+            piHatHumidity,
+            piHatContacts,
+            piHatRelays}
+    STATUS current
+    DESCRIPTION "Collection of objects for the PiHat device"
+    ::= {thisGroups 19}
+
+piHatTemperature OBJECT-TYPE
+    SYNTAX      OCTET STRING
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Board temperature"
+    ::= { piHatMIB 1 }
+
+piHatHumidity OBJECT-TYPE
+    SYNTAX      OCTET STRING
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Relative Humidity"
+    ::= { piHatMIB 2 }
+
+piHatContacts OBJECT-TYPE
+    SYNTAX      Integer{
+                        clear(0),
+                        alarm(1)}
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Current state of the dry contacts"
+    ::= { piHatMIB 3 }
+
+piHatRelays OBJECT-TYPE
+    SYNTAX      Integer{
+                        disabled(0),
+                        enabled(1)}
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Current status of the relays"
+    ::= { piHatMIB 4 }
+
+END
