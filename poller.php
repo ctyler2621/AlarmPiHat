@@ -21,7 +21,7 @@ Documentation:
 TODO: Need to figure out how to send a recovery notification as well, right now it just stops sending emails
 but there is no notification when a contact ceases to be in an alarm state.
 */
-exec("gpio mode 29 out&&gpio write 29 on");
+exec("gpio mode 29 out&&gpio write 29 off");
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -207,5 +207,5 @@ foreach($contacts as $contact){
     clearalarm($counter);
   }
 }
-exec("gpio mode 29 out&&gpio write 29 off");
+exec("gpio mode 29 out&&gpio write 29 on");
 ?>
