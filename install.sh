@@ -1,6 +1,7 @@
 #!/bin/bash
-if [ `whoami` != root ]; then
-    echo Please run this script as root or using sudo
+if [ `whoami` == root ]; then
+    echo "Please DO NOT run this script as root or using sudo, it will use sudo"
+    echo "as the pi user where needed."
     exit
 else
     clear
@@ -14,7 +15,7 @@ else
     echo "the assumption that this is a fresh install of raspbian."
     echo
     read -n 1 -s -r -p "Press any key to change password for pi user..."
-    passwd pi
+    sudo passwd pi
     sudo apt update
     sudo apt upgrade -y
     # Start installation of required packages
@@ -27,8 +28,10 @@ else
     sudo ln -s /home/pi/AlarmPiHat /var/www/html
     # Enable Apache
     sudo systemctl enable --now apache2
+    echo
     echo "In raspi-config click 'Interfacing Options' and 'I2C' to tell the RasPi"
     echo "to enable the I2C interface. Then select 'Finish'"
+    echo
     read -n 1 -s -r -p "Press any key to launch raspi-config..."
     sudo raspi-config
     # Make sure that i2c is visible and set permissions so that it is readable
@@ -49,7 +52,7 @@ else
     sudo chmod 777 AlarmPiHat/db
     sudo chmod 777 AlarmPiHat/db/config.db
     # Install PHP Mailer
-    cd ~/AlarmPiHat
+    sudo cd /home/pi/AlarmPiHat
     composer require phpmailer/phpmailer
     # Make the poller executable
     sudo chmod +x /home/pi/AlarmPiHat/poller.php

@@ -25,12 +25,14 @@ Raspberry Pi Pins:
 
 ## BOM for the PCB (Everything available from Mouser.com)
   - Temperature/Humidity Sensor: Adafruit AM2320 Part#:3721 (1)
-  - Resistors: Generic 0805 10k (6)
+  - Resistors: Generic 0805 10k Ohm (6)
   - Diodes: Generic SOT23 basic diodes (3)
   - Contact headers: 12P 2.5mm 90DEG Part#:1725453 (1)
   - RasPi Header: Adafruit 2x20P Part#:2243 (1)
   - Relay headers: 3P 2.5mm 90 DEG Part#:1725669 (2)
-  - Relays: PCB Power Relay Part#:G2RL-1-E-HA DC5 (2)
+  - Relays: PCB Power Relay Part#:G5LE­1­DC3 (2)
+  - LED: 20ma 3.3v forward voltage 1206 package(1)
+  - LED Resistor: 220 Ohm 0805 package (1)
 
 # Installation
 Installation is simple, install raspbian lite on an SD card. The  install is sub
