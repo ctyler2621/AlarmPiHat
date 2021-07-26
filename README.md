@@ -10,8 +10,9 @@ myself, my code is horrible, and my electronics design capabilities are limited.
 If you find anything of use here, great. If you can make improvements to the
 code or the PCB, well that's also great.
 
-## Board and Schematics will be made available here once finalized.
-Raspberry Pi Pins:
+## Schemaitc and Gerber files for the PCB are located in the includes folder
+
+## Raspberry Pi Pins Used:
 |GPIO|LABEL|PIN|DESCRIPTION|
 ---|---|---|---
 | 0  | D17 | 11 | Relay 2   |
