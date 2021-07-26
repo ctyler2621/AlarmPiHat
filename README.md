@@ -22,21 +22,23 @@ Raspberry Pi Pins:
 | 23 | D13 | 33 | Contact 4 |
 | 26 | D12 | 32 | Contact 5 |
 | 22 | D6  | 31 | Contact 6 |
+| 29 | D21 | 21 | PWR LED   |
 
-## BOM for the PCB (Everything available from Mouser.com)
-  - Temperature/Humidity Sensor: Adafruit AM2320 Part#:3721 (1)
-  - Resistors: Generic 0805 10k Ohm (6)
-  - Diodes: Generic SOT23 basic diodes (3)
-  - Contact headers: 12P 2.5mm 90DEG Part#:1725453 (1)
-  - RasPi Header: Adafruit 2x20P Part#:2243 (1)
-  - Relay headers: 3P 2.5mm 90 DEG Part#:1725669 (2)
-  - Relays: PCB Power Relay Part#:G5LE­1­DC3 (2)
-  - LED: 20ma 3.3v forward voltage 1206 package(1)
-  - LED Resistor: 220 Ohm 0805 package (1)
+## BOM for the PCB (Every part was sourced from Mouser.com)
+| MOUSER PART # | MFGR PART # | QTY | DESCRIPTION |
+---|---|---|---
+|651-1725753|1725753|1|Fixed Terminal Blocks 12P 2.54mm 90DEG|
+|485-2243|2243|1|Adafruit Accessories GPIO Header for Raspberry Pi HAT - 2x20 Short Female Header|
+|652-CHP0805FX1002ELF|CHP0805-FX-1002ELF|6|Thick Film Resistors - SMD 10K OHM 1% 1/2W 100PPM|
+|651-1725669|1725669|1|Fixed Terminal Blocks 3P 2.54mm 90DEG|
+|653-G5LE-1-DC3|G5LE-1-DC3|2|General Purpose Relays SPDT 3VDC Flux Protected|
+|603-RT0805FRE10220RL|RT0805FRE10220RL|1|Thin Film Resistors - SMD 220 ohm 1% 50 ppm Thin Film|
+|604-APT3216VBC/D|APT3216VBC/D|1|	Standard LEDs - SMD 3.2X1.6MM BLUE SMD LED|
+|833-MMBD4148CA-TP|MMBD4148CA-TP|3|Diodes - General Purpose, Power, Switching 75V 600mA 4pF|
 
 # Installation
 Installation is simple, install raspbian lite on an SD card. The  install is sub
-2GB so pretty much any size of SD card shoudl work just fine. Pop the SD into a
+2GB so pretty much any size of SD card should work just fine. Pop the SD into a
 Raspberry PI (preferably version 3 or better), clone the git repo and then just
 run the install.sh script.
 
