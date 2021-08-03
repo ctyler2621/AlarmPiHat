@@ -12,8 +12,9 @@ code or the PCB, well that's also great.
 
 ## Schemaitc and Gerber files for the PCB are located in the includes folder
 
-## Raspberry Pi PinOuts
-### v1.0 to v2.2 of AlarmPiHat:
+## Hardware Revision History
+
+### PCB v2.2:
 |GPIO|PIN|DESCRIPTION|
 ---|---|---
 | 0  | 11 | Relay 2   |
@@ -26,7 +27,24 @@ code or the PCB, well that's also great.
 | 22 | 31 | Contact 6 |
 | 29 | 21 | PWR LED   |
 
-### v3.0 of AlarmPiHat:
+### PCB v2.2 Changelog:
+1. Changed the relays from 5v coils to 3v coils
+2. Added silkscreen for the dry contacts and relays
+3. Changed orientation of the temperature sensor
+
+### PCB v2.2 Bill of Materials:
+| MOUSER PART # | MFGR PART # | QTY | DESCRIPTION |
+---|---|---|---
+|651-1725753|1725753|1|Fixed Terminal Blocks 12P 2.54mm 90DEG|
+|485-2243|2243|1|Adafruit Accessories GPIO Header for Raspberry Pi HAT - 2x20 Short Female Header|
+|652-CHP0805FX1002ELF|CHP0805-FX-1002ELF|6|Thick Film Resistors - SMD 10K OHM 1% 1/2W 100PPM|
+|651-1725669|1725669|1|Fixed Terminal Blocks 3P 2.54mm 90DEG|
+|653-G5LE-1-DC3|G5LE-1-DC3|2|General Purpose Relays SPDT 3VDC Flux Protected|
+|603-RT0805FRE10220RL|RT0805FRE10220RL|1|Thin Film Resistors - SMD 220 ohm 1% 50 ppm Thin Film|
+|604-APT3216VBC/D|APT3216VBC/D|1|	Standard LEDs - SMD 3.2X1.6MM BLUE SMD LED|
+|833-MMBD4148CA-TP|MMBD4148CA-TP|3|Diodes - General Purpose, Power, Switching 75V 600mA 4pF|
+
+### PCB v3.0:
 |GPIO|PIN|DESCRIPTION|
 ---|---|---
 | 23 | 16 | Relay 1   |
@@ -39,33 +57,14 @@ code or the PCB, well that's also great.
 | 21 | 40 | Contact 6 |
 | 06 | 31 | PWR LED   |
 
-## Hardware Changelog:
-### v2.2:
-1. Changed the relays from 5v coils to 3v coils
-2. Added silkscreen for the dry contacts and relays
-3. Changed orientation of the temperature sensor
-
-### v3.0:
+### PCB v3.0 Changelog:
 1. Added output for a fan
 2. Added transistors for proper control of the relays
 3. Modified the silkscreen for the relays and dry contacts
 4. Removed pulldown resistors as they are not needed on the Rasberry Pi
 5. Moved pretty much everything around to better situate everything on the PCB
 
-## Bill of Materials(BOM) Every part was sourced from Mouser.com
-### Hardware version 1.0 through 2.2:
-| MOUSER PART # | MFGR PART # | QTY | DESCRIPTION |
----|---|---|---
-|651-1725753|1725753|1|Fixed Terminal Blocks 12P 2.54mm 90DEG|
-|485-2243|2243|1|Adafruit Accessories GPIO Header for Raspberry Pi HAT - 2x20 Short Female Header|
-|652-CHP0805FX1002ELF|CHP0805-FX-1002ELF|6|Thick Film Resistors - SMD 10K OHM 1% 1/2W 100PPM|
-|651-1725669|1725669|1|Fixed Terminal Blocks 3P 2.54mm 90DEG|
-|653-G5LE-1-DC3|G5LE-1-DC3|2|General Purpose Relays SPDT 3VDC Flux Protected|
-|603-RT0805FRE10220RL|RT0805FRE10220RL|1|Thin Film Resistors - SMD 220 ohm 1% 50 ppm Thin Film|
-|604-APT3216VBC/D|APT3216VBC/D|1|	Standard LEDs - SMD 3.2X1.6MM BLUE SMD LED|
-|833-MMBD4148CA-TP|MMBD4148CA-TP|3|Diodes - General Purpose, Power, Switching 75V 600mA 4pF|
-
-### Hardware version 3.0:
+### PCB v3.0 Bill of Materials:
 | MOUSER PART # | MFGR PART # | QTY | DESCRIPTION |
 ---|---|---|---
 |651-1725753|1725753|1|Fixed Terminal Blocks 12P 2.54mm 90DEG|
@@ -91,7 +90,7 @@ cd /home/pi/AlarmPiHat
 ./install.sh
 ```
 
-### Here is a rundown of what the install.sh script does:
+## Here is a rundown of what the install.sh script does:
  1. Change the pi user Password
  2. Update the underlying OS
  3. Install required packages
