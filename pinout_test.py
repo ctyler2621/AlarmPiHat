@@ -30,7 +30,7 @@ wiringpi.pinMode(23, 0) # Set pin 25 to INPUT
 wiringpi.pinMode(26, 0) # Set pin 25 to INPUT
 wiringpi.pinMode(22, 0) # Set pin 25 to INPUT
 
-values = array()
+values = arr()
 values[0] = wiringpi.digitalRead(0) # Read the pins and put them into an array
 values[7] = wiringpi.digitalRead(7)
 values[29] = wiringpi.digitalRead(29)
@@ -43,4 +43,3 @@ values[22] = wiringpi.digitalRead(22)
 
 for value in values:
     print(value, end = ' ')
-    
