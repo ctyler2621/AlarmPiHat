@@ -24,7 +24,9 @@ values = [0 for a in range(40)]
 
 count = 1
 for value in values:
-  if count != 28 or count != 29: # Pin 28 and 29 on the RasPi 4 locks up the device when setting the pin HIGH
+  if count == 28 or count == 29: # Pin 28 and 29 on the RasPi 4 locks up the device when setting the pin HIGH
+    print("Skipping pin", count)
+  else:
     wiringpi.pullUpDnControl(count, 2) # Put the pin in pull down mode
     wiringpi.pinMode(count, 0) # Set pin to INPUT
     print("Pin:",count,"   Value:",wiringpi.digitalRead(count))
