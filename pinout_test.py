@@ -32,12 +32,16 @@ for value in values:
     print("Pin:",count,"   Value:",wiringpi.digitalRead(count))
     # Now set all pins to output and cycle them high and low for 1 second
     wiringpi.pinMode(count, 1) # Set pin to OUTPUT
-    print("Pin", count, "going HIGH")
+    print("  Pin", count, "going HIGH")
     wiringpi.digitalWrite(count, 1) # Set pin HIGH
+    print("  Value",wiringpi.digitalRead(count))
     time.sleep(1)
-    print("Pin", count, "going LOW")
+    print("  Pin", count, "going LOW")
     wiringpi.digitalWrite(count, 0) # Set pin LOW
+    print("  Value",wiringpi.digitalRead(count))
     time.sleep(1)
-    print("Reset pin to input")
+    print("  Reset pin to input")
     wiringpi.pinMode(count, 0) # Set pin back to INPUT
+    print("  Value",wiringpi.digitalRead(count))
+    print()
   count += 1
