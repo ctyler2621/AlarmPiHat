@@ -19,11 +19,17 @@ else
     sudo apt update
     sudo apt upgrade -y
     # Start installation of required packages
-    sudo apt-get install apache2 snmpd python3-pip php sqlite3 php7.3-sqlite3 php7.3-mysql php-db ufw wiringpi composer -y
+    sudo apt-get install apache2 snmpd python3-pip php sqlite3 php7.3-sqlite3 php7.3-mysql php-db ufw composer -y
     sudo pip3 install --upgrade setuptools
     sudo pip3 install --upgrade adafruit-python-shell
     sudo pip3 install adafruit-blinka
     sudo pip3 install adafruit-circuitpython-am2320
+    # Install wiringPi for Python
+    sudo pip3 install wiringpi
+    # Install wiringPi for CLI from forked repository
+    git clone https://github.com/eitch/wiringPi.git
+    cd wiringPi/
+    ./build
     # Create a symbolic link to the www directory
     sudo ln -s /home/pi/AlarmPiHat /var/www/html
     # Enable Apache
