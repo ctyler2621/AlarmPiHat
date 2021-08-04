@@ -25,7 +25,7 @@ code or the PCB, well that's also great.
 | 23 | 33 | Contact 4 |
 | 26 | 32 | Contact 5 |
 | 22 | 31 | Contact 6 |
-| 29 | 21 | PWR LED   |
+| 29 | 40 | PWR LED   |
 
 ### PCB v2.2 Changelog:
 1. Changed the relays from 5v coils to 3v coils
@@ -45,17 +45,17 @@ code or the PCB, well that's also great.
 |833-MMBD4148CA-TP|MMBD4148CA-TP|3|Diodes - General Purpose, Power, Switching 75V 600mA 4pF|
 
 ### PCB v3.0:
-|GPIO|PIN|DESCRIPTION|
----|---|---
-| 23 | 16 | Relay 1   |
-| 22 | 15 | Relay 2   |
-| 16 | 36 | Contact 1 |
-| 17 | 11 | Contact 2 |
-| 18 | 12 | Contact 3 |
-| 19 | 35 | Contact 4 |
-| 20 | 38 | Contact 5 |
-| 21 | 40 | Contact 6 |
-| 06 | 31 | PWR LED   |
+|GPIO|PIN|BCM|DESCRIPTION|
+---|---|---|---
+|  4 | 16 | 23 | Relay 1   |
+|  3 | 15 | 22 | Relay 2   |
+| 27 | 36 | 16 | Contact 1 |
+|  0 | 11 | 17 | Contact 2 |
+|  1 | 12 | 18 | Contact 3 |
+| 24 | 35 | 19 | Contact 4 |
+| 28 | 38 | 20 | Contact 5 |
+| 29 | 40 | 21 | Contact 6 |
+| 22 | 31 |  6 | PWR LED   |
 
 ### PCB v3.0 Changelog:
 1. Added output for a fan
