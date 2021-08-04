@@ -10,14 +10,37 @@ Date last modified: 21JUN2021
 PHP Version: 7.3
 Program Version: 0.0.0
 =============================================================================
-Documentation:
-25	D26	37	Contact 1
-27	D16	36	Contact 2
-24	D19	35	Contact 3
-23	D13	33	Contact 4
-26	D12	32	Contact 5
-22	D6	31	Contact 6
+Pinouts:
+PCB v2.2
+GPIO  BCM PIN DESCRIPTION
+25    D26	37	Contact 1
+27    D16	36	Contact 2
+24    D19	35	Contact 3
+23    D13	33	Contact 4
+26    D12	32	Contact 5
+22    D6	31	Contact 6
+
+PCB v3.0
+GPIO  PIN	DESCRIPTION
+4     16	Relay 1
+3     15	Relay 2
+27    36	Contact 1
+0     11	Contact 2
+1     12	Contact 3
+24    35	Contact 4
+28    38	Contact 5
+29    40	Contact 6
+22    31	PWR LED
 =============================================================================
+NOTE: For whatever reason, GPIO pin 22 (Contact 6) is borked on the Raspberry Pi 4 and
+will not read correctly, even if the internal resistor is set to pulldown mode. If not
+set to pulldown mode, the pin always reads as high, and if set to pulldown it will
+always read low, regarless if the pin is connected across the 3v rail or not.
+I have not tried the PCB v3.0 pinouts yet so I don't know if they will work better or
+not. Pin 22 is set as a relay output on v3.0 boards and I think that will work as one
+would expect. However, now the other pins are questionable now so we'll see. Might have
+to make one more hardware revision to get everything working properly.
+
 TODO: Need to figure out how to send a recovery notification as well, right now it just stops sending emails
 but there is no notification when a contact ceases to be in an alarm state.
 */
