@@ -11,7 +11,6 @@
 # Documentation:
 # =============================================================================
 # Imports:
-#import time
 import wiringpi
 import time
 # =============================================================================
@@ -20,26 +19,22 @@ import time
 # Set the IO function for wiringPi
 wiringpi.wiringPiSetupGpio()
 
-wiringpi.pinMode(0, 1) # Set pin 0 to OUTPUT
-wiringpi.pinMode(7, 1) # Set pin 7 to OUTPUT
-wiringpi.pinMode(29, 1) # Set pin 29 to OUTPUT
-wiringpi.pinMode(25, 0) # Set pin 25 to INPUT
-wiringpi.pinMode(27, 0) # Set pin 25 to INPUT
-wiringpi.pinMode(24, 0) # Set pin 25 to INPUT
-wiringpi.pinMode(23, 0) # Set pin 25 to INPUT
-wiringpi.pinMode(26, 0) # Set pin 25 to INPUT
-wiringpi.pinMode(22, 0) # Set pin 25 to INPUT
+# Create a list for values
+values = [0 for a in range(40)]
 
-#values = arr()
-values[0] = wiringpi.digitalRead(0) # Read the pins and put them into an array
-values[7] = wiringpi.digitalRead(7)
-values[29] = wiringpi.digitalRead(29)
-values[25] = wiringpi.digitalRead(25)
-values[27] = wiringpi.digitalRead(27)
-values[24] = wiringpi.digitalRead(24)
-values[23] = wiringpi.digitalRead(23)
-values[26] = wiringpi.digitalRead(26)
-values[22] = wiringpi.digitalRead(22)
-
+count = 1
 for value in values:
-    print(value, end = ' ')
+  wiringpi.pullUpDnControl(count, 2) # Put the pin in pull down mode
+  wiringpi.pinMode(count, 0) # Set pin to INPUT
+  print("Pin:",count,"   Value:",wiringpi.digitalRead(count))
+  # Now set all pins to output and cycle them high and low for 1 second
+  wiringpi.pinMode(count, 1) # Set pin to OUTPUT
+  print("Pin", count, "going HIGH")
+  wiringpi.digitalWrite(count, 1) # Set pin HIGH
+  time.sleep(1)
+  print("Pin", count, "going LOW")
+  wiringpi.digitalWrite(count, 0) # Set pin LOW
+  time.sleep(1)
+  print("Reset pin to input")
+  wiringpi.pinMode(count, 0) # Set pin back to INPUT
+  count += 1
