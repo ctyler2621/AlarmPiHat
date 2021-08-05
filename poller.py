@@ -47,7 +47,7 @@ def getData():
         result.update({"Humid":humid})
     except:
         result.update({"Humid":"NaN"})
-        
+
     # Get the contact, LED and relay status from the device
 
     # Create a dictionary for values using the BCM numbering
@@ -67,8 +67,9 @@ def getData():
 
     # Print the result for the end user just in case they are running it from the command line
     print()
-    print(result)
-
+    for key,value in result:
+        print(key : value)
+    
     # Return the result as a dictionary for ease of use later in the program
     return(result)
 
