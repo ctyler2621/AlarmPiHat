@@ -106,12 +106,12 @@ This message is sent from Python."""
 try:
     while True:
         # Run a continuous loop and get the data every x seconds
-        wiringpi.pinMode(22, 1)     # Set the LED BCM pin to output
-        wiringpi.digitalWrite(22,1) # Turn on the LED
+        wiringpi.pinMode(21, 1)     # Set the LED BCM pin to output
+        wiringpi.digitalWrite(21,1) # Turn on the LED
         result = getData()          # Get the data
         #writeDb(result)            # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
-        wiringpi.digitalWrite(22,0) #Turn off the LED
+        wiringpi.digitalWrite(21,0) #Turn off the LED
         sleep(1)            # Wait for x seconds
 except KeyboardInterrupt:
     exit()                  # Exit the program if CTRL-C is pressed
