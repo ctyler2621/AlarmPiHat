@@ -110,6 +110,8 @@ try:
         result = getData()  # Get the data
         #writeDb(result)     # Write the data to the database
         #notifier(result)    # Send notificaiton email if necessary
-        sleep(5)            # Wait for x seconds
+        wiringPi.digitalWrite(22,0)
+        sleep(1)            # Wait for x seconds
+        wiringPi.digitalWrite(22,1)
 except KeyboardInterrupt:
     exit()                  # Exit the program if CTRL-C is pressed
