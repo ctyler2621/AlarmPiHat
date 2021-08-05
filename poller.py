@@ -11,7 +11,7 @@
 # This is for AlarmPiHat hardware v3.0
 # =============================================================================
 # Imports:
-import wiringpi2 as wiringpi
+import wiringpi
 from time import sleep
 # =============================================================================
 # Codebase:
