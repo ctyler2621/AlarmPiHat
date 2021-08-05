@@ -27,7 +27,7 @@ def getData():
     values_in  = {"con1":26,"con2":16,"con3":19,"con4":13,"con5":12,"con6":6}
 
     #Initialize the result variable as a list
-    result = {}
+    result = {"con1":0,"con2":0,"con3":0,"con4":0,"con5":0,"con6":0}
 
     counter = 1
     # Set input pins as inputs and put internal resistors into pulldown mode
