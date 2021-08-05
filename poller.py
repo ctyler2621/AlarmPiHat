@@ -22,8 +22,8 @@ wiringpi.wiringPiSetupGpio()
 def getData():
     # Get the contact, LED and relay status from the device
     # Create a list for values
-    values_out = [4,3,22]
-    values_in  = [27,0,1,24,28,29]
+    values_out = [0,7,29]
+    values_in  = [25,27,24,23,26,22]
 
     #Initialize the result variable as a list
     result = []
