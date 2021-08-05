@@ -17,12 +17,11 @@ import sqlite3
 import smtplib, ssl
 # =============================================================================
 # Codebase:
+# Set the IO function for wiringPi to use the BCM pinout
+wiringpi.wiringPiSetupGpio()
 
 def getData():
     # Get the contact, LED and relay status from the device
-
-    # Set the IO function for wiringPi to use the BCM pinout
-    wiringpi.wiringPiSetupGpio()
 
     # Create a dictionary for values using the BCM numbering
     values_out = {"relay1":17,"relay2":4,"LED":21}
@@ -106,12 +105,13 @@ This message is sent from Python."""
 # Main code section
 try:
     while True:
-        # Run a continuous loop and get the data every 5 seconds
-        result = getData()  # Get the data
-        #writeDb(result)     # Write the data to the database
-        #notifier(result)    # Send notificaiton email if necessary
-        wiringPi.digitalWrite(22,0)
+        # Run a continuous loop and get the data every x seconds
+        wiringpi.pinMode(22, 1)     # Set the LED BCM pin to output
+        wiringpi.digitalWrite(22,1) # Turn on the LED
+        result = getData()          # Get the data
+        #writeDb(result)            # Write the data to the database
+        #notifier(result)           # Send notificaiton email if necessary
+        wiringPi.digitalWrite(22,0) #Turn off the LED
         sleep(1)            # Wait for x seconds
-        wiringPi.digitalWrite(22,1)
 except KeyboardInterrupt:
     exit()                  # Exit the program if CTRL-C is pressed
