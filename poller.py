@@ -36,7 +36,7 @@ def getData():
         result.update({key:wiringpi.digitalRead(input)})
 
     # Set output pins as ouputs
-    for key, output in values_out:
+    for key, output in values_out.items():
         wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
         result.update({key:wiringpi.digitalRead(output)})
 
