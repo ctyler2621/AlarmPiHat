@@ -24,26 +24,27 @@ def getData():
 
     # Create a list for values using the BCM numbering
     values_out = [17,4,21]
-    values_in  = [26,16,19,13,12,6]
+    values_in  = {"con1":26,"con2":16,"con3":19,"con4":13,"con5":12,"con6":6}
 
     #Initialize the result variable as a list
-    result = []
+    result = {}
 
-    counter = 0
+    counter = 1
     # Set input pins as inputs and put internal resistors into pulldown mode
     for input in values_in:
-        wiringpi.pinMode(input, 0)         # Set pin to INPUT
-        wiringpi.pullUpDnControl(input, 1) # Put the pin in pull down mode
-        print("BCM",input,wiringpi.digitalRead(input))
-        result.append(wiringpi.digitalRead(input))
+        con = "con%s" % (counter)
+        wiringpi.pinMode(input[con], 0)         # Set pin to INPUT
+        wiringpi.pullUpDnControl(input[con], 1) # Put the pin in pull down mode
+        print("BCM",input,wiringpi.digitalRead(input[con]))
+        result[con].update(wiringpi.digitalRead(input[con]))
         counter += 1
 
     # Set output pins as ouputs
-    for output in values_out:
-        wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
-        print("BCM",input,wiringpi.digitalRead(output))
-        result.append(wiringpi.digitalRead(output))
-        counter += 1
+    #for output in values_out:
+    #    wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
+    #    print("BCM",input,wiringpi.digitalRead(output))
+    #    result.append(wiringpi.digitalRead(output))
+    #    counter += 1
 
     # Print some output for debugging from the command line
     print(result)
