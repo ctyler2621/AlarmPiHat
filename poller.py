@@ -26,7 +26,6 @@ def getData():
     values_in  = [27,0,1,24,28,29]
 
     #Initialize the result variable as a list
-    result.clear()
     result = []
 
     counter = 0
