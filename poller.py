@@ -19,7 +19,7 @@ import time
 # Set the IO function for wiringPi
 wiringpi.wiringPiSetupGpio()
 
-function getData():
+def getData():
     # Get the contact, LED and relay status from the device
     # Create a list for values
     values_out = ['4','3']
@@ -45,11 +45,11 @@ function getData():
     # Return the result as a list
     return(result)
 
-function writeDb(result):
+def writeDb(result):
     # Write resulting data to the SQLite database on the ramdisk, everything will
     # reference the database so this shouldn't cause any issues with SNMP, etc.
 
-function notifier(result):
+def notifier(result):
     # If any value in the results is in an active state, send a notification
     # Base the time between notificaitons on the timer values in the database
     # Check the last notification datetime with current datetime and if x seconds
