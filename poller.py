@@ -107,6 +107,7 @@ try:
     while True:
         # Run a continuous loop and get the data every x seconds
         wiringpi.pinMode(21, 1)     # Set the LED BCM pin to output
+        sleep(0.5)                  # Once the program takes a bit longer to run this can be removed
         wiringpi.digitalWrite(21,1) # Turn on the LED
         result = getData()          # Get the data
         #writeDb(result)            # Write the data to the database
