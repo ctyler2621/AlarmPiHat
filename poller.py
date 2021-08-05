@@ -48,13 +48,14 @@ def getData():
 def writeDb(result):
     # Write resulting data to the SQLite database on the ramdisk, everything will
     # reference the database so this shouldn't cause any issues with SNMP, etc.
+    print("Write to Database")
 
 def notifier(result):
     # If any value in the results is in an active state, send a notification
     # Base the time between notificaitons on the timer values in the database
     # Check the last notification datetime with current datetime and if x seconds
     # have not passed do not send the notification.
-
+    print("Notifier")
 # Main code section
 while 1:
     # Run a continuous loop and get the data every 5 seconds
