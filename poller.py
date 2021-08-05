@@ -67,7 +67,7 @@ def getData():
 
     # Print the result for the end user just in case they are running it from the command line
     print()
-    for key,value in result:
+    for key, value in result.items():
         print(key,":",value)
 
     # Return the result as a dictionary for ease of use later in the program
