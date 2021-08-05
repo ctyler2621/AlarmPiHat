@@ -33,7 +33,8 @@ def getData():
         sensor = adafruit_am2320.AM2320(i2c)
         celsius = '{0}'.format(sensor.temperature)
         celsius = float(celsius)
-        fahrenheit = round((celsius * 1.8) + 32, 2)
+        fahrenheit = (celsius * 1.8) + 32
+        fahrenheit = round(fahrenheit)
         result.update({"Temp":fahrenheit})
     except:
         result.update({"Temp":"NaN"})
