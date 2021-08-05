@@ -15,20 +15,44 @@ import wiringpi
 from time import sleep
 import sqlite3
 import smtplib, ssl
+import board
+import adafruit_am2320
+
 # =============================================================================
 # Codebase:
 # Set the IO function for wiringPi to use the BCM pinout
 wiringpi.wiringPiSetupGpio()
 
 def getData():
+    # Initialize the result variable as a dictionary
+    result = {"contact1":0,"contact2":0,"contact3":0,"contact4":0,"contact5":0,"contact6":0,"relay1":0,"relay2":0,"LED":0,"Temp":0,"Humid":0}
+
+    # Get temperature
+    try:
+        i2c = board.I2C()
+        sensor = adafruit_am2320.AM2320(i2c)
+        celsius = '{0}'.format(sensor.temperature)
+        celsius = float(celsius)
+        fahrenheit = (celsius * 1.8) + 32
+        result.update({"Temp":fahrenheit})
+    except:
+        result.update({"Temp":"NaN"})
+
+    # Get humidity
+    try:
+        i2c = board.I2C()
+        sensor = adafruit_am2320.AM2320(i2c)
+        #time.sleep(1) # Just to make sure that we aren't reading from the sensor too quickly
+        humid = '{0}'.format(sensor.relative_humidity)
+        result.update({"Humid":humid})
+    except:
+        result.update({"Humid":"NaN"})
+        
     # Get the contact, LED and relay status from the device
 
     # Create a dictionary for values using the BCM numbering
     values_out = {"relay1":17,"relay2":4,"LED":21}
     values_in  = {"contact1":26,"contact2":16,"contact3":19,"contact4":13,"contact5":12,"contact6":6}
-
-    # Initialize the result variable as a dictionary
-    result = {"contact1":0,"contact2":0,"contact3":0,"contact4":0,"contact5":0,"contact6":0,"relay1":0,"relay2":0,"LED":0}
 
     # Set input pins as inputs and put internal resistors into pulldown mode
     for key, input in values_in.items():
@@ -108,11 +132,11 @@ try:
         # Run a continuous loop and get the data every x seconds
         wiringpi.pinMode(21, 1)     # Set the LED BCM pin to output
         wiringpi.digitalWrite(21,1) # Turn on the LED
-        sleep(0.5)                  # Once the program takes a bit longer to run this can be removed
+        sleep(0.1)                  # Once the program takes a bit longer to run this can be removed
         result = getData()          # Get the data
         #writeDb(result)            # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(21,0) #Turn off the LED
-        sleep(0.5)            # Wait for x seconds
+        sleep(4.9)            # Wait for x seconds
 except KeyboardInterrupt:
     exit()                  # Exit the program if CTRL-C is pressed
