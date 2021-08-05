@@ -11,9 +11,8 @@
 # This is for AlarmPiHat hardware v3.0
 # =============================================================================
 # Imports:
-import wiringpi
+import wiringpi2 as wiringpi
 from time import sleep
-import RPi.GPIO as GPIO
 # =============================================================================
 # Codebase:
 
@@ -35,7 +34,7 @@ def getData():
     for input in values_in:
         wiringpi.pinMode(input, 0)         # Set pin to INPUT
         wiringpi.pullUpDnControl(input, 1) # Put the pin in pull down mode
-        print("DEBUG: ",input,wiringpi.digitalRead(input))
+        print("GPIO",input,wiringpi.digitalRead(input))
         result.append(wiringpi.digitalRead(input))
         counter += 1
 
@@ -73,4 +72,4 @@ try:
         sleep(1)
         result.clear()
 except KeyboardInterrupt:
-    GPIO.cleanup()
+    exit()
