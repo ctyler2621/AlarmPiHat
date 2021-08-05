@@ -23,27 +23,22 @@ def getData():
     wiringpi.wiringPiSetupGpio()
 
     # Create a list for values using the BCM numbering
-    values_out = [17,4,21]
+    values_out = {"relay1":17,"relay2":4,"LED":21}
     values_in  = {"con1":26,"con2":16,"con3":19,"con4":13,"con5":12,"con6":6}
 
     #Initialize the result variable as a list
-    result = {"con1":0,"con2":0,"con3":0,"con4":0,"con5":0,"con6":0}
+    result = {"con1":0,"con2":0,"con3":0,"con4":0,"con5":0,"con6":0,"relay1":0,"relay2":0,"LED":0}
 
-    counter = 1
     # Set input pins as inputs and put internal resistors into pulldown mode
     for key, input in values_in.items():
         wiringpi.pinMode(input, 0)         # Set pin to INPUT
         wiringpi.pullUpDnControl(input, 1) # Put the pin in pull down mode
-        print("BCM",input,wiringpi.digitalRead(input))
         result.update({key:wiringpi.digitalRead(input)})
-        counter += 1
 
     # Set output pins as ouputs
-    #for output in values_out:
-    #    wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
-    #    print("BCM",input,wiringpi.digitalRead(output))
-    #    result.append(wiringpi.digitalRead(output))
-    #    counter += 1
+    for key, output in values_out:
+        wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
+        result.update({key:wiringpi.digitalRead(output)})
 
     # Print some output for debugging from the command line
     print(result)
