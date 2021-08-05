@@ -111,7 +111,7 @@ try:
         result = getData()          # Get the data
         #writeDb(result)            # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
-        wiringPi.digitalWrite(22,0) #Turn off the LED
+        wiringpi.digitalWrite(22,0) #Turn off the LED
         sleep(1)            # Wait for x seconds
 except KeyboardInterrupt:
     exit()                  # Exit the program if CTRL-C is pressed
