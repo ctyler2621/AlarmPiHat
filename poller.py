@@ -32,6 +32,7 @@ def getData():
         wiringpi.pinMode(input, 0)         # Set pin to INPUT
         wiringpi.pullUpDnControl(input, 2) # Put the pin in pull down mode
         result[counter] = wiringpi.digitalRead(input)
+        print(counter)
         counter += 1
 
         # Set output pins as ouputs
