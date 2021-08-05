@@ -134,6 +134,7 @@ This message is sent from Python."""
 try:
     runcounter = 1
     while True:
+        print("Run Count :\t",runcounter)
         # Run a continuous loop and get the data every x seconds
         wiringpi.pinMode(21, 1)     # Set the LED BCM pin to output
         wiringpi.digitalWrite(21,1) # Turn on the LED
@@ -142,7 +143,6 @@ try:
         #writeDb(result)            # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(21,0) #Turn off the LED
-        print(runcounter)
         sleep(4.9)                  # Wait for x seconds
         runcounter += 1             # Increment the runcounter
 except KeyboardInterrupt:
