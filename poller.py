@@ -74,9 +74,9 @@ def notifier(result):
     # Check the last notification datetime with current datetime and if x seconds
     # have not passed do not send the notification.
     print("Send notification via email if necessary")
-    smtp_server = "smtp.gmail.com"
+    smtp_server = "mail.totalhighspeed.net"
     port = 587  # For starttls
-    sender_email = "wisptech@gmail.com"
+    sender_email = "chris@totalhighspeed.net"
     receiver_email = "chris@totalhighspeed.net"
     password = input("Type your password and press enter: ")
 
@@ -108,7 +108,7 @@ try:
     while True:
         # Run a continuous loop and get the data every 5 seconds
         result = getData()  # Get the data
-        writeDb(result)     # Write the data to the database
+        #writeDb(result)     # Write the data to the database
         notifier(result)    # Send notificaiton email if necessary
         sleep(5)            # Wait for x seconds
 except KeyboardInterrupt:
