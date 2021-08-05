@@ -40,7 +40,7 @@ def getData():
             counter += 1
 
     # Print some output for debugging from the command line
-    print(result, end ',')
+    print(result)
 
     # Return the result as a list
     return(result)
