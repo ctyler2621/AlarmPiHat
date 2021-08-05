@@ -40,7 +40,7 @@ def getData():
     # Set output pins as ouputs
     for output in values_out:
         wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
-        result[counter] = wiringpi.digitalRead(output)
+        result.append(wiringpi.digitalRead(output))
         counter += 1
 
     # Print some output for debugging from the command line
