@@ -24,14 +24,16 @@ def getData():
     # Create a list for values
     values_out = [4,3]
     values_in  = [27,0,1,24,28,29,22]
-    result = [0,0,0,0,0,0,0,0,0]
+
+    #Initialize the result variable as a list
+    result = []
 
     counter = 0
     # Set input pins as inputs and put internal resistors into pulldown mode
     for input in values_in:
         wiringpi.pinMode(input, 0)         # Set pin to INPUT
         wiringpi.pullUpDnControl(input, 2) # Put the pin in pull down mode
-        #result[counter] = wiringpi.digitalRead(input)
+        result.append(wiringpi.digitalRead(input))
         print(counter)
         counter += 1
 
@@ -64,4 +66,4 @@ while 1:
     result = getData()
     writeDb(result)
     notifier(result)
-    sleep(5)
+    time.sleep(5)
