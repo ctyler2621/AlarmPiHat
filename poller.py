@@ -31,15 +31,15 @@ def getData():
     for input in values_in:
         wiringpi.pinMode(input, 0)         # Set pin to INPUT
         wiringpi.pullUpDnControl(input, 2) # Put the pin in pull down mode
-        result[counter] = wiringpi.digitalRead(input)
+        #result[counter] = wiringpi.digitalRead(input)
         print(counter)
         counter += 1
 
-        # Set output pins as ouputs
-        for output in values_out:
-            wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
-            result[counter] = wiringpi.digitalRead(output)
-            counter += 1
+    # Set output pins as ouputs
+    for output in values_out:
+        wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
+        result[counter] = wiringpi.digitalRead(output)
+        counter += 1
 
     # Print some output for debugging from the command line
     print(result)
