@@ -24,7 +24,7 @@ def getData():
     # Create a list for values
     values_out = [4,3]
     values_in  = [27,0,1,24,28,29,22]
-    result = []
+    result = [0,0,0,0,0,0,0,0,0]
 
     counter = 0
     # Set input pins as inputs and put internal resistors into pulldown mode
