@@ -41,6 +41,7 @@ def getData():
         result.update({key:wiringpi.digitalRead(output)}) # Read the BCM pin
 
     # Print the result for the end user just in case they are running it from the command line
+    print()
     print(result)
 
     # Return the result as a dictionary for ease of use later in the program
@@ -49,7 +50,6 @@ def getData():
 def writeDb(result):
     # Write resulting data to the SQLite database on the ramdisk, everything will
     # reference the database so this shouldn't cause any issues with SNMP, etc.
-    print()
     print("Write data to the Database")
 
 def notifier(result):
@@ -57,7 +57,6 @@ def notifier(result):
     # Base the time between notificaitons on the timer values in the database
     # Check the last notification datetime with current datetime and if x seconds
     # have not passed do not send the notification.
-    print()
     print("Send notification via email if necessary")
 
 # Main code section
