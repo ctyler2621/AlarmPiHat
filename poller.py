@@ -13,6 +13,8 @@
 # Imports:
 import wiringpi
 from time import sleep
+import sqlite3
+import smtplib, ssl
 # =============================================================================
 # Codebase:
 
@@ -24,10 +26,10 @@ def getData():
 
     # Create a dictionary for values using the BCM numbering
     values_out = {"relay1":17,"relay2":4,"LED":21}
-    values_in  = {"con1":26,"con2":16,"con3":19,"con4":13,"con5":12,"con6":6}
+    values_in  = {"contact1":26,"contact2":16,"contact3":19,"contact4":13,"contact5":12,"contact6":6}
 
     # Initialize the result variable as a dictionary
-    result = {"con1":0,"con2":0,"con3":0,"con4":0,"con5":0,"con6":0,"relay1":0,"relay2":0,"LED":0}
+    result = {"contact1":0,"contact2":0,"contact3":0,"contact4":0,"contact5":0,"contact6":0,"relay1":0,"relay2":0,"LED":0}
 
     # Set input pins as inputs and put internal resistors into pulldown mode
     for key, input in values_in.items():
@@ -48,9 +50,23 @@ def getData():
     return(result)
 
 def writeDb(result):
+    # TODO: This section probably doesn't work just yet as the sqlite tables are
+    # named differently than what is in the result variable, so one will have to
+    # change.
+
     # Write resulting data to the SQLite database on the ramdisk, everything will
     # reference the database so this shouldn't cause any issues with SNMP, etc.
     print("Write data to the Database")
+    con = sqlite3.connect('ramdisk/config.db') # Connect to the database
+    cur = con.cursor()                         # Init the cursor
+
+    for key, value in result:
+        if value == 1:
+            cur.execute("UPDATE config SET ",key,"=datetime('now','localtime') WHERE 1")
+        else:
+            cur.execute("UPDATE config SET ",key,"=NULL WHERE 1")
+    con.commit()                               # Commit the changes to the database
+    con.close()                                # Close the database connection
 
 def notifier(result):
     # If any value in the results is in an active state, send a notification
@@ -58,6 +74,34 @@ def notifier(result):
     # Check the last notification datetime with current datetime and if x seconds
     # have not passed do not send the notification.
     print("Send notification via email if necessary")
+    smtp_server = "smtp.gmail.com"
+    port = 587  # For starttls
+    sender_email = "wisptech@gmail.com"
+    receiver_email = "chris@totalhighspeed.net"
+    password = input("Type your password and press enter: ")
+
+    # Create a secure SSL context
+    context = ssl.create_default_context()
+
+    # Try to log in to server and send email
+    try:
+        server = smtplib.SMTP(smtp_server,port)
+        server.ehlo() # Can be omitted
+        server.starttls(context=context) # Secure the connection
+        server.ehlo() # Can be omitted
+        server.login(sender_email, password)
+        # TODO: Send email here
+        message = """\
+Subject: Hi there
+
+This message is sent from Python."""
+    except Exception as e:
+        server.sendmail(sender_email, receiver_email, message)
+
+        # Print any error messages to stdout
+        print(e)
+    finally:
+        server.quit()
 
 # Main code section
 try:
