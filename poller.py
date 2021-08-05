@@ -31,11 +31,11 @@ def getData():
 
     counter = 1
     # Set input pins as inputs and put internal resistors into pulldown mode
-    for input, key in values_in.items():
-        wiringpi.pinMode(input[key], 0)         # Set pin to INPUT
-        wiringpi.pullUpDnControl(input[key], 1) # Put the pin in pull down mode
-        print("BCM",input,wiringpi.digitalRead(input[key]))
-        result[key].update(wiringpi.digitalRead(input[key]))
+    for key, input in values_in.items():
+        wiringpi.pinMode(input[value], 0)         # Set pin to INPUT
+        wiringpi.pullUpDnControl(input[value], 1) # Put the pin in pull down mode
+        print("BCM",input,wiringpi.digitalRead(input[value]))
+        result[key].update(wiringpi.digitalRead(input[value]))
         counter += 1
 
     # Set output pins as ouputs
