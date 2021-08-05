@@ -22,10 +22,11 @@ wiringpi.wiringPiSetupGpio()
 def getData():
     # Get the contact, LED and relay status from the device
     # Create a list for values
-    values_out = [4,3]
-    values_in  = [27,0,1,24,28,29,22]
+    values_out = [4,3,22]
+    values_in  = [27,0,1,24,28,29]
 
     #Initialize the result variable as a list
+    result.clear()
     result = []
 
     counter = 0
@@ -38,10 +39,10 @@ def getData():
         counter += 1
 
     # Set output pins as ouputs
-    for output in values_out:
-        wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
-        result.append(wiringpi.digitalRead(output))
-        counter += 1
+    #for output in values_out:
+    #    wiringpi.pinMode(output, 1)        # Set pin to OUTPUT
+    #    result.append(wiringpi.digitalRead(output))
+    #    counter += 1
 
     # Print some output for debugging from the command line
     print(result)
@@ -60,6 +61,7 @@ def notifier(result):
     # Check the last notification datetime with current datetime and if x seconds
     # have not passed do not send the notification.
     print("Notifier")
+
 # Main code section
 while 1:
     # Run a continuous loop and get the data every 5 seconds
@@ -67,3 +69,4 @@ while 1:
     writeDb(result)
     notifier(result)
     time.sleep(5)
+    result.clear()
