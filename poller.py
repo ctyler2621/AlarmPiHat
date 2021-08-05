@@ -68,7 +68,10 @@ def getData():
     # Print the result for the end user just in case they are running it from the command line
     print()
     for key, value in result.items():
-        print(key,":\t",value)
+        if key == "LED" or key == "Humid" or key == "Temp":
+            print(key,"\t:\t",value)
+        else:
+            print(key,":\t",value)
 
     # Return the result as a dictionary for ease of use later in the program
     return(result)
@@ -129,6 +132,7 @@ This message is sent from Python."""
 
 # Main code section
 try:
+    runcounter = 1
     while True:
         # Run a continuous loop and get the data every x seconds
         wiringpi.pinMode(21, 1)     # Set the LED BCM pin to output
@@ -138,6 +142,8 @@ try:
         #writeDb(result)            # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(21,0) #Turn off the LED
-        sleep(4.9)            # Wait for x seconds
+        print(runcounter)
+        sleep(4.9)                  # Wait for x seconds
+        runcounter += 1             # Increment the runcounter
 except KeyboardInterrupt:
     exit()                  # Exit the program if CTRL-C is pressed
