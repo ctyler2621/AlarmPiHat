@@ -35,7 +35,7 @@ def getData():
         wiringpi.pinMode(input, 0)         # Set pin to INPUT
         wiringpi.pullUpDnControl(input, 1) # Put the pin in pull down mode
         print("BCM",input,wiringpi.digitalRead(input))
-        result[key].update(wiringpi.digitalRead(input))
+        result.update({key:wiringpi.digitalRead(input)})
         counter += 1
 
     # Set output pins as ouputs
