@@ -12,15 +12,17 @@
 # =============================================================================
 # Imports:
 import wiringpi
-import time
+from time import sleep
+import RPi.GPIO as GPIO
 # =============================================================================
 # Codebase:
 
-# Set the IO function for wiringPi
-wiringpi.wiringPiSetupGpio()
-
 def getData():
     # Get the contact, LED and relay status from the device
+
+    # Set the IO function for wiringPi
+    wiringpi.wiringPiSetupGpio()
+
     # Create a list for values
     values_out = [0,7,29]
     values_in  = [25,27,24,23,26,22]
@@ -32,9 +34,9 @@ def getData():
     # Set input pins as inputs and put internal resistors into pulldown mode
     for input in values_in:
         wiringpi.pinMode(input, 0)         # Set pin to INPUT
-        wiringpi.pullUpDnControl(input, 2) # Put the pin in pull down mode
+        wiringpi.pullUpDnControl(input, 1) # Put the pin in pull down mode
+        print("DEBUG: " counter, ,value, wiringpi.digitalRead(input))
         result.append(wiringpi.digitalRead(input))
-        print(counter)
         counter += 1
 
     # Set output pins as ouputs
@@ -62,10 +64,13 @@ def notifier(result):
     print("Notifier")
 
 # Main code section
-while 1:
-    # Run a continuous loop and get the data every 5 seconds
-    result = getData()
-    writeDb(result)
-    notifier(result)
-    time.sleep(5)
-    result.clear()
+try:
+    while True:
+        # Run a continuous loop and get the data every 5 seconds
+        result = getData()
+        #writeDb(result)
+        #notifier(result)
+        sleep(1)
+        result.clear()
+except KeyboardInterrupt:
+    GPIO.cleanup()
