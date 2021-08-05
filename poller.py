@@ -109,7 +109,7 @@ try:
         # Run a continuous loop and get the data every 5 seconds
         result = getData()  # Get the data
         #writeDb(result)     # Write the data to the database
-        notifier(result)    # Send notificaiton email if necessary
+        #notifier(result)    # Send notificaiton email if necessary
         sleep(5)            # Wait for x seconds
 except KeyboardInterrupt:
     exit()                  # Exit the program if CTRL-C is pressed
