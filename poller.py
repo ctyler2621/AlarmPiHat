@@ -88,7 +88,7 @@ def writeDb(result):
     cur = con.cursor()                         # Init the cursor
 
     for key, value in result.items():
-        if value.find("contact") >= 0:
+        if "contact" in value >= 0:
             if value == 1:
                 cur.execute("UPDATE config SET ",key,"=datetime('now','localtime') WHERE 1")
             else:
