@@ -25,7 +25,7 @@ wiringpi.wiringPiSetupGpio()
 
 def getData():
     # Initialize the result variable as a dictionary
-    result = {"contact1":0,"contact2":0,"contact3":0,"contact4":0,"contact5":0,"contact6":0,"relay1":0,"relay2":0,"LED":0,"Temp":0,"Humid":0}
+    result = {"contact1_alarm":0,"contact2_alarm":0,"contact_alarm3_alarm":0,"contact4_alarm":0,"contact5_alarm":0,"contact6_alarm":0,"relay1":0,"relay2":0,"LED":0,"Temp":0,"Humid":0}
 
     # Get temperature
     try:
@@ -88,12 +88,13 @@ def writeDb(result):
     cur = con.cursor()                         # Init the cursor
 
     for key, value in result:
-        if value == 1:
-            cur.execute("UPDATE config SET ",key,"=datetime('now','localtime') WHERE 1")
-        else:
-            cur.execute("UPDATE config SET ",key,"=NULL WHERE 1")
-    con.commit()                               # Commit the changes to the database
-    con.close()                                # Close the database connection
+        if value.find("contact") >= 0:
+            if value == 1:
+                cur.execute("UPDATE config SET ",key,"=datetime('now','localtime') WHERE 1")
+            else:
+                cur.execute("UPDATE config SET ",key,"=NULL WHERE 1")
+            con.commit()                               # Commit the changes to the database
+            con.close()                                # Close the database connection
 
 def notifier(result):
     # If any value in the results is in an active state, send a notification
@@ -140,7 +141,7 @@ try:
         wiringpi.digitalWrite(21,1) # Turn on the LED
         sleep(0.1)                  # Once the program takes a bit longer to run this can be removed
         result = getData()          # Get the data
-        #writeDb(result)            # Write the data to the database
+        writeDb(result)            # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(21,0) #Turn off the LED
         sleep(4.9)                  # Wait for x seconds
