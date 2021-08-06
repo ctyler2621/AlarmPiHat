@@ -90,7 +90,7 @@ def writeDb(result):
     for key, value in result.items():
         if 'contact' in key:
             if value == 1:
-                sql = print("UPDATE config SET ",key,"=datetime('now','localtime') WHERE 1")
+                sql = "UPDATE config SET %s=datetime('now','localtime') WHERE 1" % (key)
                 cur.execute(sql)
             else:
                 cur.execute("UPDATE config SET ",key,"=NULL WHERE 1")
