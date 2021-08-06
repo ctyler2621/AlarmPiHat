@@ -84,7 +84,7 @@ def writeDb(result):
     # Write resulting data to the SQLite database on the ramdisk, everything will
     # reference the database so this shouldn't cause any issues with SNMP, etc.
     print("Write data to the Database")
-    con = sqlite3.connect('ramdisk/config.db') # Connect to the database
+    con = sqlite3.connect('/home/pi/AlarmPiHat/ramdisk/config.db') # Connect to the database
     cur = con.cursor()                         # Init the cursor
 
     for key, value in result.items():
