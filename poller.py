@@ -25,7 +25,7 @@ wiringpi.wiringPiSetupGpio()
 
 def getData():
     # Initialize the result variable as a dictionary
-    result = {"contact1_alarm":0,"contact2_alarm":0,"contact_alarm3_alarm":0,"contact4_alarm":0,"contact5_alarm":0,"contact6_alarm":0,"relay1":0,"relay2":0,"LED":0,"Temp":0,"Humid":0}
+    result = {"contact1_alarm":0,"contact2_alarm":0,"contact3_alarm":0,"contact4_alarm":0,"contact5_alarm":0,"contact6_alarm":0,"relay1":0,"relay2":0,"LED":0,"Temp":0,"Humid":0}
 
     # Get temperature
     try:
@@ -52,7 +52,7 @@ def getData():
 
     # Create a dictionary for values using the BCM numbering
     values_out = {"relay1":17,"relay2":4,"LED":21}
-    values_in  = {"contact1":26,"contact2":16,"contact3":19,"contact4":13,"contact5":12,"contact6":6}
+    values_in  = {"contact1_alarm":26,"contact2_alarm":16,"contact3_alarm":19,"contact4_alarm":13,"contact5_alarm":12,"contact6_alarm":6}
 
     # Set input pins as inputs and put internal resistors into pulldown mode
     for key, input in values_in.items():
