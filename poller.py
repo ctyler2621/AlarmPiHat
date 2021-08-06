@@ -94,8 +94,8 @@ def writeDb(result):
                 cur.execute(sql)
             else:
                 cur.execute("UPDATE config SET %s=NULL WHERE 1" % key)
-            con.commit()                               # Commit the changes to the database
-            con.close()                                # Close the database connection
+    con.commit()                               # Commit the changes to the database
+    con.close()                                # Close the database connection
 
 def notifier(result):
     # If any value in the results is in an active state, send a notification
