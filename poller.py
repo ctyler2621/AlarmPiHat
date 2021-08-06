@@ -141,8 +141,8 @@ try:
         wiringpi.digitalWrite(21,1) # Turn on the LED
         sleep(0.1)                  # Once the program takes a bit longer to run this can be removed
         result = getData()          # Get the data
-        writeDb(result)            # Write the data to the database
-        notifier(result)           # Send notificaiton email if necessary
+        writeDb(result)             # Write the data to the database
+        #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(21,0) #Turn off the LED
         sleep(4.9)                  # Wait for x seconds
         runcounter += 1             # Increment the runcounter
