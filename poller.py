@@ -107,7 +107,7 @@ def notifier(result):
     port = 587  # For starttls
     sender_email = "chris@totalhighspeed.net"
     receiver_email = "chris@totalhighspeed.net"
-    password = "1234"
+    password = input("Enter your password: ")
 
     # Create a secure SSL context
     context = ssl.create_default_context()
@@ -120,8 +120,7 @@ def notifier(result):
         server.ehlo() # Can be omitted
         server.login(sender_email, password)
         # TODO: Send email here
-        message = """\
-Subject: TEST FROM AlarmPiHat
+        message = """Subject: TEST FROM AlarmPiHat
 
 This message is a test sent from Python."""
     except Exception as e:
