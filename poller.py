@@ -93,7 +93,7 @@ def writeDb(result):
                 sql = "UPDATE config SET %s=datetime('now','localtime') WHERE 1" % (key)
                 cur.execute(sql)
             else:
-                cur.execute("UPDATE config SET ",key,"=NULL WHERE 1")
+                cur.execute("UPDATE config SET %s=NULL WHERE 1" % key)
             con.commit()                               # Commit the changes to the database
             con.close()                                # Close the database connection
 
