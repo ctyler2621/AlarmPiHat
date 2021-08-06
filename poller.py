@@ -121,9 +121,9 @@ def notifier(result):
         server.login(sender_email, password)
         # TODO: Send email here
         message = """\
-Subject: Hi there
+Subject: TEST FROM AlarmPiHat
 
-This message is sent from Python."""
+This message is a test sent from Python."""
     except Exception as e:
         server.sendmail(sender_email, receiver_email, message)
 
@@ -143,7 +143,7 @@ try:
         sleep(0.1)                  # Once the program takes a bit longer to run this can be removed
         result = getData()          # Get the data
         writeDb(result)            # Write the data to the database
-        #notifier(result)           # Send notificaiton email if necessary
+        notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(21,0) #Turn off the LED
         sleep(4.9)                  # Wait for x seconds
         runcounter += 1             # Increment the runcounter
