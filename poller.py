@@ -87,7 +87,7 @@ def writeDb(result):
     con = sqlite3.connect('ramdisk/config.db') # Connect to the database
     cur = con.cursor()                         # Init the cursor
 
-    for key, value in result:
+    for key, value in result.items():
         if value.find("contact") >= 0:
             if value == 1:
                 cur.execute("UPDATE config SET ",key,"=datetime('now','localtime') WHERE 1")
