@@ -107,7 +107,7 @@ def notifier(result):
     port = 587  # For starttls
     sender_email = "chris@totalhighspeed.net"
     receiver_email = "chris@totalhighspeed.net"
-    password = input("Type your password and press enter: ")
+    password = "1234"
 
     # Create a secure SSL context
     context = ssl.create_default_context()
