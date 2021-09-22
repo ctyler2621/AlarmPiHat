@@ -51,20 +51,20 @@ def getData():
     # Get the contact, LED and relay status from the device
     '''
     PCB v3.0
-    GPIO  PIN	DESCRIPTION
-    4     16	Relay 1
-    3     15	Relay 2
-    27    36	Contact 1
-    0     11	Contact 2
-    1     12	Contact 3
-    24    35	Contact 4
-    28    38	Contact 5
-    29    40	Contact 6
-    22    31	PWR LED
+    GPIO  BCM   PIN	DESCRIPTION
+    4     23    16	Relay 1
+    3     22    15	Relay 2
+    27    16    36	Contact 1
+    0     17    11	Contact 2
+    1     18    12	Contact 3
+    24    19    35	Contact 4
+    28    20    38	Contact 5
+    29    21    40	Contact 6
+    22    6     31	PWR LED
     '''
     # Create a dictionary for values using the BCM numbering
-    values_out = {"relay1":16,"relay2":15,"LED":31}
-    values_in  = {"contact1_alarm":36,"contact2_alarm":11,"contact3_alarm":12,"contact4_alarm":35,"contact5_alarm":38,"contact6_alarm":40}
+    values_out = {"relay1":23,"relay2":22,"LED":6}
+    values_in  = {"contact1_alarm":16,"contact2_alarm":17,"contact3_alarm":18,"contact4_alarm":19,"contact5_alarm":20,"contact6_alarm":21}
 
     # Set input pins as inputs and put internal resistors into pulldown mode
     for key, input in values_in.items():
