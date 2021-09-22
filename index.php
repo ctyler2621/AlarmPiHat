@@ -40,14 +40,15 @@ foreach($rows as $row){
         3     22    15	Relay 2
         27    16    36	Contact 1
         0     17    11	Contact 2
-        1     18    12	Contact 3 // Not working
+        5     24    18	Contact 3
         24    19    35	Contact 4
         28    20    38	Contact 5
         29    21    40	Contact 6
         22    6     31	PWR LED */
+
       $contact1 = exec("sudo gpio read 27");
       $contact2 = exec("sudo gpio read 0");
-      $contact3 = exec("sudo gpio read 1");
+      $contact3 = exec("sudo gpio read 5");
       $contact4 = exec("sudo gpio read 24");
       $contact5 = exec("sudo gpio read 28");
       $contact6 = exec("sudo gpio read 29");
