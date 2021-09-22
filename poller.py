@@ -31,7 +31,7 @@ def getData():
     sensor = adafruit_am2320.AM2320(i2c)
 
     # Get humidity
-    #try:
+    try:
     #    i2c = board.I2C()
     #    sensor = adafruit_am2320.AM2320(i2c)
         humid = '{0}'.format(sensor.relative_humidity)
