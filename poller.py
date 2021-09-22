@@ -93,10 +93,6 @@ def getData():
     return(result)
 
 def writeDb(result):
-    # TODO: This section probably doesn't work just yet as the sqlite tables are
-    # named differently than what is in the result variable, so one will have to
-    # change.
-
     # Write resulting data to the SQLite database on the ramdisk, everything will
     # reference the database so this shouldn't cause any issues with SNMP, etc.
     print("Write data to the Database")
@@ -111,6 +107,12 @@ def writeDb(result):
                 cur.execute(sql)
             else:
                 cur.execute("UPDATE config SET %s=NULL WHERE 1" % key)
+        if 'Temp' in key:
+            sql = "UPDATE config SET temperature=%s WHERE 1" % (value)
+            cur.execute(sql)
+        if 'Humid' in key:
+            sql = "UPDATE config SET humidity=%s WHERE 1" % (value)
+            cur.execute(sql)
     con.commit()                               # Commit the changes to the database
     con.close()                                # Close the database connection
 
