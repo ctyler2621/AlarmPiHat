@@ -157,6 +157,7 @@ try:
         wiringpi.digitalWrite(6,1) # Turn on the LED
         print("Run Count :\t",runcounter)
         result = getData()          # Get the data
+        print("DEBUG: ",result)
         writeDb(result)             # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(6,0)  #Turn off the LED
