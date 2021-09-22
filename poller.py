@@ -41,7 +41,7 @@ def getData():
         fahrenheit = round((celsius * 1.8) + 32 ,2)
         result.update({"Temp":fahrenheit})
     except:
-        print("ERROR GETTING I2C DATA (TEMPERATURE)")
+        #print("ERROR GETTING I2C DATA (TEMPERATURE)")
         result.update({"Temp":"NaN"})
 
     # Get humidity
@@ -49,7 +49,7 @@ def getData():
         humid = '{0}'.format(sensor.relative_humidity)
         result.update({"Humid":humid})
     except:
-        print("ERROR GETTING I2C DATA (HUMIDITY)")
+        #print("ERROR GETTING I2C DATA (HUMIDITY)")
         result.update({"Humid":"NaN"})
 
     # Get the contact, LED and relay status from the device
@@ -156,7 +156,7 @@ try:
         # Run a continuous loop and get the data every x seconds
         wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
         wiringpi.digitalWrite(6,1) # Turn on the LED
-        sleep(0.5)                  # Once the program takes a bit longer to run this can be removed
+        sleep(1.5)                  # Once the program takes a bit longer to run this can be removed
         result = getData()          # Get the data
         writeDb(result)             # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
