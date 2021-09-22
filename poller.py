@@ -106,7 +106,6 @@ def writeDb(result):
             if value == 1:
                 sql = "UPDATE config SET %s=datetime('now','localtime') WHERE 1" % (key)
                 cur.execute(sql)
-                con.commit()
             else:
                 cur.execute("UPDATE config SET %s=NULL WHERE 1" % key)
 
@@ -114,13 +113,12 @@ def writeDb(result):
         if 'Temp' in key:
             sql = "UPDATE config SET temperature='%s' WHERE id=1" % (value)
             cur.execute(sql)
-            con.commit()
 
         # Update humidity
         if 'Humid' in key:
             sql = "UPDATE config SET humidity='%s' WHERE id=1" % (value)
             cur.execute(sql)
-            con.commit()
+
     con.commit()                               # Commit the changes to the database
     con.close()                                # Close the database connection
 
@@ -167,7 +165,6 @@ try:
         wiringpi.digitalWrite(6,1) # Turn on the LED
         print("Run Count :\t",runcounter)
         result = getData()          # Get the data
-        print("DEBUG: ",result)
         writeDb(result)             # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(6,0)  #Turn off the LED
