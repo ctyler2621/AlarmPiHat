@@ -29,6 +29,7 @@ def getData():
 
     # Get temperature
     try:
+        print("DEBUG: GETTING TEMP")
         i2c = board.I2C()
         sensor = adafruit_am2320.AM2320(i2c)
         celsius = '{0}'.format(sensor.temperature)
@@ -42,6 +43,7 @@ def getData():
 
     # Get humidity
     try:
+        print("DEBUG: GETTING HUMIDITY")
         i2c = board.I2C()
         sensor = adafruit_am2320.AM2320(i2c)
         humid = '{0}'.format(sensor.relative_humidity)
