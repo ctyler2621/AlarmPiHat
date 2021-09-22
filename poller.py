@@ -34,6 +34,14 @@ def getData():
     except:
         print("ERROR SETTING UP I2C")
 
+    # Get humidity
+    try:
+        humid = '{0}'.format(sensor.relative_humidity)
+        result.update({"Humid":humid})
+    except:
+        #print("ERROR GETTING I2C DATA (HUMIDITY)")
+        result.update({"Humid":"NaN"})
+
     # Get temperature
     try:
         celsius = '{0}'.format(sensor.temperature)
@@ -43,14 +51,6 @@ def getData():
     except:
         #print("ERROR GETTING I2C DATA (TEMPERATURE)")
         result.update({"Temp":"NaN"})
-
-    # Get humidity
-    try:
-        humid = '{0}'.format(sensor.relative_humidity)
-        result.update({"Humid":humid})
-    except:
-        #print("ERROR GETTING I2C DATA (HUMIDITY)")
-        result.update({"Humid":"NaN"})
 
     # Get the contact, LED and relay status from the device
     '''
