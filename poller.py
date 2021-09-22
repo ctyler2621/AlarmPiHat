@@ -112,13 +112,13 @@ def writeDb(result):
 
         # Update temperature
         if 'Temp' in key:
-            sql = "UPDATE config SET %s=%s WHERE id=1" % (key,value)
+            sql = "UPDATE config SET temperature='%s' WHERE id=1" % (value)
             cur.execute(sql)
             con.commit()
 
         # Update humidity
         if 'Humid' in key:
-            sql = "UPDATE config SET humidity=%s WHERE id=1" % (value)
+            sql = "UPDATE config SET humidity='%s' WHERE id=1" % (value)
             cur.execute(sql)
             con.commit()
     con.commit()                               # Commit the changes to the database
