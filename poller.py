@@ -27,11 +27,12 @@ def getData():
     # Initialize the result variable as a dictionary
     result = {"contact1_alarm":0,"contact2_alarm":0,"contact3_alarm":0,"contact4_alarm":0,"contact5_alarm":0,"contact6_alarm":0,"relay1":0,"relay2":0,"LED":0,"Temp":0,"Humid":0}
 
+    # Setup i2c
+    i2c = board.I2C()
+    sensor = adafruit_am2320.AM2320(i2c)
     # Get temperature
     try:
         print("DEBUG: GETTING TEMP")
-        i2c = board.I2C()
-        sensor = adafruit_am2320.AM2320(i2c)
         celsius = '{0}'.format(sensor.temperature)
         print("C: ",celsius)
         celsius = float(celsius)
@@ -44,8 +45,8 @@ def getData():
     # Get humidity
     try:
         print("DEBUG: GETTING HUMIDITY")
-        i2c = board.I2C()
-        sensor = adafruit_am2320.AM2320(i2c)
+        #i2c = board.I2C()
+        #sensor = adafruit_am2320.AM2320(i2c)
         humid = '{0}'.format(sensor.relative_humidity)
         print("H: ",humid)
         result.update({"Humid":humid})
