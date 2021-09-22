@@ -35,7 +35,7 @@ GPIO  PIN	DESCRIPTION
 NOTE: For whatever reason, GPIO pin 22 (Contact 6) is borked on the Raspberry Pi 4 and
 will not read correctly, even if the internal resistor is set to pulldown mode. If not
 set to pulldown mode, the pin always reads as high, and if set to pulldown it will
-always read low, regarless if the pin is connected across the 3v rail or not.
+always read low, regardless if the pin is connected across the 3v rail or not.
 I have not tried the PCB v3.0 pinouts yet so I don't know if they will work better or
 not. Pin 22 is set as a relay output on v3.0 boards and I think that will work as one
 would expect. However, now the other pins are questionable now so we'll see. Might have
@@ -44,13 +44,22 @@ to make one more hardware revision to get everything working properly.
 TODO: Need to figure out how to send a recovery notification as well, right now it just stops sending emails
 but there is no notification when a contact ceases to be in an alarm state.
 */
-//exec("gpio mode 29 out&&gpio write 29 off");
+
+/* =========================================================================== */
+/* User configurable values  */
+
+$hwver = "3.0"; // Change this value to what is printed on the circuit board.
+date_default_timezone_set("America/Chicago");
+
+/* Nothing below this line should require any changes */
+/* =========================================================================== */
+
+//exec("gpio mode 22 out&&gpio write 22 off");
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-date_default_timezone_set("America/Chicago");
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
@@ -211,13 +220,22 @@ function mailer($contact,$now,$notification_timer) {
 
 $now = new DateTime;
 
-// Get status of contacts
-$con1 = exec("gpio read 25");
-$con2 = exec("gpio read 27");
-$con3 = exec("gpio read 24");
-$con4 = exec("gpio read 23");
-$con5 = exec("gpio read 26");
-$con6 = exec("gpio read 22");
+// Get status of contacts based on the PCB hardware version
+if ($hwver = "3.0"){
+  $con1 = exec("gpio read 27");
+  $con2 = exec("gpio read 0");
+  $con3 = exec("gpio read 1");
+  $con4 = exec("gpio read 24");
+  $con5 = exec("gpio read 28");
+  $con6 = exec("gpio read 29");
+} else { // For PCB versions before 3.0
+  $con1 = exec("gpio read 25");
+  $con2 = exec("gpio read 27");
+  $con3 = exec("gpio read 24");
+  $con4 = exec("gpio read 23");
+  $con5 = exec("gpio read 26");
+  $con6 = exec("gpio read 22");
+}
 
 $contacts=array($con1,$con2,$con3,$con4,$con5,$con6);
 $counter = 0;
@@ -230,5 +248,5 @@ foreach($contacts as $contact){
     clearalarm($counter);
   }
 }
-//exec("gpio mode 29 out&&gpio write 29 on");
+//exec("gpio mode 29 out&&gpio write 22 on");
 ?>
