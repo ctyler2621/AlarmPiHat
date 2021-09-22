@@ -160,7 +160,7 @@ try:
         writeDb(result)             # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(6,0)  #Turn off the LED
-        sleep(10)                   # Wait for x seconds
+        sleep(2.5)                   # Wait for x seconds
         runcounter += 1             # Increment the runcounter
 except KeyboardInterrupt:
     exit()                  # Exit the program if CTRL-C is pressed
