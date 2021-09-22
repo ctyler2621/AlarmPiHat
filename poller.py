@@ -101,17 +101,22 @@ def writeDb(result):
     cur = con.cursor()                         # Init the cursor
 
     for key, value in result.items():
+        # Update contacts
         if 'contact' in key:
             if value == 1:
                 sql = "UPDATE config SET %s=datetime('now','localtime') WHERE 1" % (key)
                 cur.execute(sql)
             else:
                 cur.execute("UPDATE config SET %s=NULL WHERE 1" % key)
+
+        # Update temperature
         if 'Temp' in key:
-            sql = "UPDATE config SET temperature=%s WHERE 1" % (value)
+            sql = "UPDATE config SET temperature=%s WHERE id=1" % (value)
             cur.execute(sql)
+
+        # Update humidity
         if 'Humid' in key:
-            sql = "UPDATE config SET humidity=%s WHERE 1" % (value)
+            sql = "UPDATE config SET humidity=%s WHERE id=1" % (value)
             cur.execute(sql)
     con.commit()                               # Commit the changes to the database
     con.close()                                # Close the database connection
