@@ -30,27 +30,24 @@ def getData():
     # Setup i2c
     i2c = board.I2C()
     sensor = adafruit_am2320.AM2320(i2c)
+
     # Get temperature
     try:
-        print("DEBUG: GETTING TEMP")
         celsius = '{0}'.format(sensor.temperature)
-        print("C: ",celsius)
         celsius = float(celsius)
         fahrenheit = round((celsius * 1.8) + 32 ,2)
         print("F: ",fahrenheit)
         result.update({"Temp":fahrenheit})
     except:
+        print("ERROR GETTING I2C DATA (TEMPERATURE)")
         result.update({"Temp":"NaN"})
 
     # Get humidity
     try:
-        print("DEBUG: GETTING HUMIDITY")
-        #i2c = board.I2C()
-        #sensor = adafruit_am2320.AM2320(i2c)
         humid = '{0}'.format(sensor.relative_humidity)
-        print("H: ",humid)
         result.update({"Humid":humid})
     except:
+        print("ERROR GETTING I2C DATA (HUMIDITY)")
         result.update({"Humid":"NaN"})
 
     # Get the contact, LED and relay status from the device
