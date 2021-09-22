@@ -45,12 +45,12 @@ foreach($rows as $row){
         28    20    38	Contact 5
         29    21    40	Contact 6
         22    6     31	PWR LED */
-      $contact1 = exec("sudo gpio read 16");
-      $contact2 = exec("sudo gpio read 17");
-      $contact3 = exec("sudo gpio read 18");
-      $contact4 = exec("sudo gpio read 19");
-      $contact5 = exec("sudo gpio read 20");
-      $contact6 = exec("sudo gpio read 21");
+      $contact1 = exec("sudo gpio read 27");
+      $contact2 = exec("sudo gpio read 0");
+      $contact3 = exec("sudo gpio read 1");
+      $contact4 = exec("sudo gpio read 24");
+      $contact5 = exec("sudo gpio read 28");
+      $contact6 = exec("sudo gpio read 29");
       $contacts = array($contact1,$contact2,$contact3,$contact4,$contact5,$contact6);
 
       $relay1 = exec("sudo gpio read 4");
