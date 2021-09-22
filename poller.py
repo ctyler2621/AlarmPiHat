@@ -95,8 +95,6 @@ def getData():
 def writeDb(result):
     # Write resulting data to the SQLite database on the ramdisk, everything will
     # reference the database so this shouldn't cause any issues with SNMP, etc.
-    print("Write data to the Database")
-    print()
     con = sqlite3.connect('/home/pi/AlarmPiHat/ramdisk/config.db') # Connect to the database
     cur = con.cursor()                         # Init the cursor
 
@@ -163,8 +161,8 @@ try:
         # Run a continuous loop and get the data every x seconds
         wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
         wiringpi.digitalWrite(6,1) # Turn on the LED
-        print("Run Count :\t",runcounter)
         result = getData()          # Get the data
+        print("Run Count :\t",runcounter)
         writeDb(result)             # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(6,0)  #Turn off the LED
