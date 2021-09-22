@@ -210,10 +210,10 @@ foreach($rows as $row){
       </form>
       <?php
       if(isset($_POST['submit_toggle_1'])){
-        $toggle = 7; // Relay 1 pin D4 is tied to GPIO 7 pin 7
+        $toggle = 4; // Relay 1 pin D4 is tied to GPIO 7 pin 7
         $toggle_time = $_POST['toggle_time_1'];
       }elseif(isset($_POST['submit_toggle_2'])){
-        $toggle = 0;  // Relay 2 pin D17 is tied to GPIO 0 pin 11
+        $toggle = 3;  // Relay 2 pin D17 is tied to GPIO 0 pin 11
         $toggle_time = $_POST['toggle_time_2'];
       }
 
