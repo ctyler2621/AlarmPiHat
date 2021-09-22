@@ -34,16 +34,27 @@ foreach($rows as $row){
       $humid = `python3 getHumid.py`;
 
       //$contacts = `python3 getContacts.py`;
-      $contact1 = exec("sudo gpio read 25");
-      $contact2 = exec("sudo gpio read 27");
-      $contact3 = exec("sudo gpio read 24");
-      $contact4 = exec("sudo gpio read 23");
-      $contact5 = exec("sudo gpio read 26");
-      $contact6 = exec("sudo gpio read 22");
+      /*PCB v3.0
+      GPIO  PIN	DESCRIPTION
+      4     16	Relay 1
+      3     15	Relay 2
+      27    36	Contact 1
+      0     11	Contact 2
+      1     12	Contact 3
+      24    35	Contact 4
+      28    38	Contact 5
+      29    40	Contact 6
+      22    31	PWR LED */
+      $contact1 = exec("sudo gpio read 27");
+      $contact2 = exec("sudo gpio read 0");
+      $contact3 = exec("sudo gpio read 1");
+      $contact4 = exec("sudo gpio read 24");
+      $contact5 = exec("sudo gpio read 28");
+      $contact6 = exec("sudo gpio read 29");
       $contacts = array($contact1,$contact2,$contact3,$contact4,$contact5,$contact6);
 
-      $relay1 = exec("sudo gpio read 7");
-      $relay2 = exec("sudo gpio read 0");
+      $relay1 = exec("sudo gpio read 4");
+      $relay2 = exec("sudo gpio read 3");
       $relays = array($relay1,$relay2);
 
       // TEMPERATURE AND HUMIDITY
