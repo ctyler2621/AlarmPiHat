@@ -36,7 +36,6 @@ def getData():
         celsius = '{0}'.format(sensor.temperature)
         celsius = float(celsius)
         fahrenheit = round((celsius * 1.8) + 32 ,2)
-        print("F: ",fahrenheit)
         result.update({"Temp":fahrenheit})
     except:
         print("ERROR GETTING I2C DATA (TEMPERATURE)")
