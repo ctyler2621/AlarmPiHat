@@ -219,7 +219,7 @@ foreach($rows as $row){
 
       if((isset($_POST['submit_toggle_1'])) || (isset($_POST['submit_toggle_2']))){
 
-        $relaystate = exec("sudo gpio mode $toggle out&&sudo gpio read $toggle ");
+        $relaystate = exec("sudo gpio read $toggle ");
         if($relaystate == 0){
           exec("sudo gpio write $toggle ON");
           sleep($toggle_time);
