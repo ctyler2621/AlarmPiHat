@@ -32,6 +32,7 @@ def getData():
         i2c = board.I2C()
         sensor = adafruit_am2320.AM2320(i2c)
         celsius = '{0}'.format(sensor.temperature)
+        print("Celcius:", celsius)
         celsius = float(celsius)
         fahrenheit = round((celsius * 1.8) + 32 ,2)
         result.update({"Temp":fahrenheit})
@@ -44,6 +45,7 @@ def getData():
         sensor = adafruit_am2320.AM2320(i2c)
         #time.sleep(1) # Just to make sure that we aren't reading from the sensor too quickly
         humid = '{0}'.format(sensor.relative_humidity)
+        print("Humid: ", humid)
         result.update({"Humid":humid})
     except:
         result.update({"Humid":"NaN"})
