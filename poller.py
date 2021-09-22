@@ -149,13 +149,13 @@ try:
     while True:
         print("Run Count :\t",runcounter)
         # Run a continuous loop and get the data every x seconds
-        wiringpi.pinMode(21, 1)     # Set the LED BCM pin to output
-        wiringpi.digitalWrite(21,1) # Turn on the LED
+        wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
+        wiringpi.digitalWrite(6,1) # Turn on the LED
         sleep(0.1)                  # Once the program takes a bit longer to run this can be removed
         result = getData()          # Get the data
         writeDb(result)             # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
-        wiringpi.digitalWrite(21,0) #Turn off the LED
+        wiringpi.digitalWrite(6,0) #Turn off the LED
         sleep(4.9)                  # Wait for x seconds
         runcounter += 1             # Increment the runcounter
 except KeyboardInterrupt:

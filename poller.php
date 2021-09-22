@@ -21,16 +21,16 @@ GPIO  BCM PIN DESCRIPTION
 22    D6	31	Contact 6
 
 PCB v3.0
-GPIO  PIN	DESCRIPTION
-4     16	Relay 1
-3     15	Relay 2
-27    36	Contact 1
-0     11	Contact 2
-1     12	Contact 3
-24    35	Contact 4
-28    38	Contact 5
-29    40	Contact 6
-22    31	PWR LED
+  GPIO  BCM   PIN	DESCRIPTION
+  4     23    16	Relay 1
+  3     22    15	Relay 2
+  27    16    36	Contact 1
+  0     17    11	Contact 2
+  5     24    18	Contact 3
+  24    19    35	Contact 4
+  28    20    38	Contact 5
+  29    21    40	Contact 6
+  22    6     31	PWR LED
 =============================================================================
 NOTE: For whatever reason, GPIO pin 22 (Contact 6) is borked on the Raspberry Pi 4 and
 will not read correctly, even if the internal resistor is set to pulldown mode. If not
@@ -224,7 +224,7 @@ $now = new DateTime;
 if ($hwver = "3.0"){
   $con1 = exec("gpio read 27");
   $con2 = exec("gpio read 0");
-  $con3 = exec("gpio read 1");
+  $con3 = exec("gpio read 5");
   $con4 = exec("gpio read 24");
   $con5 = exec("gpio read 28");
   $con6 = exec("gpio read 29");
