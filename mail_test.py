@@ -4,7 +4,7 @@ smtp_server = "smtp.gmail.com"
 port = 465  # For starttls
 sender_email = "wisptech@gmail.com"
 receiver_email = "chris@totalhighspeed.net"
-password = 'Stick3Whistle'
+password = 'Stick3Whistle!'
 message = """Subject: TEST FROM AlarmPiHat\r\nThis message is a test sent from Python."""
 # Create a secure SSL context
 context = ssl.create_default_context()
