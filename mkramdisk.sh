@@ -1,5 +1,5 @@
 #!/bin/bash
-# Make a ram disk to spare the SD card
+# Make a ram disk for the database in order to spare the SD card from excessive writes
 if [[ ! -d "/home/pi/AlarmPiHat/ramdisk" ]]; then
   printf "[AlarmPiHat] Create ramdisk directory"
   sudo mkdir /home/pi/AlarmPiHat/ramdisk

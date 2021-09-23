@@ -52,8 +52,8 @@ else
     # Copy files needed for proper operation
     sudo cp includes/snmpd.conf /etc/snmp/snmpd.conf
     sudo cp includes/rc.local /etc/rc.local
-    # Setup poller with cron
-    sudo crontab -l -u root | cat - includes/AlarmPiHat.cron | sudo crontab -u root -
+    # Setup poller with cron (OBSOLETE)
+    #sudo crontab -l -u root | cat - includes/AlarmPiHat.cron | sudo crontab -u root -
     # Make the SQLite3 database writeable by EVERYONE
     sudo chmod 777 AlarmPiHat/db
     sudo chmod 777 AlarmPiHat/db/config.db

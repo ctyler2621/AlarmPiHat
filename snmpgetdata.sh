@@ -1,4 +1,6 @@
 #!/bin/sh -f
+# This script gets the data and presents it for use via SNMP
+# TODO: This needs to reference the database instead of querying the device directly!!!
 
 PLACE=".1.3.6.1.4.1.47554"
 REQ="$2"
