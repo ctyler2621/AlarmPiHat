@@ -35,7 +35,7 @@ def getData():
         humid = '{0}'.format(sensor.relative_humidity)
         result.update({"Humid":humid})
     except Exception as e:
-        print("Humidity attempt ",attempts,": ",e)
+        print("Humidity: ",e)
         result.update({"Humid":"NaN"})
 
     # Get temperature
@@ -45,7 +45,7 @@ def getData():
         fahrenheit = round((celsius * 1.8) + 32 ,2)
         result.update({"Temp":fahrenheit})
     except Exception as e:
-        print("Temperature attempt ",attempts,": ",e)
+        print("Temperature: ",e)
         result.update({"Temp":"NaN"})
 
     # Get the contact, LED and relay status from the device
