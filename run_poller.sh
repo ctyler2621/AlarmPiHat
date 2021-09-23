@@ -5,5 +5,5 @@ while [ $x -ge 0 ]; do
   clear
   echo "Runcounter: $x"
   python3 poller.py
-  sleep 8
+  sleep 10
 done
