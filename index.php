@@ -32,6 +32,28 @@ foreach($rows as $row){
   $temperature = $row['temperature'];
   $humidity = $row['humidity'];
 }
+
+// Get system uptime
+exec("/sbin/sysctl -n kern.boottime", $boottime);
+preg_match("/sec = (\d+)/", $boottime[0], $matches);
+$boottime = $matches[1];
+$uptime = time() - $boottime;
+
+if ($uptime > 60)
+    $uptime += 30;
+$updays = (int)($uptime / 86400);
+$uptime %= 86400;
+$uphours = (int)($uptime / 3600);
+$uptime %= 3600;
+$upmins = (int)($uptime / 60);
+
+$uptimestr = "";
+if ($updays > 1)
+    $uptimestr .= "$updays days, ";
+else if ($updays > 0)
+    $uptimestr .= "1 day, ";
+$uptimestr .= sprintf("%02d:%02d", $uphours, $upmins);
+
 ?>
 
 <body class="standard">
@@ -95,6 +117,7 @@ foreach($rows as $row){
         $counter++;
       }
       print "</table>";
+      echo htmlspecialchars($uptimestr);
       ?>
     </div>
     <?php include('footer.php');?>
