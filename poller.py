@@ -30,42 +30,37 @@ def getData():
     i2c = board.I2C()
     sensor = adafruit_am2320.AM2320(i2c)
 
+    # Combo get both Temp and Humidity without try or pause in between
+    humid = '{0}'.format(sensor.relative_humidity)
+    result.update({"Humid":humid})
+    celsius = '{0}'.format(sensor.temperature)
+    celsius = float(celsius)
+    fahrenheit = round((celsius * 1.8) + 32 ,2)
+    result.update({"Temp":fahrenheit})
+
     # Get humidity
-    try:
+    #try:
     #    i2c = board.I2C()
     #    sensor = adafruit_am2320.AM2320(i2c)
-        humid = '{0}'.format(sensor.relative_humidity)
-        result.update({"Humid":humid})
-    except:
+    #    humid = '{0}'.format(sensor.relative_humidity)
+    #    result.update({"Humid":humid})
+    #except:
     #    print("ERROR GETTING I2C DATA (HUMIDITY)")
-        result.update({"Humid":"NaN"})
+    #    result.update({"Humid":"NaN"})
 
     # Get temperature
-    try:
+    #try:
     #    i2c = board.I2C()
     #    sensor = adafruit_am2320.AM2320(i2c)
-        celsius = '{0}'.format(sensor.temperature)
-        celsius = float(celsius)
-        fahrenheit = round((celsius * 1.8) + 32 ,2)
-        result.update({"Temp":fahrenheit})
-    except:
-        #print("ERROR GETTING I2C DATA (TEMPERATURE)")
-        result.update({"Temp":"NaN"})
+    #    celsius = '{0}'.format(sensor.temperature)
+    #    celsius = float(celsius)
+    #    fahrenheit = round((celsius * 1.8) + 32 ,2)
+    #    result.update({"Temp":fahrenheit})
+    #except:
+    #    print("ERROR GETTING I2C DATA (TEMPERATURE)")
+    #    result.update({"Temp":"NaN"})
 
     # Get the contact, LED and relay status from the device
-    '''
-    PCB v3.0
-    GPIO  BCM   PIN	DESCRIPTION
-    4     23    16	Relay 1
-    3     22    15	Relay 2
-    27    16    36	Contact 1
-    0     17    11	Contact 2
-    5     24    18	Contact 3
-    24    19    35	Contact 4
-    28    20    38	Contact 5
-    29    21    40	Contact 6
-    22    6     31	PWR LED
-    '''
     # Create a dictionary for values using the BCM numbering
     values_out = {"relay1":23,"relay2":22,"LED":6}
     values_in  = {"contact1_alarm":16,"contact2_alarm":17,"contact3_alarm":24,"contact4_alarm":19,"contact5_alarm":20,"contact6_alarm":21}
