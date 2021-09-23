@@ -27,22 +27,6 @@ def getData():
     # Initialize the result variable as a dictionary
     result = {"contact1_alarm":0,"contact2_alarm":0,"contact3_alarm":0,"contact4_alarm":0,"contact5_alarm":0,"contact6_alarm":0,"relay1":0,"relay2":0,"LED":0,"Temp":0,"Humid":0}
 
-    # Combo get both Temp and Humidity without try or pause in between
-    #try:
-    #    i2c = board.I2C()
-    #    sensor = adafruit_am2320.AM2320(i2c)
-    #    humid = '{0}'.format(sensor.relative_humidity)
-    #    result.update({"Humid":humid})
-
-    #    i2c = board.I2C()
-    #    sensor = adafruit_am2320.AM2320(i2c)
-    #    celsius = '{0}'.format(sensor.temperature)
-    #    celsius = float(celsius)
-    #    fahrenheit = round((celsius * 1.8) + 32 ,2)
-    #    result.update({"Temp":fahrenheit})
-    #except Exception as e:
-    #    print(e)
-
     i2c = board.I2C()
     sensor = adafruit_am2320.AM2320(i2c)
     # Get humidity
@@ -50,7 +34,7 @@ def getData():
         humid = '{0}'.format(sensor.relative_humidity)
         result.update({"Humid":humid})
     except Exception as e:
-        print(e)
+        print("Humidity:", e)
         result.update({"Humid":"NaN"})
 
     # Get temperature
@@ -60,7 +44,7 @@ def getData():
         fahrenheit = round((celsius * 1.8) + 32 ,2)
         result.update({"Temp":fahrenheit})
     except Exception as e:
-        print(e)
+        print("Temperature:", e)
         result.update({"Temp":"NaN"})
 
     # Get the contact, LED and relay status from the device
