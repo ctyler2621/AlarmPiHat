@@ -31,30 +31,22 @@ def getData():
     sensor = adafruit_am2320.AM2320(i2c)
 
     # Get humidity
-    attempts = 0
-    while attempts < 3:
-        try:
-            humid = '{0}'.format(sensor.relative_humidity)
-            result.update({"Humid":humid})
-        except Exception as e:
-            attempts += 1
-            print("Humidity attempt ",attempts,": ",e)
-            result.update({"Humid":"NaN"})
-            sleep(0.5)
+    try:
+        humid = '{0}'.format(sensor.relative_humidity)
+        result.update({"Humid":humid})
+    except Exception as e:
+        print("Humidity attempt ",attempts,": ",e)
+        result.update({"Humid":"NaN"})
 
     # Get temperature
-    attempts = 0
-    while attempts < 3:
-        try:
-            celsius = '{0}'.format(sensor.temperature)
-            celsius = float(celsius)
-            fahrenheit = round((celsius * 1.8) + 32 ,2)
-            result.update({"Temp":fahrenheit})
-        except Exception as e:
-            attempts += 1
-            print("Temperature attempt ",attempts,": ",e)
-            result.update({"Temp":"NaN"})
-            sleep(0.5)
+    try:
+        celsius = '{0}'.format(sensor.temperature)
+        celsius = float(celsius)
+        fahrenheit = round((celsius * 1.8) + 32 ,2)
+        result.update({"Temp":fahrenheit})
+    except Exception as e:
+        print("Temperature attempt ",attempts,": ",e)
+        result.update({"Temp":"NaN"})
 
     # Get the contact, LED and relay status from the device
     # Create a dictionary for values using the BCM numbering
