@@ -95,7 +95,7 @@ def writeDb(result):
                 sql = "UPDATE config SET %s='on' WHERE 1" % (key)
                 cur.execute(sql)
             else:
-                cur.execute("UPDATE config SET %s=off WHERE 1" % key)
+                cur.execute("UPDATE config SET %s='off' WHERE 1" % key)
 
         # Update temperature
         if 'Temp' in key:
