@@ -34,10 +34,9 @@ foreach($rows as $row){
 }
 
 // Get system uptime
-$data = shell_exec('uptime');
-$uptime = explode(' up ', $data);
-$uptime = explode(',', $uptime[1]);
-$uptime = $uptime[0];
+$s = explode( " ", exec("/sbin/sysctl -n kern.boottime") );
+$a = str_replace( ",", "", $s[3]);
+$uptime = time() - $a;  
 
 ?>
 
