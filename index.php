@@ -59,7 +59,6 @@ foreach($rows as $row){
       foreach($contact_names as $contact_name){
         print '<tr><td>'.$contact_name.':</td><td>';
         print '<label class="switch">';
-        print 'DEBUG: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$contacts[$counter].'<br />';
         if(empty($contacts[$counter])){
           print'<input type="checkbox" onclick="return false;"/>';
           print '<span class="slider round"></span>';
@@ -83,7 +82,7 @@ foreach($rows as $row){
       foreach($relay_names as $relay_name){
         print '<tr><td>'.$relay_name.':</td>';
         print '<td><label class="switch">';
-        if($relays[$counter] != NULL){
+        if($relays[$counter] == 'off'){
           print '<input type="checkbox" onclick="return false;"/>';
           print '<span class="slider round"></span>';
           print '</label></td><td>OFF</td>';
