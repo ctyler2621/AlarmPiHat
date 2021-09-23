@@ -58,7 +58,7 @@ foreach($rows as $row){
       foreach($contact_names as $contact_name){
         print '<tr><td>'.$contact_name.':</td><td>';
         print '<label class="switch">';
-        if($contacts[$counter] == 0){
+        if($contacts[$counter] != NULL){
           print'<input type="checkbox" onclick="return false;"/>';
           print '<span class="slider round"></span>';
           print '</label></td><td>OPEN</td></tr>';
