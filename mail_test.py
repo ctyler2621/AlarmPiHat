@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import smtplib, ssl
 smtp_server = "smtp.gmail.com"
 port = 465  # For starttls
 sender_email = "wisptech@gmail.com"
