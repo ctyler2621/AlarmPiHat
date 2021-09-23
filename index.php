@@ -32,12 +32,6 @@ foreach($rows as $row){
   $temperature = $row['temperature'];
   $humidity = $row['humidity'];
 }
-
-// Get system uptime
-$s = explode( " ", exec("/sbin/sysctl -n kern.boottime") );
-$a = str_replace( ",", "", $s[3]);
-$uptime = time() - $a;  
-
 ?>
 
 <body class="standard">
@@ -105,7 +99,7 @@ $uptime = time() - $a;
       print "<hr />";
       print "<span class='heading'>Uptime</span><br /><br />";
       print "<table>";
-      print '<tr><td>'.$uptime.'</td></tr>';
+      print '<tr><td>'.shell_exec('uptime -p').'</td></tr>';
       print '</table>';
       ?>
     </div>
