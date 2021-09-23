@@ -115,10 +115,10 @@ def notifier(result):
     # Base the time between notificaitons on the timer values in the database
     # Check the last notification datetime with current datetime and if x seconds
     # have not passed do not send the notification.
-    
+
     # TODO: This still needs to be figured out or discarded in leiu of some other
     # method of notification. Possibly calling an external PHP script or something.
-
+    print("Mail Notifications")
 
 #########################
 ### Main code section ###
@@ -128,5 +128,5 @@ wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
 wiringpi.digitalWrite(6,1) # Turn on the LED
 result = getData()          # Get the data
 writeDb(result)             # Write the data to the database
-notifier(result)           # Send notificaiton email if necessary
+#notifier(result)           # Send notificaiton email if necessary
 wiringpi.digitalWrite(6,0)  #Turn off the LED
