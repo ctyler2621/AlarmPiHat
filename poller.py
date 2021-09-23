@@ -154,19 +154,14 @@ This message is a test sent from Python."""
     finally:
         server.quit()
 
-# Main code section
-try:
-    runcounter = 1
-    while True:
-        # Run a continuous loop and get the data every x seconds
-        wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
-        wiringpi.digitalWrite(6,1) # Turn on the LED
-        result = getData()          # Get the data
-        print("Run Count :\t",runcounter)
-        writeDb(result)             # Write the data to the database
-        #notifier(result)           # Send notificaiton email if necessary
-        wiringpi.digitalWrite(6,0)  #Turn off the LED
-        sleep(5.0)                  # Wait for x seconds
-        runcounter += 1             # Increment the runcounter
-except KeyboardInterrupt:
-    exit()                  # Exit the program if CTRL-C is pressed
+#########################
+### Main code section ###
+#########################
+# Run a continuous loop and get the data every x seconds
+wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
+wiringpi.digitalWrite(6,1) # Turn on the LED
+result = getData()          # Get the data
+print("Run Count :\t",runcounter)
+writeDb(result)             # Write the data to the database
+#notifier(result)           # Send notificaiton email if necessary
+wiringpi.digitalWrite(6,0)  #Turn off the LED
