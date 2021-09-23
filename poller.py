@@ -40,6 +40,7 @@ def getData():
             attempts += 1
             print("Humidity attempt ",attempts,": ",e)
             result.update({"Humid":"NaN"})
+            sleep(0.5)
 
     # Get temperature
     attempts = 0
@@ -53,6 +54,7 @@ def getData():
             attempts += 1
             print("Temperature attempt ",attempts,": ",e)
             result.update({"Temp":"NaN"})
+            sleep(0.5)
 
     # Get the contact, LED and relay status from the device
     # Create a dictionary for values using the BCM numbering
