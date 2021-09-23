@@ -37,7 +37,7 @@ foreach($rows as $row){
 $data = shell_exec('uptime');
 $uptime = explode(' up ', $data);
 $uptime = explode(',', $uptime[1]);
-$uptime = $uptime[0].', '.$uptime[1];
+$uptime = $uptime[0];
 
 ?>
 
@@ -102,7 +102,12 @@ $uptime = $uptime[0].', '.$uptime[1];
         $counter++;
       }
       print "</table>";
-      echo ('Current server uptime: '.$uptime.'<br />');
+
+      print "<hr />";
+      print "<span class='heading'>Uptime</span><br /><br />";
+      print "<table>";
+      print '<tr><td>'.$uptime.'</td></tr>';
+      print '</table>';
       ?>
     </div>
     <?php include('footer.php');?>
