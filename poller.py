@@ -82,7 +82,6 @@ def getData():
         result.update({key:wiringpi.digitalRead(output)}) # Read the BCM pin
 
     # Print the result for the end user just in case they are running it from the command line
-    print()
     for key, value in result.items():
         if key == "LED" or key == "Humid" or key == "Temp":
             print(key,"\t:\t",value)
