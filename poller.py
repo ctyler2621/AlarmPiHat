@@ -32,7 +32,7 @@ def getData():
 
     # Get humidity
     attempts = 0
-    while attempts < 3:
+    while attempts <= 3:
         try:
             humid = '{0}'.format(sensor.relative_humidity)
             result.update({"Humid":humid})
@@ -43,7 +43,7 @@ def getData():
 
     # Get temperature
     attempts = 0
-    while attempts < 3:
+    while attempts <= 3:
         try:
             celsius = '{0}'.format(sensor.temperature)
             celsius = float(celsius)
