@@ -161,7 +161,6 @@ This message is a test sent from Python."""
 wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
 wiringpi.digitalWrite(6,1) # Turn on the LED
 result = getData()          # Get the data
-print("Run Count :\t",runcounter)
 writeDb(result)             # Write the data to the database
 #notifier(result)           # Send notificaiton email if necessary
 wiringpi.digitalWrite(6,0)  #Turn off the LED
