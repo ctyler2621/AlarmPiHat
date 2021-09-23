@@ -34,25 +34,10 @@ foreach($rows as $row){
 }
 
 // Get system uptime
-exec("/sbin/sysctl -n kern.boottime", $boottime);
-preg_match("/sec = (\d+)/", $boottime[0], $matches);
-$boottime = $matches[1];
-$uptime = time() - $boottime;
-
-if ($uptime > 60)
-    $uptime += 30;
-$updays = (int)($uptime / 86400);
-$uptime %= 86400;
-$uphours = (int)($uptime / 3600);
-$uptime %= 3600;
-$upmins = (int)($uptime / 60);
-
-$uptimestr = "";
-if ($updays > 1)
-    $uptimestr .= "$updays days, ";
-else if ($updays > 0)
-    $uptimestr .= "1 day, ";
-$uptimestr .= sprintf("%02d:%02d", $uphours, $upmins);
+$data = shell_exec('uptime');
+$uptime = explode(' up ', $data);
+$uptime = explode(',', $uptime[1]);
+$uptime = $uptime[0].', '.$uptime[1];
 
 ?>
 
@@ -117,7 +102,7 @@ $uptimestr .= sprintf("%02d:%02d", $uphours, $upmins);
         $counter++;
       }
       print "</table>";
-      echo htmlspecialchars($uptimestr);
+      echo ('Current server uptime: '.$uptime.'<br />');
       ?>
     </div>
     <?php include('footer.php');?>
