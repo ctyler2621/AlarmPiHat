@@ -115,34 +115,10 @@ def notifier(result):
     # Base the time between notificaitons on the timer values in the database
     # Check the last notification datetime with current datetime and if x seconds
     # have not passed do not send the notification.
-    print("Send notification via email if necessary")
-    smtp_server = "mail.totalhighspeed.net"
-    port = 587  # For starttls
-    sender_email = "chris@totalhighspeed.net"
-    receiver_email = "chris@totalhighspeed.net"
-    password = input("Enter your password: ")
+    
+    # TODO: This still needs to be figured out or discarded in leiu of some other
+    # method of notification. Possibly calling an external PHP script or something.
 
-    # Create a secure SSL context
-    context = ssl.create_default_context()
-
-    # Try to log in to server and send email
-    try:
-        server = smtplib.SMTP(smtp_server,port)
-        server.ehlo() # Can be omitted
-        server.starttls(context=context) # Secure the connection
-        server.ehlo() # Can be omitted
-        server.login(sender_email, password)
-        # TODO: Send email here
-        message = """Subject: TEST FROM AlarmPiHat
-
-This message is a test sent from Python."""
-    except Exception as e:
-        server.sendmail(sender_email, receiver_email, message)
-
-        # Print any error messages to stdout
-        print(e)
-    finally:
-        server.quit()
 
 #########################
 ### Main code section ###
@@ -152,5 +128,5 @@ wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
 wiringpi.digitalWrite(6,1) # Turn on the LED
 result = getData()          # Get the data
 writeDb(result)             # Write the data to the database
-#notifier(result)           # Send notificaiton email if necessary
+notifier(result)           # Send notificaiton email if necessary
 wiringpi.digitalWrite(6,0)  #Turn off the LED
