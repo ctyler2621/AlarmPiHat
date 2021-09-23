@@ -39,6 +39,7 @@ foreach($rows as $row){
     <?php include('header.php'); ?>
     <div class="body">
       <?php
+      $contacts = array($contact1,$contact2,$contact3,$contact4,$contact5,$contact6);
       $relays = array($relay1,$relay2);
 
       // TEMPERATURE AND HUMIDITY
@@ -59,7 +60,7 @@ foreach($rows as $row){
         print '<tr><td>'.$contact_name.':</td><td>';
         print '<label class="switch">';
         print 'DEBUG: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$contacts[$counter].'<br />';
-        if(empty($contact[$counter])){
+        if(empty($contacts[$counter])){
           print'<input type="checkbox" onclick="return false;"/>';
           print '<span class="slider round"></span>';
           print '</label></td><td>OPEN</td></tr>';
