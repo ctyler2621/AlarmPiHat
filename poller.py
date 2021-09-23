@@ -29,13 +29,17 @@ def getData():
 
     i2c = board.I2C()
     sensor = adafruit_am2320.AM2320(i2c)
+
     # Get humidity
-    try:
-        humid = '{0}'.format(sensor.relative_humidity)
-        result.update({"Humid":humid})
-    except Exception as e:
-        print("Humidity:", e)
-        result.update({"Humid":"NaN"})
+    attempts = 0
+    while attempts < 3:
+        try:
+            humid = '{0}'.format(sensor.relative_humidity)
+            result.update({"Humid":humid})
+        except Exception as e:
+            attempts += 1
+            print("Humidity:", e)
+            result.update({"Humid":"NaN"})
 
     # Get temperature
     try:
