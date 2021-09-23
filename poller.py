@@ -40,7 +40,7 @@ def getData():
         celsius = float(celsius)
         fahrenheit = round((celsius * 1.8) + 32 ,2)
         result.update({"Temp":fahrenheit})
-    except:
+    except Exception as e:
         print(e)
 
     # Get humidity
