@@ -90,6 +90,13 @@ def writeDb(result):
             else:
                 cur.execute("UPDATE config SET %s=NULL WHERE 1" % key)
 
+        if 'relay' in key:
+            if value == 1:
+                sql = "UPDATE config SET %s='on' WHERE 1" % (key)
+                cur.execute(sql)
+            else:
+                cur.execute("UPDATE config SET %s=off WHERE 1" % key)
+
         # Update temperature
         if 'Temp' in key:
             sql = "UPDATE config SET temperature='%s' WHERE id=1" % (value)
