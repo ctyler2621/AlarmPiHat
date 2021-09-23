@@ -25,7 +25,7 @@ wiringpi.wiringPiSetupGpio()
 
 def getData():
     # Initialize the result variable as a dictionary
-    result = {"contact1_alarm":0,"contact2_alarm":0,"contact3_alarm":0,"contact4_alarm":0,"contact5_alarm":0,"contact6_alarm":0,"relay1":0,"relay2":0,"LED":0,"Temp":0,"Humid":0}
+    result = {"contact1_alarm":0,"contact2_alarm":0,"contact3_alarm":0,"contact4_alarm":0,"contact5_alarm":0,"contact6_alarm":0,"relay_status_1":0,"relay_status_2":0,"LED":0,"Temp":0,"Humid":0}
 
     # Setup i2c
     i2c = board.I2C()
@@ -51,7 +51,7 @@ def getData():
 
     # Get the contact, LED and relay status from the device
     # Create a dictionary for values using the BCM numbering
-    values_out = {"relay1":23,"relay2":22,"LED":6}
+    values_out = {"relay_status_1":23,"relay_status_2":22,"LED":6}
     values_in  = {"contact1_alarm":16,"contact2_alarm":17,"contact3_alarm":24,"contact4_alarm":19,"contact5_alarm":20,"contact6_alarm":21}
 
     # Set input pins as inputs and put internal resistors into pulldown mode
@@ -90,7 +90,7 @@ def writeDb(result):
             else:
                 cur.execute("UPDATE config SET %s=NULL WHERE 1" % key)
 
-        if 'relay' in key:
+        if 'relay_status' in key:
             if value == 1:
                 sql = "UPDATE config SET %s='on' WHERE 1" % (key)
                 cur.execute(sql)
