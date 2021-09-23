@@ -40,7 +40,7 @@ def getData():
     #    print("ERROR GETTING I2C DATA (HUMIDITY)")
         result.update({"Humid":"NaN"})
 
-    sleep(5)
+    sleep(2)
     # Get temperature
     try:
     #    i2c = board.I2C()
