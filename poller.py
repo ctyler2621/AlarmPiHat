@@ -27,6 +27,7 @@ def getData():
     # Initialize the result variable as a dictionary
     result = {"contact1_alarm":0,"contact2_alarm":0,"contact3_alarm":0,"contact4_alarm":0,"contact5_alarm":0,"contact6_alarm":0,"relay1":0,"relay2":0,"LED":0,"Temp":0,"Humid":0}
 
+    # Setup i2c
     i2c = board.I2C()
     sensor = adafruit_am2320.AM2320(i2c)
 

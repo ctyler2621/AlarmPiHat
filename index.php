@@ -15,12 +15,22 @@ $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
 foreach($rows as $row){
   $relay_name_1 = $row['relay_name_1'];
   $relay_name_2 = $row['relay_name_2'];
+  $relay1 = $row['relay_status_1'];
+  $relay2 = $row['relay_status_2'];
   $contact_1 = $row['contact_name_1'];
   $contact_2 = $row['contact_name_2'];
   $contact_3 = $row['contact_name_3'];
   $contact_4 = $row['contact_name_4'];
   $contact_5 = $row['contact_name_5'];
   $contact_6 = $row['contact_name_6'];
+  $contact1 = $row['contact1_alarm'];
+  $contact2 = $row['contact2_alarm'];
+  $contact3 = $row['contact3_alarm'];
+  $contact4 = $row['contact4_alarm'];
+  $contact5 = $row['contact5_alarm'];
+  $contact6 = $row['contact6_alarm'];
+  $temperature = $row['temperature'];
+  $humidity = $row['humidity'];
 }
 ?>
 
@@ -29,41 +39,14 @@ foreach($rows as $row){
     <?php include('header.php'); ?>
     <div class="body">
       <?php
-      // Get the sensor data from the python scripts
-      $temp =`python3 getTemp.py`;
-      $humid = `python3 getHumid.py`;
-
-      //$contacts = `python3 getContacts.py`;
-      /*PCB v3.0
-        GPIO  BCM   PIN	DESCRIPTION
-        4     23    16	Relay 1
-        3     22    15	Relay 2
-        27    16    36	Contact 1
-        0     17    11	Contact 2
-        5     24    18	Contact 3
-        24    19    35	Contact 4
-        28    20    38	Contact 5
-        29    21    40	Contact 6
-        22    6     31	PWR LED */
-
-      $contact1 = exec("sudo gpio read 27");
-      $contact2 = exec("sudo gpio read 0");
-      $contact3 = exec("sudo gpio read 5");
-      $contact4 = exec("sudo gpio read 24");
-      $contact5 = exec("sudo gpio read 28");
-      $contact6 = exec("sudo gpio read 29");
-      $contacts = array($contact1,$contact2,$contact3,$contact4,$contact5,$contact6);
-
-      $relay1 = exec("sudo gpio read 4");
-      $relay2 = exec("sudo gpio read 3");
       $relays = array($relay1,$relay2);
 
       // TEMPERATURE AND HUMIDITY
       print "<span class='heading'>Temperature</span><br /><br />";
-      print "<span class='readings'>".$temp."&deg;F</span><br />";
+      print "<span class='readings'>".$temperature."&deg;F</span><br />";
       print "<hr />";
       print "<span class='heading'>Relative Humidity</span><br /><br />";
-      print "<span class='readings'>".$humid."%</span><br />";
+      print "<span class='readings'>".$humidity."%</span><br />";
 
       // DRY CONTACTS
       print "<hr />";
