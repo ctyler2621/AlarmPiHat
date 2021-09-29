@@ -125,14 +125,14 @@ def notifier(result):
 ### Main code section ###
 #########################
 # Run a continuous loop and get the data every x seconds
-while(True):
-    try:
-        wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
-        wiringpi.digitalWrite(6,1) # Turn on the LED
-        result = getData()          # Get the data
-        writeDb(result)             # Write the data to the database
-        #notifier(result)           # Send notificaiton email if necessary
-        wiringpi.digitalWrite(6,0)  #Turn off the LED
-        sleep(5)
-    except Exception:
-        traceback.print_exc()
+#while(True):
+try:
+    wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
+    wiringpi.digitalWrite(6,1) # Turn on the LED
+    result = getData()          # Get the data
+    writeDb(result)             # Write the data to the database
+    #notifier(result)           # Send notificaiton email if necessary
+    wiringpi.digitalWrite(6,0)  #Turn off the LED
+    #sleep(5)
+except Exception:
+    traceback.print_exc()
