@@ -133,5 +133,6 @@ while(True):
         writeDb(result)             # Write the data to the database
         #notifier(result)           # Send notificaiton email if necessary
         wiringpi.digitalWrite(6,0)  #Turn off the LED
+        sleep(5)
     except Exception:
         traceback.print_exc()
