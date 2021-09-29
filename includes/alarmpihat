@@ -10,7 +10,7 @@
 #
 ### END INIT INFO
 
-DAEMON=/home/pi/AlarmPiHat/poller.py
+DAEMON=/home/pi/AlarmPiHat/run_poller.sh
 NAME=AlarmPiHat_poller
 PIDFILE=/var/run/$NAME.pid
 
