@@ -7,6 +7,6 @@ while [ $x -ge 0 ]; do
   ((x++))
   clear
   echo "Runcounter: $x"
-  python3 poller.py
+  python3 /home/pi/AlarmPiHat/poller.py
   sleep 2
 done
