@@ -63,7 +63,7 @@ else
     # Make the poller executable
     sudo chmod a+x /home/pi/AlarmPiHat/poller.py
     # Set up the poller to run as a daemon service
-    sudo chmot a+x /home/pi/AlarmPiHat/includes/alarmpihat
+    sudo chmod a+x /home/pi/AlarmPiHat/includes/alarmpihat
     sudo cp /home/pi/AlarmPiHat/includes/alarmpihat /etc/init.d
     sudo update-rc.d alarmpihat defaults
     # Reboot the Pi
