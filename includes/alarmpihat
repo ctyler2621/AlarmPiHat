@@ -1,0 +1,40 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides: Python script
+# Required-Start: $local_fs $remote_fs $network $syslog
+# Required-Stop: $local_fs $remote_fs $network $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start AlarmPiHat Poller at boot time
+# Description: AlarmPiHat Poller
+#
+### END INIT INFO
+
+DAEMON=/home/pi/AlarmPiHat/poller.py
+NAME=AlarmPiHat_poller
+PIDFILE=/var/run/$NAME.pid
+
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+ start)
+   log_daemon_msg "Starting system $NAME daemon"
+   start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile --exec $DAEMON --startas $DAEMON
+   log_end_msg $?
+   ;;
+ stop)
+   echo -n "Stopping daemon: "$NAME
+   start-stop-daemon --stop --oknodo --retry 30 --pidfile $PIDFILE
+   ;;
+ restart)
+   start-stop-daemon --stop --oknodo --retry 30 --pidfile $PIDFILE
+   start-stop-daemon --start --pidfile $PIDFILE --exec $DAEMON
+   ;;
+ *)
+   echo "Usage: python-script {start|stop|restart}" >&2
+   exit 3
+   ;;
+esac
+exit 0

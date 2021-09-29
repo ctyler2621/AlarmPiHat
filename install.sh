@@ -61,7 +61,10 @@ else
     sudo cd /home/pi/AlarmPiHat
     composer require phpmailer/phpmailer
     # Make the poller executable
-    sudo chmod +x /home/pi/AlarmPiHat/poller.php
+    sudo chmod a+x /home/pi/AlarmPiHat/poller.py
+    # Set up the poller to run as a daemon service
+    sudo cp /home/pi/AlarmPiHat/includes/alarmpihat /etc/init.d
+    sudo update-rc.d alarmpihat defaults
     # Reboot the Pi
     read -n 1 -s -r -p "Press any key to REBOOT..."
     sudo reboot

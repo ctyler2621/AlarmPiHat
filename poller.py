@@ -17,6 +17,7 @@ import sqlite3
 import smtplib, ssl
 import board
 import adafruit_am2320
+import traceback
 
 # =============================================================================
 # Codebase:
@@ -124,9 +125,13 @@ def notifier(result):
 ### Main code section ###
 #########################
 # Run a continuous loop and get the data every x seconds
-wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
-wiringpi.digitalWrite(6,1) # Turn on the LED
-result = getData()          # Get the data
-writeDb(result)             # Write the data to the database
-#notifier(result)           # Send notificaiton email if necessary
-wiringpi.digitalWrite(6,0)  #Turn off the LED
+while(True):
+    try:
+        wiringpi.pinMode(6, 1)     # Set the LED BCM pin to output
+        wiringpi.digitalWrite(6,1) # Turn on the LED
+        result = getData()          # Get the data
+        writeDb(result)             # Write the data to the database
+        #notifier(result)           # Send notificaiton email if necessary
+        wiringpi.digitalWrite(6,0)  #Turn off the LED
+    except Exception:
+        traceback.print_exc()
